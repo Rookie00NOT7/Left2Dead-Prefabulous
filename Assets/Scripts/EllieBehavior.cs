@@ -82,6 +82,8 @@ public class EllieBehavior : MonoBehaviour
                     gameObject.transform.rotation = rotation;
                     audio.PlayOneShot(gunShotClip);
                     RaycastHit hit;
+                    Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
+                    Debug.DrawRay(transform.position, forward, Color.green);
                     if (Physics.Raycast(transform.position, transform.forward, out hit))
                     {
                         if (hit.transform.tag == "target" || hit.transform.tag == "specialTarget")
@@ -93,7 +95,6 @@ public class EllieBehavior : MonoBehaviour
             }
             if(target != null)
             {
-                print("hey");
                 time = 1.1f;
                 gun.active = true;
                 anim.SetTrigger("shoot");

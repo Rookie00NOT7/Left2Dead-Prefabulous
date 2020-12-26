@@ -18,6 +18,9 @@ public class ZombieController : MonoBehaviour
     public AudioClip alertClip;
     private bool playOther = false;
     private float timeToDisappear = 10f;
+    private GameObject temp;
+    private bool distracted = false;
+    private Vector3 distraction;
 
     public void setPlayer(GameObject thePlayer)
     {
@@ -42,6 +45,7 @@ public class ZombieController : MonoBehaviour
         health -= val;
         if (health <= 0)
         {
+            transform.gameObject.tag = "dead";
             anim.SetTrigger("die");
             agent.enabled = false;
             dead = true;
@@ -66,10 +70,23 @@ public class ZombieController : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        temp = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         audio = GetComponent<AudioSource>();
         audio.Play();
+    }
+
+    public void distract(GameObject dist)
+    {
+        distraction = dist.transform.position;
+        distracted = true;
+        setSeen();
+    }
+
+    public void unDistract()
+    {
+        distracted = false;
     }
 
     void Update()
@@ -89,20 +106,35 @@ public class ZombieController : MonoBehaviour
 
         if (seen && !dead)
         {
-            if (Vector3.Distance(player.transform.position, transform.position) < 2f)
+            if (!distracted)
             {
-                agent.SetDestination(transform.position);
-                anim.SetTrigger("punch");
-                if (time >= 1f)
+                if (Vector3.Distance(player.transform.position, transform.position) < 2f)
                 {
-                    player.GetComponent<PlayerAddedBehavior>().takeDamage(5);
-                    time = 0f;
+                    agent.SetDestination(transform.position);
+                    anim.SetTrigger("punch");
+                    if (time >= 1f)
+                    {
+                        player.GetComponent<PlayerAddedBehavior>().takeDamage(5);
+                        time = 0f;
+                    }
+                    time += Time.deltaTime;
                 }
-                time += Time.deltaTime;
+                else
+                {
+                    agent.SetDestination(player.transform.position);
+                }
             }
             else
             {
-                agent.SetDestination(player.transform.position);
+                if (Vector3.Distance(distraction, transform.position) < 2f)
+                {
+                    agent.SetDestination(transform.position);
+                    anim.SetTrigger("punch");
+                }
+                else
+                {
+                    agent.SetDestination(distraction);
+                }
             }
         }
         else
@@ -125,7 +157,7 @@ public class ZombieController : MonoBehaviour
             }
         }
 
-        if (!seen)
+        if (!seen && !dead)
         {
             if (agent.remainingDistance <= 0.05)
             {
