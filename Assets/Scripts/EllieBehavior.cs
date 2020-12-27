@@ -20,7 +20,7 @@ public class EllieBehavior : MonoBehaviour
         audio = GetComponent<AudioSource>();
         gun = GameObject.FindGameObjectWithTag("ElliePistol");
     }
-    
+
     Transform nearest(GameObject[] enemies)
     {
         float nearestSoFar = Mathf.Infinity;
@@ -35,14 +35,14 @@ public class EllieBehavior : MonoBehaviour
             }
         }
         return ret;
-    } 
+    }
 
     void Update()
     {
         if (Vector3.Distance(player.transform.position, transform.position) > 7f)
         {
             agent.SetDestination(player.transform.position);
-            anim.SetBool("run",true);
+            anim.SetBool("run", true);
         }
         else
         {
@@ -52,7 +52,6 @@ public class EllieBehavior : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-
             Transform target = null;
             GameObject[] specialEnemies = GameObject.FindGameObjectsWithTag("specialTarget");
             if (specialEnemies.Length > 0)
@@ -63,7 +62,8 @@ public class EllieBehavior : MonoBehaviour
                 gameObject.transform.rotation = rotation;
                 audio.PlayOneShot(gunShotClip);
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.forward, out hit))
+                if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z),
+                    new Vector3(target.position.x - this.gameObject.transform.position.x, target.position.y - this.gameObject.transform.position.y, target.position.z - this.gameObject.transform.position.z), out hit))
                 {
                     if (hit.transform.tag == "target" || hit.transform.tag == "specialTarget")
                     {
@@ -74,7 +74,7 @@ public class EllieBehavior : MonoBehaviour
             else
             {
                 GameObject[] enemies = GameObject.FindGameObjectsWithTag("target");
-                if(enemies.Length > 0)
+                if (enemies.Length > 0)
                 {
                     target = nearest(enemies);
                     Vector3 delta = new Vector3(target.position.x - this.gameObject.transform.position.x, 0.0f, target.position.z - this.gameObject.transform.position.z);
@@ -84,7 +84,8 @@ public class EllieBehavior : MonoBehaviour
                     RaycastHit hit;
                     Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
                     Debug.DrawRay(transform.position, forward, Color.green);
-                    if (Physics.Raycast(transform.position, transform.forward, out hit))
+                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z),
+                        new Vector3(target.position.x - this.gameObject.transform.position.x, target.position.y - this.gameObject.transform.position.y, target.position.z - this.gameObject.transform.position.z), out hit))
                     {
                         if (hit.transform.tag == "target" || hit.transform.tag == "specialTarget")
                         {
@@ -93,7 +94,7 @@ public class EllieBehavior : MonoBehaviour
                     }
                 }
             }
-            if(target != null)
+            if (target != null)
             {
                 time = 1.1f;
                 gun.active = true;
