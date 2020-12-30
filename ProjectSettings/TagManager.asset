@@ -12,6 +12,7 @@ TagManager:
   - ElliePistol
   - specialTarget
   - dead
+  - Ellie
   layers:
   - Default
   - TransparentFX

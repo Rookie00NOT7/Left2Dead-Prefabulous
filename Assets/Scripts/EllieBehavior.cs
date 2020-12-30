@@ -12,6 +12,22 @@ public class EllieBehavior : MonoBehaviour
     private float time = 0.0f;
     private AudioSource audio;
     public AudioClip gunShotClip;
+    private int rounds = 15;
+
+    void killCount()
+    {
+        bool ammo = player.GetComponent<PlayerAddedBehavior>().killCount();
+        if (ammo)
+        {
+            rounds += 15;
+            rounds = Mathf.Clamp(rounds, 0, 45);
+        }
+    }
+    void killPlus()
+    {
+        player.GetComponent<PlayerAddedBehavior>().killPlus();
+    }
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -39,6 +55,7 @@ public class EllieBehavior : MonoBehaviour
 
     void Update()
     {
+        killCount();
         if (Vector3.Distance(player.transform.position, transform.position) > 7f)
         {
             agent.SetDestination(player.transform.position);
@@ -50,7 +67,7 @@ public class EllieBehavior : MonoBehaviour
             anim.SetBool("run", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && rounds > 0)
         {
             Transform target = null;
             GameObject[] specialEnemies = GameObject.FindGameObjectsWithTag("specialTarget");
@@ -67,7 +84,11 @@ public class EllieBehavior : MonoBehaviour
                 {
                     if (hit.transform.tag == "target" || hit.transform.tag == "specialTarget")
                     {
-                        hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(36);
+                        bool kill = hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(36);
+                        if (kill)
+                        {
+                            killPlus();
+                        }
                     }
                 }
             }
@@ -89,7 +110,11 @@ public class EllieBehavior : MonoBehaviour
                     {
                         if (hit.transform.tag == "target" || hit.transform.tag == "specialTarget")
                         {
-                            hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(36);
+                            bool kill = hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(36);
+                            if (kill)
+                            {
+                                killPlus();
+                            }
                         }
                     }
                 }
@@ -99,6 +124,8 @@ public class EllieBehavior : MonoBehaviour
                 time = 1.1f;
                 gun.active = true;
                 anim.SetTrigger("shoot");
+                if(!player.GetComponent<PlayerAddedBehavior>().getRageMode())
+                    rounds--;
             }
         }
 

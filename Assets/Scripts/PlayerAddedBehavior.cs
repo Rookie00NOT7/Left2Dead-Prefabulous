@@ -21,7 +21,35 @@ public class PlayerAddedBehavior : MonoBehaviour
     private Animator hitPanel;
     private AudioSource audio;
     public AudioClip hitClip;
-    private bool playOrNot = true; 
+    private bool playOrNot = true;
+    private float rageTime = 0;
+    private int rageMeter = 0;
+    private bool rageOn = false;
+    private float rageOnTime = 0.0f;
+    private int rageMult = 1;
+    private int kills = 0;
+
+    public bool killCount()
+    {
+        if (kills >= 10)
+        {
+            kills = 0;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public void killPlus()
+    {
+        kills++;
+    }
+
+    public bool getRageMode()
+    {
+        return rageOn;
+    }
 
     public void takeDamage(int val)
     {
@@ -39,9 +67,32 @@ public class PlayerAddedBehavior : MonoBehaviour
             playOrNot = !playOrNot;
         }
     }
+
+    public void rage(string type)
+    {
+        if (!rageOn)
+        {
+            if (type == "target")
+            {
+                rageMeter += (10 * rageMult);
+                rageTime = 3.0f;
+            }
+            else
+            {
+                rageMeter += (50 * rageMult);
+                rageTime = 3.0f;
+            }
+            rageMeter = Mathf.Clamp(rageMeter, 0, 100);
+        }
+    }
+
     void Start()
     {
         hitPanel = GameObject.FindGameObjectWithTag("hitPanel").GetComponent<Animator>();
+        if (GameObject.FindGameObjectWithTag("Ellie") != null)
+        {
+            rageMult = 2;
+        }
         controller = GetComponent<CharacterController>();
         audio = GetComponent<AudioSource>();
     }
@@ -118,6 +169,31 @@ public class PlayerAddedBehavior : MonoBehaviour
         if (forwardDash || backwardDash || rightDash || leftDash)
         {
             controller.Move(moveDirection * Time.deltaTime * dashSpeed);
+        }
+
+        if(rageTime > 0.0f)
+        {
+            rageTime -= Time.deltaTime;
+        }
+        else
+        {
+            rageMeter = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && rageMeter >= 100)
+        {
+            rageOn = true;
+            rageOnTime = 7.0f;
+        }
+
+        if (rageOnTime > 0.0f)
+        {
+            rageOnTime -= Time.deltaTime;
+        }
+        else
+        {
+            rageOn = false;
+            rageOnTime = 0.0f;
         }
     }
 }

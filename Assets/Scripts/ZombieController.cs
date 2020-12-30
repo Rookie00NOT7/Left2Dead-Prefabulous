@@ -40,7 +40,7 @@ public class ZombieController : MonoBehaviour
         }
     }
 
-    public void takeDamage(int val)
+    public bool takeDamage(int val)
     {
         health -= val;
         if (health <= 0)
@@ -51,6 +51,7 @@ public class ZombieController : MonoBehaviour
             dead = true;
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             audio.Stop();
+            return true;
         }
         else
         {
@@ -64,6 +65,7 @@ public class ZombieController : MonoBehaviour
                 audio.clip = alertClip;
                 audio.Play();
             }
+            return false;
         }
     }
 

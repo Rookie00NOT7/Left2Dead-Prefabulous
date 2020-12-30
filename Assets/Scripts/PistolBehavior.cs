@@ -10,7 +10,8 @@ public class PistolBehavior : MonoBehaviour
     public AudioClip clip;
     private int clipCap = 15;
     private GameObject cam;
-    private float time = 1f; 
+    private float time = 1f;
+    private PlayerAddedBehavior player;
 
     public int getClipCap()
     {
@@ -22,6 +23,7 @@ public class PistolBehavior : MonoBehaviour
         anim = GetComponent<Animator>();
         audio = GetComponent<AudioSource>();
         cam = GameObject.FindGameObjectWithTag("MainCamera");
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAddedBehavior>();
     }
 
     void Update()
@@ -33,13 +35,20 @@ public class PistolBehavior : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Mouse0) && clipCap > 0 && time >= 0.2f)
         {
+            bool rage = player.getRageMode();
             time = 0f;
             RaycastHit hit;
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
             {
                 if (hit.transform.tag == "target" || hit.transform.tag == "specialTarget")
                 {
-                    hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(36);
+                    string tag = hit.transform.tag;
+                    bool kill = hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(36 * ((rage)? 2:1));
+                    if (kill)
+                    {
+                        player.killPlus();
+                        player.rage(tag);
+                    }
                 }
             }
             anim.SetTrigger("Fire");
