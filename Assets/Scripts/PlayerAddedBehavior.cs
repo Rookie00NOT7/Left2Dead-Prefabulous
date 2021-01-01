@@ -28,6 +28,8 @@ public class PlayerAddedBehavior : MonoBehaviour
     private float rageOnTime = 0.0f;
     private int rageMult = 1;
     private int kills = 0;
+    public AudioClip rageModeClip;
+    public AudioClip dieClip;
 
     public bool killCount()
     {
@@ -57,6 +59,8 @@ public class PlayerAddedBehavior : MonoBehaviour
         if (health <= 0)
         {
             hitPanel.SetTrigger("die");
+            audio.PlayOneShot(dieClip);
+            //Time.timeScale = 0;
             //add UI for game over screen and so on ...
         }
         else
@@ -182,6 +186,7 @@ public class PlayerAddedBehavior : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F) && rageMeter >= 100)
         {
+            audio.PlayOneShot(rageModeClip);
             rageOn = true;
             rageOnTime = 7.0f;
         }

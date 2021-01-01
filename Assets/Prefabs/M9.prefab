@@ -298,7 +298,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MuzzleFire: {fileID: 44476269881125348, guid: e1664e788d5bf7c4c8000adfdbe670b7, type: 3}
-  clip: {fileID: 8300000, guid: 354cfce86b2751d4a98fc6722b1dc5ee, type: 3}
+  fireClip: {fileID: 8300000, guid: 354cfce86b2751d4a98fc6722b1dc5ee, type: 3}
+  reloadClip: {fileID: 8300000, guid: a838363ea33b8af40b83793291eefeeb, type: 3}
 --- !u!1 &1462166993966168309
 GameObject:
   m_ObjectHideFlags: 0
