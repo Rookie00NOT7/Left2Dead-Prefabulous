@@ -11,7 +11,7 @@ public class explosionDamage : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "target" || other.tag == "specialTarget")
+        if (other.tag == "target")
         {
             ZombieController zombie = other.gameObject.GetComponent<ZombieController>();
             bool kill = zombie.takeDamage(100);
@@ -19,6 +19,19 @@ public class explosionDamage : MonoBehaviour
             {
                 player.killPlus();
                 player.rage(tag);
+            }
+        }
+        else
+        {
+            if(other.tag == "spitter")
+            {
+                spitterController spitter = other.gameObject.GetComponent<spitterController>();
+                bool kill = spitter.takeDamage(100);
+                if (kill)
+                {
+                    player.killPlus();
+                    player.rage(tag);
+                }
             }
         }
     }

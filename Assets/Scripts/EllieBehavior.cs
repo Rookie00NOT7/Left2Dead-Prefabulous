@@ -81,10 +81,10 @@ public class EllieBehavior : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && rounds > 0)
         {
             Transform target = null;
-            GameObject[] specialEnemies = GameObject.FindGameObjectsWithTag("specialTarget");
-            if (specialEnemies.Length > 0)
+            GameObject[] spitters = GameObject.FindGameObjectsWithTag("spitter");
+            if (spitters.Length > 0)
             {
-                target = nearest(specialEnemies);
+                target = nearest(spitters);
                 Vector3 delta = new Vector3(target.position.x - this.gameObject.transform.position.x, 0.0f, target.position.z - this.gameObject.transform.position.z);
                 Quaternion rotation = Quaternion.LookRotation(delta);
                 gameObject.transform.rotation = rotation;
@@ -93,12 +93,22 @@ public class EllieBehavior : MonoBehaviour
                 if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z),
                     new Vector3(target.position.x - this.gameObject.transform.position.x, target.position.y - this.gameObject.transform.position.y, target.position.z - this.gameObject.transform.position.z), out hit))
                 {
-                    if (hit.transform.tag == "target" || hit.transform.tag == "specialTarget")
+                    if (hit.transform.tag == "target")
                     {
                         bool kill = hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(36);
                         if (kill)
                         {
                             killPlus();
+                        }
+                    }
+                    else{
+                        if(hit.transform.tag == "spitter")
+                        {
+                            bool kill = hit.collider.gameObject.GetComponent<spitterController>().takeDamage(36);
+                            if (kill)
+                            {
+                                killPlus();
+                            }
                         }
                     }
                 }
@@ -119,12 +129,23 @@ public class EllieBehavior : MonoBehaviour
                     if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z),
                         new Vector3(target.position.x - this.gameObject.transform.position.x, target.position.y - this.gameObject.transform.position.y, target.position.z - this.gameObject.transform.position.z), out hit))
                     {
-                        if (hit.transform.tag == "target" || hit.transform.tag == "specialTarget")
+                        if (hit.transform.tag == "target")
                         {
                             bool kill = hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(36);
                             if (kill)
                             {
                                 killPlus();
+                            }
+                        }
+                        else
+                        {
+                            if (hit.transform.tag == "spitter")
+                            {
+                                bool kill = hit.collider.gameObject.GetComponent<spitterController>().takeDamage(36);
+                                if (kill)
+                                {
+                                    killPlus();
+                                }
                             }
                         }
                     }
