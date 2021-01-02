@@ -7,7 +7,8 @@ public class PistolBehavior : MonoBehaviour
     private Animator anim;
     public GameObject MuzzleFire;
     private AudioSource audio;
-    public AudioClip clip;
+    public AudioClip fireClip;
+    public AudioClip reloadClip;
     private int clipCap = 15;
     private GameObject cam;
     private float time = 1f;
@@ -55,7 +56,7 @@ public class PistolBehavior : MonoBehaviour
             Vector3 muzzlePos = new Vector3(transform.position.x, transform.position.y + 0.05f, transform.position.z + 0.1f);
             GameObject particles = Instantiate(MuzzleFire, muzzlePos, transform.rotation);
             particles.GetComponent<ParticleSystem>().Play();
-            audio.PlayOneShot(clip);
+            audio.PlayOneShot(fireClip);
             clipCap--;
         }
 
@@ -63,6 +64,7 @@ public class PistolBehavior : MonoBehaviour
         {
             clipCap = 15;
             anim.SetTrigger("Reload");
+            audio.PlayOneShot(reloadClip);
         }
     }
 }

@@ -56,15 +56,26 @@ public class EllieBehavior : MonoBehaviour
     void Update()
     {
         killCount();
-        if (Vector3.Distance(player.transform.position, transform.position) > 7f)
+        if (Vector3.Distance(player.transform.position, transform.position) > 10f)
         {
             agent.SetDestination(player.transform.position);
             anim.SetBool("run", true);
+            agent.speed = 3.5f;
         }
         else
         {
-            agent.SetDestination(transform.position);
             anim.SetBool("run", false);
+            if ((Vector3.Distance(player.transform.position, transform.position) > 7f))
+            {
+                agent.SetDestination(player.transform.position);
+                anim.SetBool("walk", true);
+                agent.speed = 2;
+            }
+            else
+            {
+                anim.SetBool("walk", false);
+                agent.SetDestination(transform.position);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && rounds > 0)
