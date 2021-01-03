@@ -30,6 +30,7 @@ public class PistolBehavior : MonoBehaviour
 
     void Update()
     {
+        print(clipCap);
         if (time <= 1f)
         {
             time += Time.deltaTime;
