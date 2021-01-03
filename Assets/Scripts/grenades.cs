@@ -18,7 +18,7 @@ public class grenades : MonoBehaviour
         {
             if (selected == 0 && PipeInventory > 0)
             {
-                Instantiate(pipe, new Vector3(this.transform.position.x + 0.5f, this.transform.position.y + 0.2f, this.transform.position.z), Quaternion.identity);
+                Instantiate(pipe, new Vector3(this.transform.position.x , this.transform.position.y + 1f, this.transform.position.z), Quaternion.identity);
                 PipeInventory--;
             }
         }

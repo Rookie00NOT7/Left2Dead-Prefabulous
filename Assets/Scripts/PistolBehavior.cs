@@ -14,6 +14,7 @@ public class PistolBehavior : MonoBehaviour
     private float time = 1f;
     private PlayerAddedBehavior player;
 
+
     public int getClipCap()
     {
         return clipCap;
@@ -41,7 +42,7 @@ public class PistolBehavior : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
             {
-                if (hit.transform.tag == "target" || hit.transform.tag == "specialTarget")
+                if (hit.transform.tag == "target")
                 {
                     string tag = hit.transform.tag;
                     bool kill = hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(36 * ((rage)? 2:1));
@@ -49,6 +50,19 @@ public class PistolBehavior : MonoBehaviour
                     {
                         player.killPlus();
                         player.rage(tag);
+                    }
+                }
+                else
+                {
+                    if(hit.transform.tag == "spitter")
+                    {
+                        string tag = hit.transform.tag;
+                        bool kill = hit.collider.gameObject.GetComponent<spitterController>().takeDamage(36 * ((rage) ? 2 : 1));
+                        if (kill)
+                        {
+                            player.killPlus();
+                            player.rage(tag);
+                        }
                     }
                 }
             }

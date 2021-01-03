@@ -13,6 +13,7 @@ TagManager:
   - specialTarget
   - dead
   - Ellie
+  - spitter
   layers:
   - Default
   - TransparentFX
