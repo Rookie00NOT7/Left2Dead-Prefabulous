@@ -37,6 +37,20 @@ public class fireLogic : MonoBehaviour
             }
 
         }
+        if (other.tag == "charger")
+        {
+            ChargerControlScript target = other.gameObject.GetComponent<ChargerControlScript>();
+            if (nextHit <= 0f)
+            {
+                target.takeDamage(25);
+                nextHit = 1f;
+            }
+            else
+            {
+                nextHit -= Time.deltaTime;
+            }
+
+        }
     }
 
     void Update()

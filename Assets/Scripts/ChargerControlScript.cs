@@ -17,12 +17,12 @@ public class ChargerControlScript : MonoBehaviour
     private bool dead = false;
     private bool seen = false;
     private bool playOther = false;
-     private int health;
-     public AudioClip alertClip;
-     private bool distracted = false;
+    private int health;
+    public AudioClip alertClip;
+    private bool distracted = false;
     private Vector3 distraction ;
+    private float pinDownDuration = 0f;
     
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -31,13 +31,14 @@ public class ChargerControlScript : MonoBehaviour
         anim = GetComponent<Animator>();
         audio = GetComponent<AudioSource>();
         audio.Play();
-        health =600;
+        health = 600;
         time = 5f;
         
     }
      public bool takeDamage(int val)
     {
         health -= val;
+        print(health);
         if (health <= 0)
         {
             anim.SetTrigger("die");
@@ -52,7 +53,7 @@ public class ChargerControlScript : MonoBehaviour
         {
             agent.SetDestination(player.transform.position);
             seen = true;
-            agent.speed = 5;
+            agent.speed = 15;
             if (!playOther)
             {
                 playOther = true;
@@ -65,8 +66,7 @@ public class ChargerControlScript : MonoBehaviour
     public void setSeen()
     {
         seen = true;
-        anim.SetTrigger("playerSeen");//run to the bomb
-        agent.speed = 5;
+        agent.speed = 15;
         if (!playOther)
         {
             playOther = true;
@@ -84,22 +84,23 @@ public class ChargerControlScript : MonoBehaviour
         distracted = true;
         setSeen();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        if(time<5f){
-            time += Time.deltaTime;
-            anim.SetBool("hold", true);
+        if(pinDownDuration > 0f)
+        {
+            player.GetComponent<CharacterController>().enabled = false;
+            pinDownDuration -= Time.deltaTime;
         }
-        else{
-            anim.SetBool("hold", false);
+        else
+        {
+            player.GetComponent<CharacterController>().enabled = true;
+            pinDownDuration = 0f;
         }
-
         if(!seen && Vector3.Distance(player.transform.position, transform.position) < 20f && Input.GetKeyDown(KeyCode.Mouse0))
         {
             seen = true;
-            agent.speed = 5;
+            agent.speed = 15;
             if (!playOther)
             {
                 playOther = true;
@@ -110,35 +111,54 @@ public class ChargerControlScript : MonoBehaviour
 
         if (seen && !dead)
         {
-            if (!distracted && time >= 5f)
+            if (!distracted)
             {
-                if (Vector3.Distance(player.transform.position, transform.position) < 2f )
+                if (time >= 5f)
                 {
-                    agent.SetDestination(transform.position);
-                Vector3 delta = new Vector3(player.transform.position.x - this.gameObject.transform.position.x, 0.0f, player.transform.position.z - this.gameObject.transform.position.z);
-                Quaternion rotation = Quaternion.LookRotation(delta);
-                gameObject.transform.rotation = rotation;
-                    anim.SetTrigger("punch");
-                    //anim.SetBool("hold", true);
-                    player.GetComponent<PlayerAddedBehavior>().takeDamage(75);
-                    time = 0f;
+                    if (Vector3.Distance(player.transform.position, transform.position) < 3f)
+                    {
+                        Vector3 delta = new Vector3(player.transform.position.x - this.gameObject.transform.position.x, 0.0f, player.transform.position.z - this.gameObject.transform.position.z);
+                        Quaternion rotation = Quaternion.LookRotation(delta);
+                        gameObject.transform.rotation = rotation;
+                        anim.SetTrigger("punch");
+                        player.GetComponent<PlayerAddedBehavior>().takeDamage(75);
+                        time = 0f;
+                        pinDownDuration = 2f;
+                    }
+                    else
+                    {
+                        agent.SetDestination(player.transform.position);
+                        anim.SetTrigger("trackAgain");
+                    }
                 }
                 else
                 {
-                    agent.SetDestination(player.transform.position);
+                    anim.ResetTrigger("trackAgain");
+                    time += Time.deltaTime;
+                    agent.SetDestination(transform.position);
                 }
             }
             else
             {
-                if (Vector3.Distance(distraction, transform.position) < 2f)
+                if (time >= 5f)
                 {
-                    agent.SetDestination(transform.position);
-                    anim.SetTrigger("punch");
-                    //anim.SetBool("hold", true);
+                    if (Vector3.Distance(distraction, transform.position) < 2f)
+                    {
+                        agent.SetDestination(transform.position);
+                        anim.SetTrigger("punch");
+                        time = 0f;
+                    }
+                    else
+                    {
+                        agent.SetDestination(distraction);
+                        anim.SetTrigger("trackAgain");
+                    }
                 }
                 else
                 {
-                    agent.SetDestination(distraction);
+                    anim.ResetTrigger("trackAgain");
+                    time += Time.deltaTime;
+                    agent.SetDestination(transform.position);
                 }
             }
         }

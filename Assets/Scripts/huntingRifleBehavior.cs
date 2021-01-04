@@ -67,6 +67,19 @@ public class huntingRifleBehavior : MonoBehaviour
                             player.rage(tag);
                         }
                     }
+                    else
+                    {
+                        if (hit.transform.tag == "charger")
+                        {
+                            string tag = hit.transform.tag;
+                            bool kill = hit.collider.gameObject.GetComponent<ChargerControlScript>().takeDamage(90 * ((rage) ? 2 : 1));
+                            if (kill)
+                            {
+                                player.killPlus();
+                                player.rage(tag);
+                            }
+                        }
+                    }
                    
                 }
             }

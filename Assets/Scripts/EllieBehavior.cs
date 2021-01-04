@@ -81,10 +81,10 @@ public class EllieBehavior : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && rounds > 0)
         {
             Transform target = null;
-            GameObject[] spitters = GameObject.FindGameObjectsWithTag("spitter");
-            if (spitters.Length > 0)
+            GameObject[] chargers = GameObject.FindGameObjectsWithTag("charger");
+            if (chargers.Length > 0)
             {
-                target = nearest(spitters);
+                target = nearest(chargers);
                 Vector3 delta = new Vector3(target.position.x - this.gameObject.transform.position.x, 0.0f, target.position.z - this.gameObject.transform.position.z);
                 Quaternion rotation = Quaternion.LookRotation(delta);
                 gameObject.transform.rotation = rotation;
@@ -101,8 +101,9 @@ public class EllieBehavior : MonoBehaviour
                             killPlus();
                         }
                     }
-                    else{
-                        if(hit.transform.tag == "spitter")
+                    else
+                    {
+                        if (hit.transform.tag == "spitter")
                         {
                             bool kill = hit.collider.gameObject.GetComponent<spitterController>().takeDamage(36);
                             if (kill)
@@ -110,22 +111,31 @@ public class EllieBehavior : MonoBehaviour
                                 killPlus();
                             }
                         }
+                        else
+                        {
+                            if (hit.transform.tag == "charger")
+                            {
+                                bool kill = hit.collider.gameObject.GetComponent<ChargerControlScript>().takeDamage(36);
+                                if (kill)
+                                {
+                                    killPlus();
+                                }
+                            }
+                        }
                     }
                 }
             }
             else
             {
-                GameObject[] enemies = GameObject.FindGameObjectsWithTag("target");
-                if (enemies.Length > 0)
+                GameObject[] spitters = GameObject.FindGameObjectsWithTag("spitter");
+                if (spitters.Length > 0)
                 {
-                    target = nearest(enemies);
+                    target = nearest(spitters);
                     Vector3 delta = new Vector3(target.position.x - this.gameObject.transform.position.x, 0.0f, target.position.z - this.gameObject.transform.position.z);
                     Quaternion rotation = Quaternion.LookRotation(delta);
                     gameObject.transform.rotation = rotation;
                     audio.PlayOneShot(gunShotClip);
                     RaycastHit hit;
-                    Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
-                    Debug.DrawRay(transform.position, forward, Color.green);
                     if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z),
                         new Vector3(target.position.x - this.gameObject.transform.position.x, target.position.y - this.gameObject.transform.position.y, target.position.z - this.gameObject.transform.position.z), out hit))
                     {
@@ -145,6 +155,55 @@ public class EllieBehavior : MonoBehaviour
                                 if (kill)
                                 {
                                     killPlus();
+                                }
+                            }
+                            else
+                            {
+                                if (hit.transform.tag == "charger")
+                                {
+                                    bool kill = hit.collider.gameObject.GetComponent<ChargerControlScript>().takeDamage(36);
+                                    if (kill)
+                                    {
+                                        killPlus();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    GameObject[] enemies = GameObject.FindGameObjectsWithTag("target");
+                    if (enemies.Length > 0)
+                    {
+                        target = nearest(enemies);
+                        Vector3 delta = new Vector3(target.position.x - this.gameObject.transform.position.x, 0.0f, target.position.z - this.gameObject.transform.position.z);
+                        Quaternion rotation = Quaternion.LookRotation(delta);
+                        gameObject.transform.rotation = rotation;
+                        audio.PlayOneShot(gunShotClip);
+                        RaycastHit hit;
+                        Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
+                        Debug.DrawRay(transform.position, forward, Color.green);
+                        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z),
+                            new Vector3(target.position.x - this.gameObject.transform.position.x, target.position.y - this.gameObject.transform.position.y, target.position.z - this.gameObject.transform.position.z), out hit))
+                        {
+                            if (hit.transform.tag == "target")
+                            {
+                                bool kill = hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(36);
+                                if (kill)
+                                {
+                                    killPlus();
+                                }
+                            }
+                            else
+                            {
+                                if (hit.transform.tag == "spitter")
+                                {
+                                    bool kill = hit.collider.gameObject.GetComponent<spitterController>().takeDamage(36);
+                                    if (kill)
+                                    {
+                                        killPlus();
+                                    }
                                 }
                             }
                         }
