@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3129616437830915676}
   m_Layer: 8
   m_Name: Shotgun
-  m_TagString: Untagged
+  m_TagString: Shotty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,10 +193,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6833fe652e07544d9398d60b2dcaefa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pelletCount: 1
-  gunDamage: 5
+  pelletCount: 5
+  gunDamage: 15
   fireRate: 1
   weaponRange: 50
+  standardShellCount: 8
   shotSound: {fileID: 8300000, guid: e59993ef74d67854bbe89bd759d87aa1, type: 3}
   shellLoadingSound: {fileID: 8300000, guid: 623bedebb85a0cc4ba95938e482fc11c, type: 3}
   pumpSound: {fileID: 8300000, guid: d3928ef45a3ce984dbd9469f44ef9d56, type: 3}

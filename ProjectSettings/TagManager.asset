@@ -16,6 +16,7 @@ TagManager:
   - spitter
   - playerGun
   - playerSGM
+  - Shotty
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,6 @@ TagManager:
   - UI
   - 
   - 
-  - Shotty
   - FPS
   - 
   - 
