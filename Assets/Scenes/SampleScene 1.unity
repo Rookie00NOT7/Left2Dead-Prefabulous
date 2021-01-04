@@ -304,6 +304,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Charger
       objectReference: {fileID: 0}
+    - target: {fileID: 3202532716414794718, guid: 879af29736c534e4ebcece7169860904, type: 3}
+      propertyPath: patrol.Array.data[0]
+      value: 
+      objectReference: {fileID: 238019856}
+    - target: {fileID: 3202532716414794718, guid: 879af29736c534e4ebcece7169860904, type: 3}
+      propertyPath: patrol.Array.data[1]
+      value: 
+      objectReference: {fileID: 1175797395}
+    - target: {fileID: 3202532716414794718, guid: 879af29736c534e4ebcece7169860904, type: 3}
+      propertyPath: patrol.Array.data[2]
+      value: 
+      objectReference: {fileID: 1557048085}
     - target: {fileID: 3202532716414794719, guid: 879af29736c534e4ebcece7169860904, type: 3}
       propertyPath: m_RootOrder
       value: 1
