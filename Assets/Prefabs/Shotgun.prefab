@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 5108510240135123333}
   - component: {fileID: 1424873463389348035}
   - component: {fileID: 3129616437830915676}
+  - component: {fileID: 7131553199352837960}
   m_Layer: 8
   m_Name: Shotgun
   m_TagString: Shotty
@@ -193,16 +194,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6833fe652e07544d9398d60b2dcaefa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pelletCount: 5
-  gunDamage: 15
-  fireRate: 1
+  pelletCount: 10
+  gunDamage: 25
+  fireRate: 0.3
   weaponRange: 50
-  standardShellCount: 8
+  standardShellCount: 10
+  standardReserveAmmo: 130
   shotSound: {fileID: 8300000, guid: e59993ef74d67854bbe89bd759d87aa1, type: 3}
   shellLoadingSound: {fileID: 8300000, guid: 623bedebb85a0cc4ba95938e482fc11c, type: 3}
   pumpSound: {fileID: 8300000, guid: d3928ef45a3ce984dbd9469f44ef9d56, type: 3}
   muzzleEnd: {fileID: 7210725762706781052}
   muzzleFlash: {fileID: 44476269881125348, guid: e1664e788d5bf7c4c8000adfdbe670b7, type: 3}
+--- !u!114 &7131553199352837960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2479582166428395614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f26b650dbefe99346ae253eb9ec9a85c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2479582166676923679
 PrefabInstance:
   m_ObjectHideFlags: 0
