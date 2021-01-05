@@ -70,6 +70,19 @@ public class SMGbehavior : MonoBehaviour
                             player.rage(tag);
                         }
                     }
+                    else
+                    {
+                        if (hit.transform.tag == "charger")
+                        {
+                            string tag = hit.transform.tag;
+                            bool kill = hit.collider.gameObject.GetComponent<ChargerControlScript>().takeDamage(20 * ((rage) ? 2 : 1));
+                            if (kill)
+                            {
+                                player.killPlus();
+                                player.rage(tag);
+                            }
+                        }
+                    }
                 }
             }
             anim.SetBool("fire",true);

@@ -30,7 +30,6 @@ public class PistolBehavior : MonoBehaviour
 
     void Update()
     {
-        print(clipCap);
         if (time <= 1f)
         {
             time += Time.deltaTime;
@@ -63,6 +62,19 @@ public class PistolBehavior : MonoBehaviour
                         {
                             player.killPlus();
                             player.rage(tag);
+                        }
+                    }
+                    else
+                    {
+                        if (hit.transform.tag == "charger")
+                        {
+                            string tag = hit.transform.tag;
+                            bool kill = hit.collider.gameObject.GetComponent<ChargerControlScript>().takeDamage(36 * ((rage) ? 2 : 1));
+                            if (kill)
+                            {
+                                player.killPlus();
+                                player.rage(tag);
+                            }
                         }
                     }
                 }
