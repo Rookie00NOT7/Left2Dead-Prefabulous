@@ -11,6 +11,7 @@ public class pipeBombBehavior : MonoBehaviour
     public GameObject explosion;
     private GameObject[] targets;
     private GameObject[] spitters;
+    private GameObject[] chargers;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -18,7 +19,8 @@ public class pipeBombBehavior : MonoBehaviour
         rb.AddForce(cam.transform.forward * thrust, ForceMode.Impulse);
         targets = GameObject.FindGameObjectsWithTag("target");
         spitters = GameObject.FindGameObjectsWithTag("spitter");
-}
+        chargers = GameObject.FindGameObjectsWithTag("charger");
+    }
 
     void Update()
     {
@@ -31,6 +33,10 @@ public class pipeBombBehavior : MonoBehaviour
         {
             spitters[i].GetComponent<spitterController>().distract(this.gameObject);
         }
+        for (int i = 0; i < chargers.Length; i++)
+        {
+            chargers[i].GetComponent<ChargerControlScript>().distract(this.gameObject);
+        }
         if (time <= 0f)
         {
             for (int i = 0; i < targets.Length; i++)
@@ -40,6 +46,10 @@ public class pipeBombBehavior : MonoBehaviour
             for (int i = 0; i < spitters.Length; i++)
             {
                 spitters[i].GetComponent<spitterController>().unDistract();
+            }
+            for (int i = 0; i < chargers.Length; i++)
+            {
+                chargers[i].GetComponent<ChargerControlScript>().unDistract();
             }
             Quaternion spawnRotation = Quaternion.Euler(-90, 0, 0);
             GameObject effect = Instantiate(explosion, new Vector3(this.transform.position.x, this.transform.position.y+1f, this.transform.position.z), spawnRotation);

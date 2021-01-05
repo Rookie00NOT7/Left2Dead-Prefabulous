@@ -33,6 +33,19 @@ public class explosionDamage : MonoBehaviour
                     player.rage(tag);
                 }
             }
+            else
+            {
+                if (other.tag == "charger")
+                {
+                    ChargerControlScript spitter = other.gameObject.GetComponent<ChargerControlScript>();
+                    bool kill = spitter.takeDamage(100);
+                    if (kill)
+                    {
+                        player.killPlus();
+                        player.rage(tag);
+                    }
+                }
+            }
         }
     }
 }
