@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class spitterController : MonoBehaviour
+public class TankController : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Animator anim;
     private GameObject player;
     private bool seen = false;
-    private int health = 100;
+    private int health = 1000;
     private bool dead = false;
     private float time = 0f;
     public Transform[] patrol;
@@ -21,8 +21,6 @@ public class spitterController : MonoBehaviour
     private GameObject temp;
     private bool distracted = false;
     private Vector3 distraction;
-    public GameObject spit;
-    private float coolTime = 5.0f;
 
     public void setPlayer(GameObject thePlayer)
     {
@@ -95,7 +93,7 @@ public class spitterController : MonoBehaviour
 
     void Update()
     {
-        if (!seen && Vector3.Distance(player.transform.position, transform.position) < 20f && Input.GetKeyDown(KeyCode.Mouse0))
+        if(!seen && Vector3.Distance(player.transform.position, transform.position) < 20f && Input.GetKeyDown(KeyCode.Mouse0))
         {
             seen = true;
             anim.SetTrigger("playerSeen");
@@ -112,29 +110,20 @@ public class spitterController : MonoBehaviour
         {
             if (!distracted)
             {
-                Vector3 delta = new Vector3(player.transform.position.x - this.gameObject.transform.position.x, 0.0f, player.transform.position.z - this.gameObject.transform.position.z);
-                Quaternion rotation = Quaternion.LookRotation(delta);
-                gameObject.transform.rotation = rotation;
-                if (coolTime<=0.0f)
+                if (Vector3.Distance(player.transform.position, transform.position) < 2f)
                 {
-                    anim.SetTrigger("spit");
-                    GameObject spitted = Instantiate(spit, new Vector3(transform.position.x, transform.position.y+2f, transform.position.z), transform.rotation);
-                    spitted.GetComponent<Rigidbody>().AddForce(transform.forward * 14f, ForceMode.Impulse);
-                    coolTime = 5.0f;
+                    agent.SetDestination(transform.position);
+                    anim.SetTrigger("punch");
+                    if (time >= 1f)
+                    {
+                        player.GetComponent<PlayerAddedBehavior>().takeDamage(30);
+                        time = 0f;
+                    }
+                    time += Time.deltaTime;
                 }
                 else
                 {
-                    coolTime -= Time.deltaTime;
-                    if (Vector3.Distance(player.transform.position, transform.position) < 10f)
-                    {
-                        agent.SetDestination(transform.position);
-                        anim.SetBool("close", true);
-                    }
-                    else
-                    {
-                        agent.SetDestination(player.transform.position);
-                        anim.SetBool("close", false);
-                    }
+                    agent.SetDestination(player.transform.position);
                 }
             }
             else
@@ -142,12 +131,11 @@ public class spitterController : MonoBehaviour
                 if (Vector3.Distance(distraction, transform.position) < 2f)
                 {
                     agent.SetDestination(transform.position);
-                    anim.SetBool("close", true);
+                    anim.SetTrigger("punch");
                 }
                 else
                 {
                     agent.SetDestination(distraction);
-                    anim.SetBool("close", false);
                 }
             }
         }
@@ -173,7 +161,7 @@ public class spitterController : MonoBehaviour
 
         if (!seen && !dead)
         {
-            if (agent.remainingDistance <= 0.05)
+            if (agent.remainingDistance <= 0.05 && patrol.Length != 0)
             {
                 agent.SetDestination(patrol[i].position);
                 i = (i + 1) % patrol.Length;

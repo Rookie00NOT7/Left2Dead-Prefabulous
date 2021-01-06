@@ -82,10 +82,23 @@ public class SMGbehavior : MonoBehaviour
                                 player.rage(tag);
                             }
                         }
+                        else
+                        {
+                            if (hit.transform.tag == "Tank")
+                            {
+                                string tag = hit.transform.tag;
+                                bool kill = hit.collider.gameObject.GetComponent<TankController>().takeDamage(20 * ((rage) ? 2 : 1));
+                                if (kill)
+                                {
+                                    player.killPlus();
+                                    player.rage(tag);
+                                }
+                            }
+                        }
                     }
                 }
             }
-            anim.SetBool("fire",true);
+            anim.SetBool("fire", true);
             Vector3 muzzlePos = new Vector3(transform.position.x, transform.position.y + 0.07f, transform.position.z - 0.5f);
             GameObject particles = Instantiate(MuzzleFire, muzzlePos, transform.rotation);
             particles.GetComponent<ParticleSystem>().Play();
@@ -100,7 +113,7 @@ public class SMGbehavior : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if(ammo > 0)
+            if (ammo > 0)
             {
                 if (ammo >= 50)
                 {

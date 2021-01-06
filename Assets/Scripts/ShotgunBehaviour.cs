@@ -83,10 +83,13 @@ public class ShotgunBehaviour : MonoBehaviour
                       case "spitter":
                         kill = hits[i].collider.gameObject.GetComponent<spitterController>().takeDamage(gunDamage * (rage ? 2 : 1));
                         break;
-                        case "charger":
-                            kill = hits[i].collider.gameObject.GetComponent<ChargerControlScript>().takeDamage(gunDamage * (rage ? 2 : 1));
-                            break;
-                        default:
+                      case "Tank":
+                        kill = hits[i].collider.gameObject.GetComponent<TankController>().takeDamage(gunDamage * (rage ? 2 : 1));
+                        break;
+                      case "charger":
+                        kill = hits[i].collider.gameObject.GetComponent<ChargerControlScript>().takeDamage(gunDamage * (rage ? 2 : 1));
+                        break;
+                      default:
                         break;
                   }
 
