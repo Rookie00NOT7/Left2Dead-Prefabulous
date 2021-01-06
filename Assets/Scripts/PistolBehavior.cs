@@ -34,7 +34,7 @@ public class PistolBehavior : MonoBehaviour
         {
             time += Time.deltaTime;
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Mouse0) && clipCap > 0 && time >= 0.2f)
         {
             bool rage = player.getRageMode();
@@ -45,7 +45,7 @@ public class PistolBehavior : MonoBehaviour
                 if (hit.transform.tag == "target")
                 {
                     string tag = hit.transform.tag;
-                    bool kill = hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(36 * ((rage)? 2:1));
+                    bool kill = hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(36 * ((rage) ? 2 : 1));
                     if (kill)
                     {
                         player.killPlus();
@@ -54,7 +54,7 @@ public class PistolBehavior : MonoBehaviour
                 }
                 else
                 {
-                    if(hit.transform.tag == "spitter")
+                    if (hit.transform.tag == "spitter")
                     {
                         string tag = hit.transform.tag;
                         bool kill = hit.collider.gameObject.GetComponent<spitterController>().takeDamage(36 * ((rage) ? 2 : 1));
@@ -74,6 +74,19 @@ public class PistolBehavior : MonoBehaviour
                             {
                                 player.killPlus();
                                 player.rage(tag);
+                            }
+                        }
+                        else
+                        {
+                            if (hit.transform.tag == "Tank")
+                            {
+                                string tag = hit.transform.tag;
+                                bool kill = hit.collider.gameObject.GetComponent<TankController>().takeDamage(36 * ((rage) ? 2 : 1));
+                                if (kill)
+                                {
+                                    player.killPlus();
+                                    player.rage(tag);
+                                }
                             }
                         }
                     }

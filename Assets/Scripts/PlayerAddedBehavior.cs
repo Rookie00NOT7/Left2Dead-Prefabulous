@@ -31,6 +31,17 @@ public class PlayerAddedBehavior : MonoBehaviour
     public AudioClip rageModeClip;
     public AudioClip dieClip;
 
+    public void heal(int val)
+    {
+        health += val;
+        health = Mathf.Clamp(health, 0, 300);
+    }
+
+    public int getHealth()
+    {
+        return health;
+    }
+
     public bool killCount()
     {
         if (kills >= 10)

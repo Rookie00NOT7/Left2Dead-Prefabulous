@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class huntingRifleBehavior : MonoBehaviour
 {
-  private Animator anim;
+    private Animator anim;
     public GameObject MuzzleFire;
     private AudioSource audio;
     public AudioClip fireClip;
@@ -37,7 +37,7 @@ public class huntingRifleBehavior : MonoBehaviour
         {
             time += Time.deltaTime;
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Mouse0) && clipCap > 0 && time >= 0.25f)
         {
             bool rage = player.getRageMode();
@@ -45,10 +45,10 @@ public class huntingRifleBehavior : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
             {
-                if (hit.transform.tag == "target" )
+                if (hit.transform.tag == "target")
                 {
                     string tag = hit.transform.tag;
-                    bool kill = hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(90 * ((rage)? 2:1));
+                    bool kill = hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(90 * ((rage) ? 2 : 1));
                     if (kill)
                     {
                         player.killPlus();
@@ -57,7 +57,7 @@ public class huntingRifleBehavior : MonoBehaviour
                 }
                 else
                 {
-                    if(hit.transform.tag == "spitter")
+                    if (hit.transform.tag == "spitter")
                     {
                         string tag = hit.transform.tag;
                         bool kill = hit.collider.gameObject.GetComponent<spitterController>().takeDamage(90 * ((rage) ? 2 : 1));
@@ -79,23 +79,37 @@ public class huntingRifleBehavior : MonoBehaviour
                                 player.rage(tag);
                             }
                         }
+                        else
+                        {
+                            if (hit.transform.tag == "Tank")
+                            {
+                                string tag = hit.transform.tag;
+                                bool kill = hit.collider.gameObject.GetComponent<TankController>().takeDamage(90 * ((rage) ? 2 : 1));
+                                if (kill)
+                                {
+                                    player.killPlus();
+                                    player.rage(tag);
+                                }
+                            }
+                        }
                     }
-                   
+
                 }
             }
             anim.SetTrigger("fire");
-            Vector3 muzzlePos = new Vector3(transform.position.x, transform.position.y + 0.05f, transform.position.z + 0.1f);
+            Vector3 muzzlePos = new Vector3(transform.position.x, transform.position.y +0.04f, transform.position.z + 0.4f);
             GameObject particles = Instantiate(MuzzleFire, muzzlePos, transform.rotation);
             particles.GetComponent<ParticleSystem>().Play();
             audio.PlayOneShot(fireClip);
-            if(clipCap>0)
+            if (clipCap > 0)
                 clipCap--;
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if(totalBullets>0){  
-                totalBullets-=(15-clipCap);
+            if (totalBullets > 0)
+            {
+                totalBullets -= (15 - clipCap);
                 clipCap = 15;
             }
             anim.SetTrigger("reload");

@@ -14,6 +14,11 @@ public class weaponManager : MonoBehaviour
     //    to be made
     //    private GameObject assault;
 
+    public void collect(int weapon)
+    {
+        weapons[weapon] = true;
+    }
+
     void Start()
     {
         pistol = GameObject.FindGameObjectWithTag("playerGun");

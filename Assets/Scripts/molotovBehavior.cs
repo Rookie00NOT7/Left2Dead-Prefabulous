@@ -18,7 +18,7 @@ public class molotovBehavior : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player")
         {
-            Instantiate(Fire, new Vector3(transform.position.x, 1f, transform.position.z), Quaternion.Euler(-90, 0, 0));
+            Instantiate(Fire, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.Euler(-90, 0, 0));
             Destroy(this.gameObject);
         }
     }

@@ -23,7 +23,7 @@ public class explosionDamage : MonoBehaviour
         }
         else
         {
-            if(other.tag == "spitter")
+            if (other.tag == "spitter")
             {
                 spitterController spitter = other.gameObject.GetComponent<spitterController>();
                 bool kill = spitter.takeDamage(100);
@@ -37,12 +37,25 @@ public class explosionDamage : MonoBehaviour
             {
                 if (other.tag == "charger")
                 {
-                    ChargerControlScript spitter = other.gameObject.GetComponent<ChargerControlScript>();
-                    bool kill = spitter.takeDamage(100);
+                    ChargerControlScript charger = other.gameObject.GetComponent<ChargerControlScript>();
+                    bool kill = charger.takeDamage(100);
                     if (kill)
                     {
                         player.killPlus();
                         player.rage(tag);
+                    }
+                }
+                else
+                {
+                    if (other.tag == "Tank")
+                    {
+                        TankController tank = other.gameObject.GetComponent<TankController>();
+                        bool kill = tank.takeDamage(100);
+                        if (kill)
+                        {
+                            player.killPlus();
+                            player.rage(tag);
+                        }
                     }
                 }
             }

@@ -329,7 +329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2478030217687029124, guid: adc4ccde5a2057141901cdbcc04f8589, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2478030217687029124, guid: adc4ccde5a2057141901cdbcc04f8589, type: 3}
       propertyPath: m_AnchorMax.x
@@ -414,63 +414,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7884945445564324342, guid: b54a3e3d3c9a6d142b073aaf96397de1, type: 3}
   m_PrefabInstance: {fileID: 8678223843130088629}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &278879940581614745
+--- !u!1001 &1261308441
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5685438075949825158, guid: b80a4984f0d690144aefd235ed9e30ab, type: 3}
-      propertyPath: m_Name
-      value: FPCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 5685438075949825161, guid: b80a4984f0d690144aefd235ed9e30ab, type: 3}
+    - target: {fileID: 3139703446817843923, guid: e49aac2d7c9db439581b511d5513d8df, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5685438075949825161, guid: b80a4984f0d690144aefd235ed9e30ab, type: 3}
+    - target: {fileID: 3139703446817843923, guid: e49aac2d7c9db439581b511d5513d8df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.99
+      value: -3.8255303
       objectReference: {fileID: 0}
-    - target: {fileID: 5685438075949825161, guid: b80a4984f0d690144aefd235ed9e30ab, type: 3}
+    - target: {fileID: 3139703446817843923, guid: e49aac2d7c9db439581b511d5513d8df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.000000029802322
       objectReference: {fileID: 0}
-    - target: {fileID: 5685438075949825161, guid: b80a4984f0d690144aefd235ed9e30ab, type: 3}
+    - target: {fileID: 3139703446817843923, guid: e49aac2d7c9db439581b511d5513d8df, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.101
+      value: 3.4618158
       objectReference: {fileID: 0}
-    - target: {fileID: 5685438075949825161, guid: b80a4984f0d690144aefd235ed9e30ab, type: 3}
+    - target: {fileID: 3139703446817843923, guid: e49aac2d7c9db439581b511d5513d8df, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5685438075949825161, guid: b80a4984f0d690144aefd235ed9e30ab, type: 3}
+    - target: {fileID: 3139703446817843923, guid: e49aac2d7c9db439581b511d5513d8df, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5685438075949825161, guid: b80a4984f0d690144aefd235ed9e30ab, type: 3}
+    - target: {fileID: 3139703446817843923, guid: e49aac2d7c9db439581b511d5513d8df, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5685438075949825161, guid: b80a4984f0d690144aefd235ed9e30ab, type: 3}
+    - target: {fileID: 3139703446817843923, guid: e49aac2d7c9db439581b511d5513d8df, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5685438075949825161, guid: b80a4984f0d690144aefd235ed9e30ab, type: 3}
+    - target: {fileID: 3139703446817843923, guid: e49aac2d7c9db439581b511d5513d8df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5685438075949825161, guid: b80a4984f0d690144aefd235ed9e30ab, type: 3}
+    - target: {fileID: 3139703446817843923, guid: e49aac2d7c9db439581b511d5513d8df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5685438075949825161, guid: b80a4984f0d690144aefd235ed9e30ab, type: 3}
+    - target: {fileID: 3139703446817843923, guid: e49aac2d7c9db439581b511d5513d8df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3139703446817843932, guid: e49aac2d7c9db439581b511d5513d8df, type: 3}
+      propertyPath: m_Name
+      value: FPCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b80a4984f0d690144aefd235ed9e30ab, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: e49aac2d7c9db439581b511d5513d8df, type: 3}
 --- !u!1 &2556652207733460688
 GameObject:
   m_ObjectHideFlags: 0

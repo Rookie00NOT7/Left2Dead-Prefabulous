@@ -112,6 +112,9 @@ public class spitterController : MonoBehaviour
         {
             if (!distracted)
             {
+                Vector3 delta = new Vector3(player.transform.position.x - this.gameObject.transform.position.x, 0.0f, player.transform.position.z - this.gameObject.transform.position.z);
+                Quaternion rotation = Quaternion.LookRotation(delta);
+                gameObject.transform.rotation = rotation;
                 if (coolTime<=0.0f)
                 {
                     anim.SetTrigger("spit");

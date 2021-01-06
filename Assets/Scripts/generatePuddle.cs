@@ -9,7 +9,7 @@ public class generatePuddle : MonoBehaviour
     {
         if(collision.gameObject.tag != "spitter")
         {
-            Instantiate(Puddle, new Vector3(transform.position.x, 1f, transform.position.z),  Quaternion.Euler(-90, 0, 0));
+            Instantiate(Puddle, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z),  Quaternion.Euler(-90, 0, 0));
             Destroy(this.gameObject);
         }
     }
