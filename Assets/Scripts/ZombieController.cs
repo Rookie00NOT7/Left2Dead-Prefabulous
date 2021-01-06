@@ -26,7 +26,18 @@ public class ZombieController : MonoBehaviour
     {
         player = thePlayer;
     }
-
+    public void setAudio(AudioSource theAudio)
+    {
+        audio = theAudio;
+    }
+    public void setAnim(Animator theAnimator)
+    {
+        anim = theAnimator;
+    }
+    public void setAgent(NavMeshAgent theAgent)
+    {
+        agent = theAgent;
+    }
     public void setSeen()
     {
         seen = true;

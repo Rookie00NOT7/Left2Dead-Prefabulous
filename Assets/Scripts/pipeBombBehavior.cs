@@ -13,6 +13,7 @@ public class pipeBombBehavior : MonoBehaviour
     private GameObject[] spitters;
     private GameObject[] chargers;
     private GameObject[] tanks;
+    private GameObject[] boomers;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -22,6 +23,7 @@ public class pipeBombBehavior : MonoBehaviour
         spitters = GameObject.FindGameObjectsWithTag("spitter");
         chargers = GameObject.FindGameObjectsWithTag("charger");
         tanks = GameObject.FindGameObjectsWithTag("Tank");
+        boomers = GameObject.FindGameObjectsWithTag("boomer");
     }
 
     void Update()
@@ -43,6 +45,10 @@ public class pipeBombBehavior : MonoBehaviour
         {
             tanks[i].GetComponent<TankController>().distract(this.gameObject);
         }
+        for (int i = 0; i < tanks.Length; i++)
+        {
+            boomers[i].GetComponent<boomerController>().distract(this.gameObject);
+        }
         if (time <= 0f)
         {
             for (int i = 0; i < targets.Length; i++)
@@ -60,6 +66,10 @@ public class pipeBombBehavior : MonoBehaviour
             for (int i = 0; i < tanks.Length; i++)
             {
                 tanks[i].GetComponent<TankController>().unDistract();
+            }
+            for (int i = 0; i < tanks.Length; i++)
+            {
+                boomers[i].GetComponent<boomerController>().unDistract();
             }
             Quaternion spawnRotation = Quaternion.Euler(-90, 0, 0);
             GameObject effect = Instantiate(explosion, new Vector3(this.transform.position.x, this.transform.position.y + 1f, this.transform.position.z), spawnRotation);

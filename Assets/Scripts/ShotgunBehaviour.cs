@@ -89,6 +89,9 @@ public class ShotgunBehaviour : MonoBehaviour
                       case "charger":
                         kill = hits[i].collider.gameObject.GetComponent<ChargerControlScript>().takeDamage(gunDamage * (rage ? 2 : 1));
                         break;
+                      case "boomer":
+                        kill = hits[i].collider.gameObject.GetComponent<boomerController>().takeDamage(gunDamage * (rage ? 2 : 1))  ;
+                        break;
                       default:
                         break;
                   }

@@ -65,6 +65,20 @@ public class fireLogic : MonoBehaviour
             }
 
         }
+        if (other.tag == "boomer")
+        {
+            boomerController target = other.gameObject.GetComponent<boomerController>();
+            if (nextHit <= 0f)
+            {
+                target.takeDamage(25);
+                nextHit = 1f;
+            }
+            else
+            {
+                nextHit -= Time.deltaTime;
+            }
+
+        }
     }
 
     void Update()

@@ -88,6 +88,19 @@ public class PistolBehavior : MonoBehaviour
                                     player.rage(tag);
                                 }
                             }
+                             else
+                        {
+                            if (hit.transform.tag == "boomer")
+                            {
+                                string tag = hit.transform.tag;
+                                bool kill = hit.collider.gameObject.GetComponent<boomerController>().takeDamage(36 * ((rage) ? 2 : 1));
+                                if (kill)
+                                {
+                                    player.killPlus();
+                                    player.rage(tag);
+                                }
+                            }
+                        }
                         }
                     }
                 }

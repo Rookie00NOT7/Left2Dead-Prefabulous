@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2416d1014f2f34c04b933f7300be7f72
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - summonPlace1: {fileID: 1886040646022284200, guid: 86c3a25c8b3e7439b9dcadb0c86c9f9a, type: 3}
+  - summonPlace2: {fileID: 8569965804334467340, guid: a4189f831e97c4bb9a976fbb64c77b3b, type: 3}
+  - zombie: {fileID: 2878334116015499334, guid: 5ad487af662ddc14094479c63ef302f0, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
