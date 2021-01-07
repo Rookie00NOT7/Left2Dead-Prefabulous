@@ -45,7 +45,7 @@ public class pipeBombBehavior : MonoBehaviour
         {
             tanks[i].GetComponent<TankController>().distract(this.gameObject);
         }
-        for (int i = 0; i < tanks.Length; i++)
+        for (int i = 0; i < boomers.Length; i++)
         {
             boomers[i].GetComponent<boomerController>().distract(this.gameObject);
         }
@@ -67,7 +67,7 @@ public class pipeBombBehavior : MonoBehaviour
             {
                 tanks[i].GetComponent<TankController>().unDistract();
             }
-            for (int i = 0; i < tanks.Length; i++)
+            for (int i = 0; i < boomers.Length; i++)
             {
                 boomers[i].GetComponent<boomerController>().unDistract();
             }

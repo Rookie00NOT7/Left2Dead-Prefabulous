@@ -817,8 +817,9 @@ MonoBehaviour:
   - {fileID: 7254414556542054038, guid: acce318938a8f431fab375ebc4adc674, type: 3}
   - {fileID: 5005228603811836294, guid: a868c282694f54542a2ddadf8fc47537, type: 3}
   - {fileID: 6328398397632529704, guid: 742b133cd132d4d329e4a435086fb33f, type: 3}
+  summonPlace: []
   alertClip: {fileID: 8300000, guid: 60d8519bdf8e68643961acd65085e6c7, type: 3}
-  attack: {fileID: 0}
+  attack: {fileID: 3910392592221982331, guid: 68746db6cfe834e2abe1eeccd081b787, type: 3}
 --- !u!195 &3464106581461134435
 NavMeshAgent:
   m_ObjectHideFlags: 0

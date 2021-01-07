@@ -8,97 +8,68 @@ using UnityEngine.UI;
 
 public class bileHit : MonoBehaviour
 {
-    public GameObject summonPlace1;
-    public GameObject summonPlace2;
+    private Transform[] summonPlaces;
     public GameObject zombie;
-    public Image blurr;
-    private Animator anim;
+    private GameObject blurr;
     System.Random random;
+    public AudioClip hitClip;
+    double coolTime = 4.0f;
     int x;
+    bool playerHit = false;
     bool[] spawnAtTime = {false,false,false,false}; 
 
+    public void setSummonPlace(Transform[] places){
+        summonPlaces = places;
+    }
     void OnCollisionEnter(Collision collisionInfo)
     {
-        
-        // zombie.gameObject.GetComponent<Animator>().SetTrigger("playerSeen");
         if (collisionInfo.gameObject.tag == "Player"){
-            double coolTime = 4.0f;
-            // blurr = GameObject.Find("boomerHitEffect").GetComponent<Image>();
-            blurr.gameObject.SetActive(true);
-            anim = blurr.gameObject.GetComponent<Animator>();
-            anim.SetTrigger("blur");
+            AudioSource audio = collisionInfo.gameObject.GetComponent<AudioSource>();
+            audio.PlayOneShot(hitClip);
+            playerHit = true;
             random = new System.Random();
-            while(coolTime>0){
-                if(Math.Round(coolTime) == 1 || Math.Round(coolTime) == 2 || Math.Round(coolTime) == 3 || Math.Round(coolTime) == 4){
-                    int i = (int) Math.Round(coolTime);
-                    if(!spawnAtTime[i-1]){
-                        x = random.Next(1,3);
-                        spawn();
-                    }
-                    spawnAtTime[i-1] = true;
-                }
-                coolTime-=Time.deltaTime;
-            }
-           
-            if(coolTime<=0.0)
-                blurr.gameObject.SetActive(false);
-            // anim.SetTrigger("unBlur");
+            blurr = GameObject.FindGameObjectWithTag("boomerHit");
+            blurr.GetComponent<Animator>().SetTrigger("blur");
+        }
+        
             
-           
+    }
+    void Update(){
+        if(Math.Round(coolTime) == 1 || Math.Round(coolTime) == 2 || Math.Round(coolTime) == 3 || Math.Round(coolTime) == 4){
+            int i = (int) Math.Round(coolTime);
+            if(!spawnAtTime[i-1]&& playerHit){
+                x = random.Next(0,summonPlaces.Length);
+                spawn();
+                spawnAtTime[i-1] = true;
+            }
+        }
+
+        if(coolTime<=-1){
+            blurr.GetComponent<Animator>().SetTrigger("unBlur");
             Destroy(this.gameObject);
         }
+        if(playerHit){
+            coolTime-=Time.deltaTime;
+        }
     }
-void spawn(){
-     if(x == 1){
-                    GameObject zombie1 = Instantiate(zombie, new Vector3(summonPlace1.transform.position.x, 1f, summonPlace1.transform.position.z),  Quaternion.Euler(-90, 0, 0));
-                    zombie1.gameObject.GetComponent<ZombieController>().setAnim(zombie.gameObject.GetComponent<Animator>());
-                    zombie1.gameObject.GetComponent<ZombieController>().setAgent(zombie.gameObject.GetComponent<NavMeshAgent>());
-                    zombie1.gameObject.GetComponent<ZombieController>().setAudio(zombie.gameObject.GetComponent<AudioSource>());
-                    zombie1.gameObject.GetComponent<ZombieController>().setSeen();
+    void spawn(){
+        GameObject zombie1 = Instantiate(zombie, new Vector3(summonPlaces[x].transform.position.x, 1f, summonPlaces[x].transform.position.z),  Quaternion.Euler(-90, 0, 0));
+        zombie1.gameObject.GetComponent<Animator>().SetTrigger("playerSeen");
+        zombie1.gameObject.GetComponent<ZombieController>().setSeen();
 
-                    GameObject zombie2 = Instantiate(zombie, new Vector3(summonPlace1.transform.position.x+2f, 1f, summonPlace1.transform.position.z),  Quaternion.Euler(-90, 0, 0));
-                    zombie2.gameObject.GetComponent<ZombieController>().setAnim(zombie.gameObject.GetComponent<Animator>());
-                    zombie2.gameObject.GetComponent<ZombieController>().setAgent(zombie.gameObject.GetComponent<NavMeshAgent>());
-                    zombie2.gameObject.GetComponent<ZombieController>().setAudio(zombie.gameObject.GetComponent<AudioSource>());
-                    zombie2.gameObject.GetComponent<ZombieController>().setSeen();
+        GameObject zombie2 = Instantiate(zombie, new Vector3(summonPlaces[x].transform.position.x+2f, 1f, summonPlaces[x].transform.position.z),  Quaternion.Euler(-90, 0, 0));
+        zombie2.gameObject.GetComponent<Animator>().SetTrigger("playerSeen");
+        zombie2.gameObject.GetComponent<ZombieController>().setSeen();
 
-                    GameObject zombie3 = Instantiate(zombie, new Vector3(summonPlace1.transform.position.x, 1f, summonPlace1.transform.position.z+2f),  Quaternion.Euler(-90, 0, 0));
-                    zombie3.gameObject.GetComponent<ZombieController>().setAnim(zombie.gameObject.GetComponent<Animator>());
-                    zombie3.gameObject.GetComponent<ZombieController>().setAgent(zombie.gameObject.GetComponent<NavMeshAgent>());
-                    zombie3.gameObject.GetComponent<ZombieController>().setAudio(zombie.gameObject.GetComponent<AudioSource>());
-                    zombie3.gameObject.GetComponent<ZombieController>().setSeen();
+        GameObject zombie3 = Instantiate(zombie, new Vector3(summonPlaces[x].transform.position.x, 1f, summonPlaces[x].transform.position.z+2f),  Quaternion.Euler(-90, 0, 0));
+        zombie3.gameObject.GetComponent<Animator>().SetTrigger("playerSeen");
+        zombie3.gameObject.GetComponent<ZombieController>().setSeen();
 
-                    GameObject zombie4 = Instantiate(zombie, new Vector3(summonPlace1.transform.position.x+2f, 1f, summonPlace1.transform.position.z+2f),  Quaternion.Euler(-90, 0, 0));
-                    zombie4.gameObject.GetComponent<ZombieController>().setAnim(zombie.gameObject.GetComponent<Animator>());
-                    zombie4.gameObject.GetComponent<ZombieController>().setAgent(zombie.gameObject.GetComponent<NavMeshAgent>());
-                    zombie4.gameObject.GetComponent<ZombieController>().setAudio(zombie.gameObject.GetComponent<AudioSource>());
-                    zombie4.gameObject.GetComponent<ZombieController>().setSeen();
-                }
-                if(x == 2 ){
-                    GameObject zombie1 = Instantiate(zombie, new Vector3(summonPlace2.transform.position.x, 1f, summonPlace2.transform.position.z),  Quaternion.Euler(-90, 0, 0));
-                    zombie1.gameObject.GetComponent<ZombieController>().setAnim(zombie.gameObject.GetComponent<Animator>());
-                    zombie1.gameObject.GetComponent<ZombieController>().setAgent(zombie.gameObject.GetComponent<NavMeshAgent>());
-                    zombie1.gameObject.GetComponent<ZombieController>().setAudio(zombie.gameObject.GetComponent<AudioSource>());
-                    zombie1.gameObject.GetComponent<ZombieController>().setSeen();
-
-                    GameObject zombie2 = Instantiate(zombie, new Vector3(summonPlace2.transform.position.x+2f, 1f, summonPlace2.transform.position.z),  Quaternion.Euler(-90, 0, 0));
-                    zombie2.gameObject.GetComponent<ZombieController>().setAnim(zombie.gameObject.GetComponent<Animator>());
-                    zombie2.gameObject.GetComponent<ZombieController>().setAgent(zombie.gameObject.GetComponent<NavMeshAgent>());
-                    zombie2.gameObject.GetComponent<ZombieController>().setAudio(zombie.gameObject.GetComponent<AudioSource>());
-                    zombie2.gameObject.GetComponent<ZombieController>().setSeen();
-
-                    GameObject zombie3 = Instantiate(zombie, new Vector3(summonPlace2.transform.position.x, 1f, summonPlace2.transform.position.z+2f),  Quaternion.Euler(-90, 0, 0));
-                    zombie3.gameObject.GetComponent<ZombieController>().setAnim(zombie.gameObject.GetComponent<Animator>());
-                    zombie3.gameObject.GetComponent<ZombieController>().setAgent(zombie.gameObject.GetComponent<NavMeshAgent>());
-                    zombie3.gameObject.GetComponent<ZombieController>().setAudio(zombie.gameObject.GetComponent<AudioSource>());
-                    zombie3.gameObject.GetComponent<ZombieController>().setSeen();
-
-                    GameObject zombie4 = Instantiate(zombie, new Vector3(summonPlace2.transform.position.x+2f, 1f, summonPlace2.transform.position.z+2f),  Quaternion.Euler(-90, 0, 0));
-                    zombie4.gameObject.GetComponent<ZombieController>().setAnim(zombie.gameObject.GetComponent<Animator>());
-                    zombie4.gameObject.GetComponent<ZombieController>().setAgent(zombie.gameObject.GetComponent<NavMeshAgent>());
-                    zombie4.gameObject.GetComponent<ZombieController>().setAudio(zombie.gameObject.GetComponent<AudioSource>());
-                    zombie4.gameObject.GetComponent<ZombieController>().setSeen();
-                }
-}
+        GameObject zombie4 = Instantiate(zombie, new Vector3(summonPlaces[x].transform.position.x+2f, 1f, summonPlaces[x].transform.position.z+2f),  Quaternion.Euler(-90, 0, 0));
+        zombie4.gameObject.GetComponent<Animator>().SetTrigger("playerSeen");
+        zombie4.gameObject.GetComponent<ZombieController>().setSeen();
+                    
+                    
+    }
    
 }

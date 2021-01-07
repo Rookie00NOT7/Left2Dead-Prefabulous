@@ -13,6 +13,7 @@ public class boomerController : MonoBehaviour
     private bool dead = false;
     // private float time = 0f;
     public Transform[] patrol;
+    public Transform[] summonPlace;
     private int i = 0;
     private AudioSource audio;
     public AudioClip alertClip;
@@ -115,9 +116,10 @@ public class boomerController : MonoBehaviour
                 if (coolTime<=0.0f)
                 {
                     anim.SetTrigger("attack");
-                    GameObject attacked = Instantiate(attack, new Vector3(transform.position.x, transform.position.y+2f, transform.position.z), transform.rotation);
-                    attacked.GetComponent<Rigidbody>().AddForce(transform.forward * 100f, ForceMode.Impulse);
-                    coolTime = 5.0f;
+                    GameObject attacked = Instantiate(attack, new Vector3(transform.position.x, transform.position.y+4f, transform.position.z), transform.rotation);
+                    attacked.gameObject.GetComponent<bileHit>().setSummonPlace(summonPlace);
+                    attacked.GetComponent<Rigidbody>().AddForce(transform.forward * 40f, ForceMode.Impulse);
+                    coolTime = 10.0f;
                 }
                 else
                 {
