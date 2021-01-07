@@ -116,7 +116,7 @@ public class boomerController : MonoBehaviour
                 if (coolTime<=0.0f)
                 {
                     anim.SetTrigger("attack");
-                    GameObject attacked = Instantiate(attack, new Vector3(transform.position.x, transform.position.y+4f, transform.position.z), transform.rotation);
+                    GameObject attacked = Instantiate(attack, new Vector3(transform.position.x, transform.position.y+3.5f, transform.position.z), transform.rotation);
                     attacked.gameObject.GetComponent<bileHit>().setSummonPlace(summonPlace);
                     attacked.GetComponent<Rigidbody>().AddForce(transform.forward * 40f, ForceMode.Impulse);
                     coolTime = 10.0f;
@@ -124,7 +124,7 @@ public class boomerController : MonoBehaviour
                 else
                 {
                     coolTime -= Time.deltaTime;
-                    if (Vector3.Distance(player.transform.position, transform.position) < 10f)
+                    if (Vector3.Distance(player.transform.position, transform.position) < 2f)
                     {
                         agent.SetDestination(transform.position);
                         anim.SetBool("close", true);
