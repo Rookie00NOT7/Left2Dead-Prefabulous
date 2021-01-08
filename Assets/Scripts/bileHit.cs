@@ -31,7 +31,7 @@ public class bileHit : MonoBehaviour
             blurr = GameObject.FindGameObjectWithTag("boomerHit");
             blurr.GetComponent<Animator>().SetTrigger("blur");
         }
-        if (collisionInfo.gameObject.tag == "Floor"){
+        if (collisionInfo.gameObject.tag == "Floor" && !playerHit){
             Destroy(this.gameObject);
         }
         
@@ -40,6 +40,7 @@ public class bileHit : MonoBehaviour
     void Update(){
         if(Math.Round(coolTime) == 1 || Math.Round(coolTime) == 2 || Math.Round(coolTime) == 3 || Math.Round(coolTime) == 4){
             int i = (int) Math.Round(coolTime);
+            print("Time = "+ coolTime );
             if(!spawnAtTime[i-1]&& playerHit){
                 x = random.Next(0,summonPlaces.Length);
                 spawn();
