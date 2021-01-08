@@ -62,7 +62,7 @@ public class EllieBehavior : MonoBehaviour
         {
             agent.SetDestination(player.transform.position);
             anim.SetBool("run", true);
-            agent.speed = 3.5f;
+            agent.speed = 5f;
         }
         else
         {
@@ -71,7 +71,7 @@ public class EllieBehavior : MonoBehaviour
             {
                 agent.SetDestination(player.transform.position);
                 anim.SetBool("walk", true);
-                agent.speed = 2;
+                agent.speed = 3;
             }
             else
             {
