@@ -23,7 +23,7 @@ public class boomerController : MonoBehaviour
     private bool distracted = false;
     private Vector3 distraction;
     public GameObject attack;
-    private float coolTime = 10.0f;
+    private float coolTime = 0.0f;
 
     public void setPlayer(GameObject thePlayer)
     {
