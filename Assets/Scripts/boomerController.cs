@@ -113,18 +113,21 @@ public class boomerController : MonoBehaviour
         {
             if (!distracted)
             {
+                Vector3 delta = new Vector3(player.transform.position.x - this.gameObject.transform.position.x, 0f, player.transform.position.z - this.gameObject.transform.position.z);
+                Quaternion rotation = Quaternion.LookRotation(delta);
+                gameObject.transform.rotation = rotation;
                 if (coolTime<=0.0f)
                 {
                     anim.SetTrigger("attack");
                     GameObject attacked = Instantiate(attack, new Vector3(transform.position.x, transform.position.y+3.5f, transform.position.z), transform.rotation);
                     attacked.gameObject.GetComponent<bileHit>().setSummonPlace(summonPlace);
-                    attacked.GetComponent<Rigidbody>().AddForce(transform.forward * 40f, ForceMode.Impulse);
+                    attacked.GetComponent<Rigidbody>().AddForce(transform.forward * 10f, ForceMode.Impulse);
                     coolTime = 10.0f;
                 }
                 else
                 {
                     coolTime -= Time.deltaTime;
-                    if (Vector3.Distance(player.transform.position, transform.position) < 2f)
+                    if (Vector3.Distance(player.transform.position, transform.position) < 6f)
                     {
                         agent.SetDestination(transform.position);
                         anim.SetBool("close", true);

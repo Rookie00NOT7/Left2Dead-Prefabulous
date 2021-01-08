@@ -86,7 +86,8 @@ public class EllieBehavior : MonoBehaviour
             GameObject[] chargers = GameObject.FindGameObjectsWithTag("charger");
             GameObject[] spitters = GameObject.FindGameObjectsWithTag("spitter");
             GameObject[] tanks = GameObject.FindGameObjectsWithTag("Tank");
-            GameObject[] specials = (chargers.Concat(spitters).ToArray()).Concat(tanks).ToArray();
+            GameObject[] boomers = GameObject.FindGameObjectsWithTag("boomer");
+            GameObject[] specials = ((chargers.Concat(spitters).ToArray()).Concat(tanks).ToArray()).Concat(boomers).ToArray();
 
             if (specials.Length > 0)
             {
@@ -107,6 +108,7 @@ public class EllieBehavior : MonoBehaviour
                         case "spitter": kill = hit.collider.gameObject.GetComponent<spitterController>().takeDamage(36); break;
                         case "charger": kill = hit.collider.gameObject.GetComponent<ChargerControlScript>().takeDamage(36); break;
                         case "Tank": kill = hit.collider.gameObject.GetComponent<TankController>().takeDamage(36); break;
+                        case "boomer": kill = hit.collider.gameObject.GetComponent<boomerController>().takeDamage(36); break;
                     }
                     if (kill)
                     {
@@ -138,6 +140,7 @@ public class EllieBehavior : MonoBehaviour
                             case "spitter": kill = hit.collider.gameObject.GetComponent<spitterController>().takeDamage(36); break;
                             case "charger": kill = hit.collider.gameObject.GetComponent<ChargerControlScript>().takeDamage(36); break;
                             case "Tank": kill = hit.collider.gameObject.GetComponent<TankController>().takeDamage(36); break;
+                            case "boomer": kill = hit.collider.gameObject.GetComponent<boomerController>().takeDamage(36); break;
                         }
                         if (kill)
                         {

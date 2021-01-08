@@ -54,19 +54,15 @@ public class bileHit : MonoBehaviour
     }
     void spawn(){
         GameObject zombie1 = Instantiate(zombie, new Vector3(summonPlaces[x].transform.position.x, 1f, summonPlaces[x].transform.position.z),  Quaternion.Euler(-90, 0, 0));
-        zombie1.gameObject.GetComponent<Animator>().SetTrigger("playerSeen");
         zombie1.gameObject.GetComponent<ZombieController>().setSeen();
 
         GameObject zombie2 = Instantiate(zombie, new Vector3(summonPlaces[x].transform.position.x+2f, 1f, summonPlaces[x].transform.position.z),  Quaternion.Euler(-90, 0, 0));
-        zombie2.gameObject.GetComponent<Animator>().SetTrigger("playerSeen");
         zombie2.gameObject.GetComponent<ZombieController>().setSeen();
 
         GameObject zombie3 = Instantiate(zombie, new Vector3(summonPlaces[x].transform.position.x, 1f, summonPlaces[x].transform.position.z+2f),  Quaternion.Euler(-90, 0, 0));
-        zombie3.gameObject.GetComponent<Animator>().SetTrigger("playerSeen");
         zombie3.gameObject.GetComponent<ZombieController>().setSeen();
 
         GameObject zombie4 = Instantiate(zombie, new Vector3(summonPlaces[x].transform.position.x+2f, 1f, summonPlaces[x].transform.position.z+2f),  Quaternion.Euler(-90, 0, 0));
-        zombie4.gameObject.GetComponent<Animator>().SetTrigger("playerSeen");
         zombie4.gameObject.GetComponent<ZombieController>().setSeen();
                     
                     
