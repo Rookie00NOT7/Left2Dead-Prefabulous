@@ -57,6 +57,19 @@ public class explosionDamage : MonoBehaviour
                             player.rage(tag);
                         }
                     }
+                     else
+                        {
+                            if (other.tag == "boomer")
+                            {
+                                boomerController tank = other.gameObject.GetComponent<boomerController>();
+                                bool kill = tank.takeDamage(100);
+                                if (kill)
+                                {
+                                    player.killPlus();
+                                    player.rage(tag);
+                                }
+                            }
+                        }
                 }
             }
         }

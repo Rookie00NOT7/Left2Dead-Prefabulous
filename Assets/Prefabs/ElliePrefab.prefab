@@ -2357,6 +2357,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: M9
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 6f8ee9e57f0ae87429c40e77c8b75822, type: 3}
+      propertyPath: m_TagString
+      value: ElliePistol
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6f8ee9e57f0ae87429c40e77c8b75822, type: 3}
       propertyPath: m_RootOrder
       value: 5

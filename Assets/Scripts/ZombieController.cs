@@ -26,7 +26,6 @@ public class ZombieController : MonoBehaviour
     {
         player = thePlayer;
     }
-
     public void setSeen()
     {
         seen = true;
@@ -69,7 +68,7 @@ public class ZombieController : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         temp = GameObject.FindGameObjectWithTag("Player");

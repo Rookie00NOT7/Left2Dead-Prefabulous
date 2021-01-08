@@ -17,6 +17,11 @@ TagManager:
   - playerGun
   - playerSGM
   - Shotty
+  - Tank
+  - playerHuntingRifle
+  - boomer
+  - charger
+  - boomerHit
   layers:
   - Default
   - TransparentFX
