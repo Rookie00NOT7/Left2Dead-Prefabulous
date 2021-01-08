@@ -31,6 +31,9 @@ public class bileHit : MonoBehaviour
             blurr = GameObject.FindGameObjectWithTag("boomerHit");
             blurr.GetComponent<Animator>().SetTrigger("blur");
         }
+        if (collisionInfo.gameObject.tag == "Floor"){
+            Destroy(this.gameObject);
+        }
         
             
     }
