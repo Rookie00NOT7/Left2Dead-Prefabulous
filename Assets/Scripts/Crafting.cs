@@ -111,7 +111,10 @@ public class Crafting : MonoBehaviour
 
 
 
-        if(Input.GetKey("t")){
+        if(Input.GetKeyDown(KeyCode.T)){
+            if( Crafting_Panel.gameObject.activeInHierarchy)
+             Disable();
+             else
              EnablePanel();
          }
     //this.GetComponent<grenades>().getMolInv();
@@ -184,9 +187,12 @@ public void EnablePanel(){
         Time.timeScale=1;
     }
 
-    void OnTriggerExit(Collider other){
-        if(other.gameObject.tag=="Alcohol")
+    void OnTriggerEnter(Collider other){
+        if(other.gameObject.tag=="Alcohol" || other.gameObject.tag=="Rag" || other.gameObject.tag=="Sugar" 
+        || other.gameObject.tag=="GunPowder" || other.gameObject.tag=="Canister" ){
+        if(other.gameObject.tag=="Alcohol"){
             setAlcohol(getAlcohol()+1);
+            }
         if(other.gameObject.tag=="Rag")
             setRags(getRags()+1);
         if(other.gameObject.tag=="Sugar")
@@ -196,6 +202,10 @@ public void EnablePanel(){
         if(other.gameObject.tag=="Canister")
             setCanister(getCanister()+1);
 
+        Destroy(other.gameObject);
+    
+    }
+    
     }
     private void checkmolotov(){
         if(getAlcohol()>=2 && getRags()>=2 && this.GetComponent<grenades>().getMolInv()<3)
