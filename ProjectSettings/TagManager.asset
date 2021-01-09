@@ -23,6 +23,12 @@ TagManager:
   - charger
   - boomerHit
   - assaultRifle
+  - Alcohol
+  - Rag
+  - Sugar
+  - GunPowder
+  - Canister
+
   layers:
   - Default
   - TransparentFX
