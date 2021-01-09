@@ -77,15 +77,43 @@ public class assaultBehaviour : MonoBehaviour
                                 player.rage(tag);
                             }
                         }
+                        else{
+                            if (hit.transform.tag == "Tank")
+                            {
+                                string tag = hit.transform.tag;
+                                bool kill = hit.collider.gameObject.GetComponent<TankController>().takeDamage(33 * ((rage) ? 2 : 1));
+                                if (kill)
+                                {
+                                    player.killPlus();
+                                    player.rage(tag);
+                                }
+                            }
+                            else{
+                                if (hit.transform.tag == "boomer")
+                                {
+                                    string tag = hit.transform.tag;
+                                    bool kill = hit.collider.gameObject.GetComponent<boomerController>().takeDamage(33 * ((rage) ? 2 : 1));
+                                    if (kill)
+                                    {
+                                        player.killPlus();
+                                        player.rage(tag);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
-            anim.SetTrigger("Fire");
+            anim.SetBool("Fire", true);
             Vector3 muzzlePos = new Vector3(transform.position.x, transform.position.y + 0.05f, transform.position.z + 0.1f);
             GameObject particles = Instantiate(MuzzleFire, muzzlePos, transform.rotation);
             particles.GetComponent<ParticleSystem>().Play();
             audio.PlayOneShot(fireClip);
             clipCap--;
+        }
+
+        if(Input.GetKeyUp(KeyCode.Mouse0)){
+            anim.SetBool("Fire", false);
         }
 
         if (Input.GetKeyDown(KeyCode.R))
