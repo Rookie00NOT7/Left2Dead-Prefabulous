@@ -11,7 +11,6 @@ public class louisBehaviour : MonoBehaviour
     private UnityEngine.AI.NavMeshAgent agent;
     private Animator anim;
     private float time = 1.0f;
-    private float healthTime = 0f;
     private AudioSource audio;
     public AudioClip gunShotClip;
     private int rounds = 50;
@@ -37,15 +36,7 @@ public class louisBehaviour : MonoBehaviour
         anim = GetComponent<Animator>();
         audio = GetComponent<AudioSource>();
     }
-
-    void HealPlayer(int healAmount){
-        player.GetComponent<PlayerAddedBehavior>().heal(healAmount);
-    }
-
-    int getPlayerHealth(){
-        return player.GetComponent<PlayerAddedBehavior>().getHealth();
-    }
-
+    
     Transform nearest(GameObject[] enemies)
     {
         float nearestSoFar = Mathf.Infinity;
@@ -82,18 +73,6 @@ public class louisBehaviour : MonoBehaviour
             }
             else
             {
-                //Heal Logic
-
-                if(healthTime <= 10f){
-                    healthTime += Time.deltaTime;
-                }
-
-                if(getPlayerHealth() <= 300 && healthTime >= 1.0f){
-                    // Debug.Log(getPlayerHealth());
-                    healthTime = 0f;
-                    HealPlayer(1);
-
-                }
                 anim.SetBool("walk", false);
                 agent.SetDestination(transform.position);
             }

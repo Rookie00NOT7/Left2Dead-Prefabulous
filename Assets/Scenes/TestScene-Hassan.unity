@@ -4232,6 +4232,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: _ouis
       objectReference: {fileID: 0}
+    - target: {fileID: 4759988761486944742, guid: 0f96f425d9bbb21478137f5e22c0c308, type: 3}
+      propertyPath: m_TagString
+      value: Louis
+      objectReference: {fileID: 0}
     - target: {fileID: 5279679067291366236, guid: 0f96f425d9bbb21478137f5e22c0c308, type: 3}
       propertyPath: m_RootOrder
       value: 1

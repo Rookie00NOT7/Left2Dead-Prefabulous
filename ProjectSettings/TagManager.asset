@@ -23,6 +23,7 @@ TagManager:
   - charger
   - boomerHit
   - assaultRifle
+  - Louis
   layers:
   - Default
   - TransparentFX

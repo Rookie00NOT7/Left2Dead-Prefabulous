@@ -54,7 +54,9 @@ public class stunEffect : MonoBehaviour
         foreach(GameObject chaserBoomer in chasingBoomers){
             chaserBoomer.GetComponent<boomerController>().distract(chaserBoomer);
         }
-        this.gameObject.GetComponent<BoxCollider>().enabled = false;
+
+        if(delayToUndistract <= 2)
+            this.gameObject.GetComponent<BoxCollider>().enabled = false;
 
         if(delayToUndistract <= 0f){
             foreach(GameObject chaserZombie in chasingZombies){

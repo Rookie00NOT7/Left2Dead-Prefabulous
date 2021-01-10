@@ -9,7 +9,7 @@ public class assaultBehaviour : MonoBehaviour
     private AudioSource audio;
     public AudioClip fireClip;
     public AudioClip reloadClip;
-    private int clipCap = 15;
+    private int clipCap = 50;
     private GameObject cam;
     private float time = 1f;
     private PlayerAddedBehavior player;
@@ -105,7 +105,7 @@ public class assaultBehaviour : MonoBehaviour
                 }
             }
             anim.SetBool("Fire", true);
-            Vector3 muzzlePos = new Vector3(transform.position.x, transform.position.y + 0.05f, transform.position.z + 0.1f);
+            Vector3 muzzlePos = new Vector3(transform.position.x + 0.05f, transform.position.y + 0.050f, transform.position.z + 0.70f);
             GameObject particles = Instantiate(MuzzleFire, muzzlePos, transform.rotation);
             particles.GetComponent<ParticleSystem>().Play();
             audio.PlayOneShot(fireClip);
