@@ -121,7 +121,11 @@ public class boomerController : MonoBehaviour
                     anim.SetTrigger("attack");
                     GameObject attacked = Instantiate(attack, new Vector3(transform.position.x, transform.position.y+3.5f, transform.position.z), transform.rotation);
                     attacked.gameObject.GetComponent<bileHit>().setSummonPlace(summonPlace);
-                    attacked.GetComponent<Rigidbody>().AddForce(transform.forward * 10f, ForceMode.Impulse);
+                    if (Vector3.Distance(player.transform.position, transform.position) < 6f)
+                     {   attacked.GetComponent<Rigidbody>().AddForce(transform.forward * 10f, ForceMode.Impulse);}
+                    else{
+                        attacked.GetComponent<Rigidbody>().AddForce(transform.forward * 60f, ForceMode.Impulse);
+                        }
                     coolTime = 10.0f;
                 }
                 else
