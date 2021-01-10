@@ -19,6 +19,10 @@ public class weaponManager : MonoBehaviour
         weapons[weapon] = true;
     }
 
+    public int GetEquippedWeapon() {
+        return current;
+    }
+
     void Start()
     {
         pistol = GameObject.FindGameObjectWithTag("playerGun");

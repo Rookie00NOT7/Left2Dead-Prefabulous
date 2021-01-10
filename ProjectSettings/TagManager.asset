@@ -27,6 +27,8 @@ TagManager:
   - Sugar
   - GunPowder
   - Canister
+  - WeaponManager
+  - PlayerOverlay
   layers:
   - Default
   - TransparentFX

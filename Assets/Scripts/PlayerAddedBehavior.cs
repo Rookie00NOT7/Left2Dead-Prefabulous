@@ -31,6 +31,10 @@ public class PlayerAddedBehavior : MonoBehaviour
     public AudioClip rageModeClip;
     public AudioClip dieClip;
 
+    public int getRageMeter() {
+        return rageMeter;
+    }
+
     public void heal(int val)
     {
         health += val;

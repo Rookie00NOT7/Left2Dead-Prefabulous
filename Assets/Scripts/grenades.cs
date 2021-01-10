@@ -12,6 +12,10 @@ public class grenades : MonoBehaviour
     //public GameObject stun;
     private int selected = 0;
 
+    public int GetEquippedNade() {
+        return selected;
+    }
+
     public void addMol(int quantity)
     {
         MolInventory += quantity;

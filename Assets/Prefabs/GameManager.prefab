@@ -44,3 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ellieSelected: 1
+  player: {fileID: 0}
+  huntingRifle: {fileID: 0}
+  submachinegun: {fileID: 0}
+  shotgun: {fileID: 0}
+  pistol: {fileID: 0}
