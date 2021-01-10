@@ -75,10 +75,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void InternalLockUpdate()
         {
-            if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.P)) && Time.time > timeSinceLast + 0.1f)
+            if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.P)) && Time.unscaledTime > timeSinceLast + 0.5f)
             {
                 m_cursorIsLocked = !m_cursorIsLocked;
-                timeSinceLast = Time.time;
+                timeSinceLast = Time.unscaledTime;
             }
 
             if (m_cursorIsLocked)
