@@ -20,6 +20,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private Quaternion m_CharacterTargetRot;
         private Quaternion m_CameraTargetRot;
         private bool m_cursorIsLocked = true;
+        private float timeSinceLast = 0f;
 
         public void Init(Transform character, Transform camera)
         {
@@ -74,13 +75,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void InternalLockUpdate()
         {
-            if (m_cursorIsLocked && (Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.T) || Input.GetKeyUp(KeyCode.P)))
+            if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.P)) && Time.time > timeSinceLast + 0.1f)
             {
-                m_cursorIsLocked = false;
-            }
-            else if (!m_cursorIsLocked && (Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.T) || Input.GetKeyUp(KeyCode.P)))
-            {
-                m_cursorIsLocked = true;
+                m_cursorIsLocked = !m_cursorIsLocked;
+                timeSinceLast = Time.time;
             }
 
             if (m_cursorIsLocked)
