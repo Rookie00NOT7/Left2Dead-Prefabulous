@@ -21,6 +21,9 @@ public class huntingRifleBehavior : MonoBehaviour
         return clipCap;
     }
 
+    public int getTotalBullets() {
+        return totalBullets;
+    }
 
     void Start()
     {

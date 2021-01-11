@@ -21,6 +21,10 @@ public class SMGbehavior : MonoBehaviour
         return clipCap;
     }
 
+    public int getAmmo() {
+        return ammo;
+    }
+
     void Start()
     {
         anim = GetComponent<Animator>();
