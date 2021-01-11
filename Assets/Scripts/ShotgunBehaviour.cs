@@ -59,7 +59,7 @@ public class ShotgunBehaviour : MonoBehaviour
   }
 
   public void Update() {
-      if (Input.GetButtonDown("Fire1") && Time.time > nextFire && currentShellCount > 0) {
+      if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextFire && currentShellCount > 0) {
           --currentShellCount;
           nextFire = Time.time + fireRate;
           StartCoroutine(ShotEffect());
