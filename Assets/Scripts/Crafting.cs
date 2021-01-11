@@ -49,6 +49,19 @@ public class Crafting : MonoBehaviour
         this.Rags = Rags;
     }
 
+    public int getHealthPack()
+    {
+        return this.HealthPack;
+    }
+
+    public void setHealthPack(int healthPack)
+    {
+        if (GetComponent<PlayerAddedBehavior>().getHealth() == 300)
+            this.HealthPack = healthPack;
+        else
+            GetComponent<PlayerAddedBehavior>().heal(50);
+    }
+
     public int getSugar()
     {
         return this.Sugar;
