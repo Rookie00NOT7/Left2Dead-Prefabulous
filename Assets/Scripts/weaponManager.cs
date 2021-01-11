@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class weaponManager : MonoBehaviour
 {
-    private bool[] weapons = { true, true, true, true, true };
+    private bool[] weapons = { true, false, false, false, false };
     private int current = 0;
     private GameObject pistol;
     private GameObject SGM;
     private GameObject shotgun;
     private GameObject huntingRifle;
     private GameObject assaultRifle;
-    //    to be made
-    //    private GameObject assault;
 
+    public void collect(int weapon)
+    {
+        weapons[weapon] = true;
+    }
     void Start()
     {
         pistol = GameObject.FindGameObjectWithTag("playerGun");

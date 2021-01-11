@@ -29,7 +29,14 @@ TagManager:
   - Sugar
   - GunPowder
   - Canister
-
+  - Assault
+  - HuntingRifle
+  - SMG
+  - Shotgun
+  - Molotov
+  - PipeBomb
+  - Stun
+  - FPCamera
   layers:
   - Default
   - TransparentFX
@@ -39,7 +46,7 @@ TagManager:
   - UI
   - 
   - 
-  - FPS
+  - 
   - 
   - 
   - 
