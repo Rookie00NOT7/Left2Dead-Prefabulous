@@ -6331,7 +6331,7 @@ GameObject:
   - component: {fileID: 6147984972398465330}
   m_Layer: 0
   m_Name: FPCamera
-  m_TagString: Untagged
+  m_TagString: WeaponManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6351,7 +6351,7 @@ Transform:
   - {fileID: 8320096906567861948}
   - {fileID: 5732670229706492659}
   - {fileID: 7135201013618820363}
-  - {fileID: 1820698937186352355}
+  - {fileID: 1718678273466053740}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10744,6 +10744,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2219946361448567798}
     m_Modifications:
+    - target: {fileID: 3496871284220710273, guid: d41337751c803e14683a5a475cb8ef0f, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3841893234699755444, guid: d41337751c803e14683a5a475cb8ef0f, type: 3}
       propertyPath: m_Name
       value: M4_Carbine
@@ -10794,8 +10798,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d41337751c803e14683a5a475cb8ef0f, type: 3}
---- !u!4 &1820698937186352355 stripped
+--- !u!4 &1718678273466053740 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4475158724208559374, guid: d41337751c803e14683a5a475cb8ef0f, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3496871284220710273, guid: d41337751c803e14683a5a475cb8ef0f, type: 3}
   m_PrefabInstance: {fileID: 2836873243575286253}
   m_PrefabAsset: {fileID: 0}

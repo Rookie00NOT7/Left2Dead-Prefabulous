@@ -29,6 +29,7 @@ TagManager:
   - Sugar
   - GunPowder
   - Canister
+<<<<<<< HEAD
   - Assault
   - HuntingRifle
   - SMG
@@ -37,6 +38,10 @@ TagManager:
   - PipeBomb
   - Stun
   - FPCamera
+=======
+  - WeaponManager
+  - PlayerOverlay
+>>>>>>> 451a2f3c3d241287d516cb335b3a622318a4fc3a
   layers:
   - Default
   - TransparentFX

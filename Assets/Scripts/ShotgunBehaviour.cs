@@ -131,4 +131,12 @@ public class ShotgunBehaviour : MonoBehaviour
           animation.SetTrigger("ShotgunUp");
 
   }
+
+  public int GetCurrentShellCount() {
+    return currentShellCount;
+  }
+
+  public int GetCurrentReserveAmmo() {
+    return currentReserveAmmo;
+  }
 }

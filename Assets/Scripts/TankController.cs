@@ -8,20 +8,24 @@ public class TankController : MonoBehaviour
     private NavMeshAgent agent;
     private Animator anim;
     private GameObject player;
-    private bool seen = false;
-    private int health = 1000;
-    private bool dead = false;
-    private float time = 0f;
-    public Transform[] patrol;
-    private int i = 0;
-    private AudioSource audio;
-    public AudioClip alertClip;
-    private bool playOther = false;
-    private float timeToDisappear = 10f;
     private GameObject temp;
-    private bool distracted = false;
     private Vector3 distraction;
+    private AudioSource audio;
+    private bool seen = false;
+    private bool dead = false;
+    private bool playOther = false;
+    private bool distracted = false;
+    private int i = 0;
+    private float time = 0f;
+    private float timeToDisappear = 10f;
+    
+    [Header ("Zombie Settings")]
+    public int health = 1000;
+    public int damage = 30;
 
+    public Transform[] patrol;
+    public AudioClip alertClip;
+    
     public void setPlayer(GameObject thePlayer)
     {
         player = thePlayer;
@@ -116,7 +120,7 @@ public class TankController : MonoBehaviour
                     anim.SetTrigger("punch");
                     if (time >= 1f)
                     {
-                        player.GetComponent<PlayerAddedBehavior>().takeDamage(30);
+                        player.GetComponent<PlayerAddedBehavior>().takeDamage(damage);
                         time = 0f;
                     }
                     time += Time.deltaTime;
