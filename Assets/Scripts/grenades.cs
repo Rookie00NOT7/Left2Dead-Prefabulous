@@ -6,10 +6,10 @@ public class grenades : MonoBehaviour
 {
     private int PipeInventory = 2;
     private int MolInventory = 3;
-    private int StunInventory = 2;
+    private int StunInventory = 20;
     public GameObject pipe;
     public GameObject molotov;
-    //public GameObject stun;
+    public GameObject stun;
     private int selected = 0;
 
     public int GetEquippedNade() {
@@ -68,11 +68,11 @@ public class grenades : MonoBehaviour
                 Instantiate(molotov, new Vector3(this.transform.position.x, this.transform.position.y + 1f, this.transform.position.z), Quaternion.identity);
                 MolInventory--;
             }
-//            if (selected == 2 && StunInventory > 0)
-//            {
-//                Instantiate(stun, new Vector3(this.transform.position.x, this.transform.position.y + 1f, this.transform.position.z), Quaternion.identity);
-//                StunInventory--;
-//           }
+           if (selected == 2 && StunInventory > 0)
+           {
+               Instantiate(stun, new Vector3(this.transform.position.x, this.transform.position.y + 1f, this.transform.position.z), Quaternion.identity);
+               StunInventory--;
+          }
         }
     }
 }

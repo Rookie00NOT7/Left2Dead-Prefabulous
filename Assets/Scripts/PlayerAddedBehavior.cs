@@ -6,6 +6,7 @@ public class PlayerAddedBehavior : MonoBehaviour
 {
     private CharacterController controller;
     private int health = 300;
+    private bool healing = false;
 
     public Vector3 moveDirection;
 
@@ -30,6 +31,7 @@ public class PlayerAddedBehavior : MonoBehaviour
     private int kills = 0;
     public AudioClip rageModeClip;
     public AudioClip dieClip;
+    private float healthTime = 0f;
 
     public int getRageMeter() {
         return rageMeter;
@@ -112,11 +114,26 @@ public class PlayerAddedBehavior : MonoBehaviour
         {
             rageMult = 2;
         }
+        if(GameObject.FindGameObjectWithTag("Louis") != null){
+            healing = true;
+        }
         controller = GetComponent<CharacterController>();
         audio = GetComponent<AudioSource>();
     }
     void Update()
     {
+        //Heal Logic
+        if(healing){
+                if(healthTime <= 10f){
+                    healthTime += Time.deltaTime;
+                }
+
+                if(health <= 300 && healthTime >= 1.0f){
+                    print(health);
+                    healthTime = 0f;
+                    heal(1);
+                }
+        }
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             if (Input.GetKey(KeyCode.W))
