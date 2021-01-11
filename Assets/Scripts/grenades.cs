@@ -49,7 +49,7 @@ public class grenades : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            selected = (selected + 1) % 4;
+            selected = (selected + 1) % 3;
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
