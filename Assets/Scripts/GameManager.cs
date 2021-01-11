@@ -28,11 +28,11 @@ public class GameManager : MonoBehaviour
 
    private void Start() {
        player = GameObject.FindWithTag("Player").GetComponent<PlayerAddedBehavior>();
+       grenades = GameObject.FindWithTag("Player").GetComponent<grenades>();
        huntingRifle = GameObject.FindWithTag("playerHuntingRifle").GetComponent<huntingRifleBehavior>();
        submachinegun = GameObject.FindWithTag("playerSGM").GetComponent<SMGbehavior>();
        shotgun = GameObject.FindWithTag("Shotty").GetComponent<ShotgunBehaviour>();
        pistol = GameObject.FindWithTag("playerGun").GetComponent<PistolBehavior>();
-       grenades = GameObject.FindWithTag("Player").GetComponent<grenades>();
        weaponManager = GameObject.FindWithTag("WeaponManager").GetComponent<weaponManager>();
    }
 

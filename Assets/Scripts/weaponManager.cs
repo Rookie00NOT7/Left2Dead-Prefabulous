@@ -11,6 +11,9 @@ public class weaponManager : MonoBehaviour
     private GameObject shotgun;
 
     private GameObject huntingRifle;
+
+    private WaitForSeconds hideWeapons = new WaitForSeconds(0.025f);
+
     //    to be made
     //    private GameObject assault;
 
@@ -29,10 +32,15 @@ public class weaponManager : MonoBehaviour
         SGM = GameObject.FindGameObjectWithTag("playerSGM");
         shotgun = GameObject.FindGameObjectWithTag("Shotty");
         huntingRifle=GameObject.FindGameObjectWithTag("playerHuntingRifle");
+
+        StartCoroutine(HideWeapons());
+    }
+
+    private IEnumerator HideWeapons() {
+        yield return hideWeapons;
         SGM.SetActive(false);
         shotgun.SetActive(false);
         huntingRifle.SetActive(false);
-
     }
 
     void Update()
