@@ -32,7 +32,7 @@ public class PlayerOverlay : MonoBehaviour
     public GameObject weaponsPanel;
 
     private void Start() {
-        gameManager = GameManager.Instance;
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
     }
 
    private void Update() {
