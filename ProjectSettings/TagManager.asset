@@ -46,6 +46,7 @@ TagManager:
   - Rag
   - LevelManager
   - dead
+  - Floor
   layers:
   - Default
   - TransparentFX
