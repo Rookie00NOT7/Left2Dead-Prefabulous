@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class weaponManager : MonoBehaviour
 {
-    private bool[] weapons = { true, true, true, true, true };
+    private bool[] weapons = { true, false, false, false, false };
     private int current = 0;
     private GameObject pistol;
     private GameObject SGM;
@@ -18,7 +18,8 @@ public class weaponManager : MonoBehaviour
         weapons[weapon] = true;
     }
 
-    public int GetEquippedWeapon() {
+    public int GetEquippedWeapon()
+    {
         return current;
     }
 
@@ -27,13 +28,14 @@ public class weaponManager : MonoBehaviour
         pistol = GameObject.FindGameObjectWithTag("playerGun");
         SGM = GameObject.FindGameObjectWithTag("playerSGM");
         shotgun = GameObject.FindGameObjectWithTag("Shotty");
-        huntingRifle=GameObject.FindGameObjectWithTag("playerHuntingRifle");
+        huntingRifle = GameObject.FindGameObjectWithTag("playerHuntingRifle");
         assaultRifle = GameObject.FindGameObjectWithTag("assaultRifle");
 
         StartCoroutine(HideWeapons());
     }
 
-    private IEnumerator HideWeapons() {
+    private IEnumerator HideWeapons()
+    {
         yield return hideWeapons;
         SGM.SetActive(false);
         shotgun.SetActive(false);
@@ -53,10 +55,10 @@ public class weaponManager : MonoBehaviour
             print(current);
             switch (current)
             {
-                case 0: pistol.SetActive(true); SGM.SetActive(false); shotgun.SetActive(false); huntingRifle.SetActive(false); assaultRifle.SetActive(false);break;
-                case 1: pistol.SetActive(false); SGM.SetActive(true); shotgun.SetActive(false);  huntingRifle.SetActive(false); assaultRifle.SetActive(false);break;
-                case 2: pistol.SetActive(false); SGM.SetActive(false); shotgun.SetActive(true);  huntingRifle.SetActive(false); assaultRifle.SetActive(false);break;
-                case 3: pistol.SetActive(false); SGM.SetActive(false); shotgun.SetActive(false); huntingRifle.SetActive(true); assaultRifle.SetActive(false);break;
+                case 0: pistol.SetActive(true); SGM.SetActive(false); shotgun.SetActive(false); huntingRifle.SetActive(false); assaultRifle.SetActive(false); break;
+                case 1: pistol.SetActive(false); SGM.SetActive(true); shotgun.SetActive(false); huntingRifle.SetActive(false); assaultRifle.SetActive(false); break;
+                case 2: pistol.SetActive(false); SGM.SetActive(false); shotgun.SetActive(true); huntingRifle.SetActive(false); assaultRifle.SetActive(false); break;
+                case 3: pistol.SetActive(false); SGM.SetActive(false); shotgun.SetActive(false); huntingRifle.SetActive(true); assaultRifle.SetActive(false); break;
                 case 4: pistol.SetActive(false); SGM.SetActive(false); shotgun.SetActive(false); huntingRifle.SetActive(false); assaultRifle.SetActive(true); break;
                     //the rest
             }

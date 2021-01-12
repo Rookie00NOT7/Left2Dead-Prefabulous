@@ -13,7 +13,7 @@ public class huntingRifleBehavior : MonoBehaviour
     private GameObject cam;
     private float time = 1f;
     private PlayerAddedBehavior player;
-    private int totalBullets = 165;
+    private int ammo = 165;
 
 
     public int getClipCap()
@@ -21,8 +21,9 @@ public class huntingRifleBehavior : MonoBehaviour
         return clipCap;
     }
 
-    public int getTotalBullets() {
-        return totalBullets;
+    public int getTotalBullets()
+    {
+        return ammo;
     }
 
     void Start()
@@ -94,26 +95,26 @@ public class huntingRifleBehavior : MonoBehaviour
                                     player.rage(tag);
                                 }
                             }
-                             else
-                        {
-                            if (hit.transform.tag == "boomer")
+                            else
                             {
-                                string tag = hit.transform.tag;
-                                bool kill = hit.collider.gameObject.GetComponent<boomerController>().takeDamage(90 * ((rage) ? 2 : 1));
-                                if (kill)
+                                if (hit.transform.tag == "boomer")
                                 {
-                                    player.killPlus();
-                                    player.rage(tag);
+                                    string tag = hit.transform.tag;
+                                    bool kill = hit.collider.gameObject.GetComponent<boomerController>().takeDamage(90 * ((rage) ? 2 : 1));
+                                    if (kill)
+                                    {
+                                        player.killPlus();
+                                        player.rage(tag);
+                                    }
                                 }
                             }
-                        }
                         }
                     }
 
                 }
             }
             anim.SetTrigger("fire");
-            Vector3 muzzlePos = new Vector3(transform.position.x, transform.position.y +0.04f, transform.position.z + 0.4f);
+            Vector3 muzzlePos = new Vector3(transform.position.x, transform.position.y + 0.04f, transform.position.z + 0.4f);
             GameObject particles = Instantiate(MuzzleFire, muzzlePos, transform.rotation);
             particles.GetComponent<ParticleSystem>().Play();
             audio.PlayOneShot(fireClip);
@@ -123,13 +124,18 @@ public class huntingRifleBehavior : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (totalBullets > 0)
+            if (ammo > 0)
             {
-                totalBullets -= (15 - clipCap);
+                ammo -= (15 - clipCap);
                 clipCap = 15;
             }
             anim.SetTrigger("reload");
             audio.PlayOneShot(reloadClip);
         }
+    }
+    public void takeAmmo(int ammoLooted)
+    {
+        ammo += ammoLooted;
+        ammo = Mathf.Clamp(ammo, 0, 165);
     }
 }

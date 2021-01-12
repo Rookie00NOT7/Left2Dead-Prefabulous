@@ -4,33 +4,32 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - MuzzleFlash
-  - target
-  - hitPanel
-  - Floor
-  - Fire
-  - ElliePistol
-  - specialTarget
-  - dead
-  - Ellie
-  - spitter
-  - playerGun
-  - playerSGM
-  - Shotty
-  - Tank
-  - playerHuntingRifle
-  - boomer
-  - charger
-  - boomerHit
-  - assaultRifle
   - Louis
-  - Alcohol
-  - Rag
-  - Sugar
-  - GunPowder
-  - Canister
+  - MuzzleFlash
+  - PipeBomb
+  - Shotty
+  - Molotov
+  - Ellie
+  - ElliePistol
+  - Tank
+  - Assault
+  - playerHuntingRifle
+  - assaultRifle
+  - playerSGM
+  - playerGun
   - WeaponManager
+  - spitter
+  - Stun
+  - Shotgun
+  - HuntingRifle
+  - charger
+  - Fire
+  - target
+  - boomer
   - PlayerOverlay
+  - hitPanel
+  - boomerHit
+  - SMG
   layers:
   - Default
   - TransparentFX
@@ -40,7 +39,7 @@ TagManager:
   - UI
   - 
   - 
-  - FPS
+  - 
   - 
   - 
   - 
