@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 2347638926740915043}
   - component: {fileID: 283569037321638852}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -299,7 +299,7 @@ AudioSource:
   m_GameObject: {fileID: 2347638926740915050}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1246446154708357787, guid: c89411a4a21ff5340809ad365afda21d, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -448,6 +448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pipe: {fileID: 4251499235061561506, guid: aaff057952e13b64ab4dd6aab0b0a405, type: 3}
   molotov: {fileID: 674894249216548369, guid: cd3409a0e6fc3e54990fd86014c8bf78, type: 3}
+  stun: {fileID: 0}
 --- !u!114 &283569037321638852
 MonoBehaviour:
   m_ObjectHideFlags: 0
