@@ -23,6 +23,16 @@ public class weaponManager : MonoBehaviour
         return current;
     }
 
+    public bool[] getWeapons()
+    {
+        return weapons;
+    }
+
+    public void setWeapons(bool[] curWeapons)
+    {
+        weapons = curWeapons;
+    }
+
     void Start()
     {
         pistol = GameObject.FindGameObjectWithTag("playerGun");

@@ -30,6 +30,22 @@ TagManager:
   - hitPanel
   - boomerHit
   - SMG
+  - teleport2
+  - teleport1
+  - teleport3
+  - GameManager
+  - teleportAlly1
+  - teleportAlly2
+  - teleportAlly3
+  - Ammo
+  - Alcohol
+  - Sugar
+  - Canister
+  - GunPowder
+  - HealthPack
+  - Rag
+  - LevelManager
+  - dead
   layers:
   - Default
   - TransparentFX
