@@ -87,31 +87,35 @@ public class GameManager : MonoBehaviour
         return weaponManager.GetEquippedWeapon();
     }
 
-    public int GetEquippedNade() {
+    public int GetEquippedNade()
+    {
         return grenades.GetEquippedNade();
     }
 
-   private void Update() {
-       if (Input.GetKeyDown(KeyCode.Semicolon)) {
-           PlayerStatsLog();
-       }
-   }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Semicolon))
+        {
+            PlayerStatsLog();
+        }
+    }
 
-   private void PlayerStatsLog() {
-    Debug.Log("---------- Player Stats ----------");
-    Debug.Log("Player Health: " + GetHealth());
-    Debug.Log("Player Rage Meter: " + GetRageMeter());
-    Debug.Log("Pipe Bomb Count: " + GetPipeCount());
-    Debug.Log("Molotov Count: " + GetMolotovCount());
-    Debug.Log("Stun Grenade Count: " + GetStunCount());
-    Debug.Log("Shotgun Current Ammo Count: " + GetShotgunAmmo());
-    Debug.Log("Shotgun Reserve Ammo Count: " + GetShotgunReserve());
-    Debug.Log("SMG Current Ammo Count: " + GetSMGAmmo());
-    Debug.Log("SMG Reserve Ammo Count: " + GetSMGReserve());
-    Debug.Log("Shotgun Current Ammo Count: " + GetShotgunAmmo());
-    Debug.Log("Shotgun Reserve Ammo Count: " + GetShotgunReserve());
-    Debug.Log("Pistol Current Ammo Count: " + GetPistolAmmo());
-    Debug.Log("----------------------------------");
-   }
+    private void PlayerStatsLog()
+    {
+        Debug.Log("---------- Player Stats ----------");
+        Debug.Log("Player Health: " + GetHealth());
+        Debug.Log("Player Rage Meter: " + GetRageMeter());
+        Debug.Log("Pipe Bomb Count: " + GetPipeCount());
+        Debug.Log("Molotov Count: " + GetMolotovCount());
+        Debug.Log("Stun Grenade Count: " + GetStunCount());
+        Debug.Log("Shotgun Current Ammo Count: " + GetShotgunAmmo());
+        Debug.Log("Shotgun Reserve Ammo Count: " + GetShotgunReserve());
+        Debug.Log("SMG Current Ammo Count: " + GetSMGAmmo());
+        Debug.Log("SMG Reserve Ammo Count: " + GetSMGReserve());
+        Debug.Log("Shotgun Current Ammo Count: " + GetShotgunAmmo());
+        Debug.Log("Shotgun Reserve Ammo Count: " + GetShotgunReserve());
+        Debug.Log("Pistol Current Ammo Count: " + GetPistolAmmo());
+        Debug.Log("----------------------------------");
+    }
 
 }

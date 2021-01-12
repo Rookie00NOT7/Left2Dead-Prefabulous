@@ -142,4 +142,10 @@ public class ShotgunBehaviour : MonoBehaviour
   public int GetCurrentReserveAmmo() {
     return currentReserveAmmo;
   }
+
+  public void takeAmmo(int ammoLooted)
+   {
+        currentReserveAmmo += ammoLooted;
+        currentReserveAmmo = Mathf.Clamp(currentReserveAmmo, 0, 130);
+   }
 }

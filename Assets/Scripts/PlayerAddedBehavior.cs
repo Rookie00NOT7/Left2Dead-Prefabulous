@@ -33,7 +33,8 @@ public class PlayerAddedBehavior : MonoBehaviour
     public AudioClip dieClip;
     private float healthTime = 0f;
 
-    public int getRageMeter() {
+    public int getRageMeter()
+    {
         return rageMeter;
     }
 
@@ -73,17 +74,20 @@ public class PlayerAddedBehavior : MonoBehaviour
     public void takeDamage(int val)
     {
         health -= val;
+        health = Mathf.Clamp(health, 0, 300);
         if (health <= 0)
         {
             hitPanel.SetTrigger("die");
             audio.PlayOneShot(dieClip);
             //Time.timeScale = 0;
             //add UI for game over screen and so on ...
+            //replace with UI that does the following ...
+            GameObject.FindGameObjectWithTag("LevelManager").GetComponent<levelManager>().instantiateGame();
         }
         else
         {
             hitPanel.SetTrigger("hit");
-            if(playOrNot)
+            if (playOrNot)
                 audio.PlayOneShot(hitClip);
             playOrNot = !playOrNot;
         }
@@ -114,7 +118,8 @@ public class PlayerAddedBehavior : MonoBehaviour
         {
             rageMult = 2;
         }
-        if(GameObject.FindGameObjectWithTag("Louis") != null){
+        if (GameObject.FindGameObjectWithTag("Louis") != null)
+        {
             healing = true;
         }
         controller = GetComponent<CharacterController>();
@@ -123,16 +128,19 @@ public class PlayerAddedBehavior : MonoBehaviour
     void Update()
     {
         //Heal Logic
-        if(healing){
-                if(healthTime <= 10f){
-                    healthTime += Time.deltaTime;
-                }
+        if (healing)
+        {
+            if (healthTime <= 10f)
+            {
+                healthTime += Time.deltaTime;
+            }
 
-                if(health <= 300 && healthTime >= 1.0f){
-                    print(health);
-                    healthTime = 0f;
-                    heal(1);
-                }
+            if (health <= 300 && healthTime >= 1.0f)
+            {
+                print(health);
+                healthTime = 0f;
+                heal(1);
+            }
         }
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
@@ -207,7 +215,7 @@ public class PlayerAddedBehavior : MonoBehaviour
             controller.Move(moveDirection * Time.deltaTime * dashSpeed);
         }
 
-        if(rageTime > 0.0f)
+        if (rageTime > 0.0f)
         {
             rageTime -= Time.deltaTime;
         }

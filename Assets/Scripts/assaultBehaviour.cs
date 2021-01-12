@@ -13,7 +13,7 @@ public class assaultBehaviour : MonoBehaviour
     private GameObject cam;
     private float time = 1f;
     private PlayerAddedBehavior player;
-    private int totalBullets = 450;
+    private int ammo = 450;
 
 
     public int getClipCap()
@@ -22,7 +22,7 @@ public class assaultBehaviour : MonoBehaviour
     }
 
     public int getTotalBullets() {
-        return totalBullets;
+        return ammo;
     }
 
     void Start()
@@ -39,7 +39,7 @@ public class assaultBehaviour : MonoBehaviour
         {
             time += Time.deltaTime;
         }
-        
+
         if (Input.GetKey(KeyCode.Mouse0) && clipCap > 0 && time >= 0.1f)
         {
             bool rage = player.getRageMode();
@@ -50,7 +50,7 @@ public class assaultBehaviour : MonoBehaviour
                 if (hit.transform.tag == "target")
                 {
                     string tag = hit.transform.tag;
-                    bool kill = hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(33 * ((rage)? 2:1));
+                    bool kill = hit.collider.gameObject.GetComponent<ZombieController>().takeDamage(33 * ((rage) ? 2 : 1));
                     if (kill)
                     {
                         player.killPlus();
@@ -59,7 +59,7 @@ public class assaultBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    if(hit.transform.tag == "spitter")
+                    if (hit.transform.tag == "spitter")
                     {
                         string tag = hit.transform.tag;
                         bool kill = hit.collider.gameObject.GetComponent<spitterController>().takeDamage(33 * ((rage) ? 2 : 1));
@@ -81,7 +81,8 @@ public class assaultBehaviour : MonoBehaviour
                                 player.rage(tag);
                             }
                         }
-                        else{
+                        else
+                        {
                             if (hit.transform.tag == "Tank")
                             {
                                 string tag = hit.transform.tag;
@@ -92,7 +93,8 @@ public class assaultBehaviour : MonoBehaviour
                                     player.rage(tag);
                                 }
                             }
-                            else{
+                            else
+                            {
                                 if (hit.transform.tag == "boomer")
                                 {
                                     string tag = hit.transform.tag;
@@ -116,18 +118,25 @@ public class assaultBehaviour : MonoBehaviour
             clipCap--;
         }
 
-        if(Input.GetKeyUp(KeyCode.Mouse0)){
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
             anim.SetBool("Fire", false);
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if(totalBullets>0){  
-                totalBullets-=(50-clipCap);
+            if (ammo > 0)
+            {
+                ammo -= (50 - clipCap);
                 clipCap = 50;
             }
             anim.SetTrigger("Reload");
             audio.PlayOneShot(reloadClip);
         }
+    }
+    public void takeAmmo(int ammoLooted)
+    {
+        ammo += ammoLooted;
+        ammo = Mathf.Clamp(ammo, 0, 450);
     }
 }
