@@ -82,7 +82,7 @@ public class PlayerAddedBehavior : MonoBehaviour
             //Time.timeScale = 0;
             //add UI for game over screen and so on ...
             //replace with UI that does the following ...
-            GameObject.FindGameObjectWithTag("LevelManager").GetComponent<levelManager>().instantiateGame();
+            //GameObject.FindGameObjectWithTag("LevelManager").GetComponent<levelManager>().instantiateGame();
         }
         else
         {
