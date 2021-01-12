@@ -329,6 +329,7 @@ MonoBehaviour:
   smgTexture: {fileID: 2800000, guid: 3d7ea34805d93934aafd757090308051, type: 3}
   shotgunTexture: {fileID: 2800000, guid: 4e7f05fd0d8441b469c70305ddc766d6, type: 3}
   huntingTexture: {fileID: 2800000, guid: 612210e33909f1545b7d55d6f65809da, type: 3}
+  assaultRifleTexture: {fileID: 2800000, guid: 0146b340746ef7444beb5984d87f9af6, type: 3}
   nadeCount: {fileID: 5395874710652357851}
   grenadeImage: {fileID: 5842449942012499503}
   pipeTexture: {fileID: 2800000, guid: 4da0dac593d748345989cf453d10acc4, type: 3}

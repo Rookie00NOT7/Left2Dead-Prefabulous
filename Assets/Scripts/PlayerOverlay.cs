@@ -18,6 +18,7 @@ public class PlayerOverlay : MonoBehaviour
     public Texture smgTexture;
     public Texture shotgunTexture;
     public Texture huntingTexture;
+    public Texture assaultRifleTexture;
 
     [Header("Grenades")]
     public Text nadeCount;
@@ -32,7 +33,7 @@ public class PlayerOverlay : MonoBehaviour
     public GameObject weaponsPanel;
 
     private void Start() {
-        gameManager = GameManager.Instance;
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>(); 
     }
 
    private void Update() {
@@ -69,9 +70,11 @@ public class PlayerOverlay : MonoBehaviour
             break;
            case 3:
             weaponImage.texture = huntingTexture;
-            weaponAmmo.text = gameManager.GetHuntingAmmo() + "/" + gameManager.GetHuntingReserve().ToString();
+            weaponAmmo.text = gameManager.GetHuntingAmmo().ToString() + "/" + gameManager.GetHuntingReserve().ToString();
             break;
            default:
+            weaponImage.texture = assaultRifleTexture;
+            weaponAmmo.text = gameManager.GetAssaultRifleAmmo().ToString() + "/" + gameManager.GetAssaultRifleReserve().ToString();
             break;
        }
    } 

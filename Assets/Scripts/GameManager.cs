@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-   public static GameManager Instance;
-
    [HideInInspector]
    public bool ellieSelected = true;
 
@@ -14,17 +12,9 @@ public class GameManager : MonoBehaviour
     private SMGbehavior submachinegun;
     private ShotgunBehaviour shotgun;
     private PistolBehavior pistol;
+    private assaultBehaviour assaultRifle;
     private grenades grenades;
     private weaponManager weaponManager;
-
-   private void Awake() {
-      if (Instance == null) {
-          Instance = this;
-          DontDestroyOnLoad(this.gameObject);
-      } else {
-          Destroy(this);
-      }
-   }
 
    private void Start() {
        player = GameObject.FindWithTag("Player").GetComponent<PlayerAddedBehavior>();
@@ -33,6 +23,7 @@ public class GameManager : MonoBehaviour
        submachinegun = GameObject.FindWithTag("playerSGM").GetComponent<SMGbehavior>();
        shotgun = GameObject.FindWithTag("Shotty").GetComponent<ShotgunBehaviour>();
        pistol = GameObject.FindWithTag("playerGun").GetComponent<PistolBehavior>();
+       assaultRifle = GameObject.FindWithTag("assaultRifle").GetComponent<assaultBehaviour>();
        weaponManager = GameObject.FindWithTag("WeaponManager").GetComponent<weaponManager>();
    }
 
@@ -82,6 +73,14 @@ public class GameManager : MonoBehaviour
 
    public int GetPistolAmmo() {
        return pistol.getClipCap();
+   }
+
+   public int GetAssaultRifleAmmo() {
+       return assaultRifle.getClipCap();
+   }
+
+   public int GetAssaultRifleReserve() {
+       return assaultRifle.getTotalBullets();
    }
 
     public int GetEquippedWeapon() {
