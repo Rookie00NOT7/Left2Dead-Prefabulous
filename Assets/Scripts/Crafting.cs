@@ -200,26 +200,26 @@ public void EnablePanel(){
         Time.timeScale=1;
     }
 
-    void OnTriggerEnter(Collider other){
-        if(other.gameObject.tag=="Alcohol" || other.gameObject.tag=="Rag" || other.gameObject.tag=="Sugar" 
-        || other.gameObject.tag=="GunPowder" || other.gameObject.tag=="Canister" ){
-        if(other.gameObject.tag=="Alcohol"){
-            setAlcohol(getAlcohol()+1);
-            }
-        if(other.gameObject.tag=="Rag")
-            setRags(getRags()+1);
-        if(other.gameObject.tag=="Sugar")
-            setSugar(getSugar()+1);
-        if(other.gameObject.tag=="GunPowder")
-            setGunPowder(getGunPowder()+1);
-        if(other.gameObject.tag=="Canister")
-            setCanister(getCanister()+1);
+    //void OnTriggerEnter(Collider other){
+        //if(other.gameObject.tag=="Alcohol" || other.gameObject.tag=="Rag" || other.gameObject.tag=="Sugar" 
+        //|| other.gameObject.tag=="GunPowder" || other.gameObject.tag=="Canister" ){
+        //if(other.gameObject.tag=="Alcohol"){
+            //setAlcohol(getAlcohol()+1);
+            //}
+        //if(other.gameObject.tag=="Rag")
+            //setRags(getRags()+1);
+        //if(other.gameObject.tag=="Sugar")
+            //setSugar(getSugar()+1);
+        //if(other.gameObject.tag=="GunPowder")
+            //setGunPowder(getGunPowder()+1);
+        //if(other.gameObject.tag=="Canister")
+            //setCanister(getCanister()+1);
 
-        Destroy(other.gameObject);
+        //Destroy(other.gameObject);
     
-    }
-    
-    }
+    //}  
+    //}
+
     private void checkmolotov(){
         if(getAlcohol()>=2 && getRags()>=2 && this.GetComponent<grenades>().getMolInv()<3)
         Molotov_Button.interactable = true;
