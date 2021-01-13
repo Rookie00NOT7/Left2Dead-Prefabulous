@@ -21,6 +21,10 @@ public class assaultBehaviour : MonoBehaviour
         return clipCap;
     }
 
+    public int getTotalBullets() {
+        return ammo;
+    }
+
     void Start()
     {
         anim = GetComponent<Animator>();
