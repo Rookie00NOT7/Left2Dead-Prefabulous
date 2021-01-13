@@ -33,6 +33,15 @@ public class PlayerAddedBehavior : MonoBehaviour
     public AudioClip dieClip;
     private float healthTime = 0f;
 
+    public void setRage()
+    {
+        rageOn = !rageOn;
+        if (rageOnTime <= 0f)
+        {
+            rageOnTime = 7.0f;
+        }
+    }
+
     public int getRageMeter()
     {
         return rageMeter;

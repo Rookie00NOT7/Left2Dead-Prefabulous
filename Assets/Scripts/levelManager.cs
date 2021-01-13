@@ -16,6 +16,11 @@ public class levelManager : MonoBehaviour
 
     public static levelManager Instance;
 
+    public int getLevel()
+    {
+        return level;
+    }
+
     private void Awake()
     {
         if (Instance == null)
@@ -66,16 +71,19 @@ public class levelManager : MonoBehaviour
             {
                 case 1:
                     player.transform.position = GameObject.FindGameObjectWithTag("teleport1").transform.position;
+                    player.GetComponent<CharacterController>().enabled = true;
                     ally.transform.position = GameObject.FindGameObjectWithTag("teleportAlly1").transform.position;
                     ally.GetComponent<NavMeshAgent>().enabled = true;
                     break;
                 case 2:
                     player.transform.position = GameObject.FindGameObjectWithTag("teleport2").transform.position;
+                    player.GetComponent<CharacterController>().enabled = true;
                     ally.transform.position = GameObject.FindGameObjectWithTag("teleportAlly3").transform.position;
                     ally.GetComponent<NavMeshAgent>().enabled = true;
                     break;
                 case 3:
                     player.transform.position = GameObject.FindGameObjectWithTag("teleport3").transform.position;
+                    player.GetComponent<CharacterController>().enabled = true;
                     ally.transform.position = GameObject.FindGameObjectWithTag("teleportAlly3").transform.position;
                     ally.GetComponent<NavMeshAgent>().enabled = true;
                     break;
