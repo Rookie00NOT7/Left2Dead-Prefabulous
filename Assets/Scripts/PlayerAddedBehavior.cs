@@ -79,10 +79,7 @@ public class PlayerAddedBehavior : MonoBehaviour
         {
             hitPanel.SetTrigger("die");
             audio.PlayOneShot(dieClip);
-            //Time.timeScale = 0;
-            //add UI for game over screen and so on ...
-            //replace with UI that does the following ...
-            //GameObject.FindGameObjectWithTag("LevelManager").GetComponent<levelManager>().instantiateGame();
+            GameObject.FindGameObjectWithTag("PauseGameOver").GetComponent<ScreensButtons>().Game_Over();
         }
         else
         {
@@ -114,7 +111,7 @@ public class PlayerAddedBehavior : MonoBehaviour
     void Start()
     {
         hitPanel = GameObject.FindGameObjectWithTag("hitPanel").GetComponent<Animator>();
-        if (GameObject.FindGameObjectWithTag("Ellie") != null)
+        if (GameObject.FindGameObjectWithTag("Ellie") != null) //ally manager get is ELLIE
         {
             rageMult = 2;
         }

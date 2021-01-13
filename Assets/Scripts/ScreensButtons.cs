@@ -34,21 +34,22 @@ public class ScreensButtons : MonoBehaviour
     void Update()
     {
         //mute all other sounds
+        //pause and unpause using keyboard keys
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
             pause = !pause;
             Pause();
             
         }
-        
-        //game Over
-        if(player.GetComponent<PlayerAddedBehavior>().getHealth() ==0)
-        {
-            Time.timeScale = 0f;
-            GameOver.gameObject.SetActive(true);
-            activateDeactiveWeapon(false);
-            
-        }
+       
+    }
+
+    public void Game_Over()
+    {
+        player.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().getMouseLook().setCursor();
+        Time.timeScale = 0f;
+        GameOver.gameObject.SetActive(true);
+        activateDeactiveWeapon(false);
     }
 
     public void Pause()
@@ -66,12 +67,6 @@ public class ScreensButtons : MonoBehaviour
             activateDeactiveWeapon(true);
         }
     }
-    public void Resume()
-    {
-        Time.timeScale = 1f;
-        PauseMenu.gameObject.SetActive(false);
-        activateDeactiveWeapon(true);
-    }
 
     public void RestartLevel()
     {
@@ -82,11 +77,21 @@ public class ScreensButtons : MonoBehaviour
         
     }
 
+    public void Resume()
+    {
+        player.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().getMouseLook().setCursor();
+        Time.timeScale = 1f;
+        PauseMenu.gameObject.SetActive(false);
+        activateDeactiveWeapon(true);
+        pause = !pause;
+    }
+
     public void QuitToMainMenu()
     {
         Time.timeScale = 0f;
         PauseMenu.gameObject.SetActive(false);
         activateDeactiveWeapon(false);
+        Destroy(levelManager);
         //MainMenu.gameObject.SetActive(True);
     }
 

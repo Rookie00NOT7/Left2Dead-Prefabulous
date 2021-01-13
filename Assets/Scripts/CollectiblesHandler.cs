@@ -3,58 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CollectiblesHandler : MonoBehaviour
-{
-    private GameObject ammo;
-    private GameObject sugar;
-    private GameObject healthPack;
-    private GameObject alcohol;
-    private GameObject canister;
-    private GameObject gunPowder;
-    private GameObject rag;
-    private GameObject assault;
-    private GameObject huntingRifle;
-    private GameObject SMG;
-    private GameObject shotgun;
-    private GameObject molotov;
-    private GameObject pipeBomb;
-    private GameObject stunGrenade;
-    private weaponManager weaponMan;
-
+{ 
     private AudioSource audio;
-    public AudioClip gunsSound;
-    public AudioClip grenadesSound;
-    public AudioClip ragSound;
-    public AudioClip gunPowderSound;
-    public AudioClip ammoSound;
-    public AudioClip sugarSound;
-    public AudioClip canisterSound;
-    public AudioClip healthPackSound;
-    public AudioClip alcoholSound;
+
+    private weaponManager weaponMan;
 
     private GameObject assaultPlayer;
     private GameObject huntingRiflePlayer;
     private GameObject SMGPlayer;
     private GameObject shotgunPlayer;
+    private GameObject player;
 
     private float maxAngularSpeed = 1.5f;
+    private bool isTrigger = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        ammo = GameObject.FindGameObjectWithTag("Ammo");
-        alcohol = GameObject.FindGameObjectWithTag("Alcohol");
-        rag = GameObject.FindGameObjectWithTag("Rag");
-        sugar = GameObject.FindGameObjectWithTag("Sugar");
-        canister = GameObject.FindGameObjectWithTag("Canister");
-        gunPowder = GameObject.FindGameObjectWithTag("GunPowder");
-        healthPack = GameObject.FindGameObjectWithTag("HealthPack");
-        assault = GameObject.FindGameObjectWithTag("Assault");
-        huntingRifle = GameObject.FindGameObjectWithTag("HuntingRifle");
-        shotgun = GameObject.FindGameObjectWithTag("Shotgun");
-        SMG = GameObject.FindGameObjectWithTag("SMG");
-        pipeBomb = GameObject.FindGameObjectWithTag("PipeBomb");
-        molotov = GameObject.FindGameObjectWithTag("Molotov");
-        stunGrenade = GameObject.FindGameObjectWithTag("Stun");
+       
+        GetComponent<Rigidbody>().angularVelocity = new Vector3(0, maxAngularSpeed, 0);
+     
+
+        player = GameObject.FindGameObjectWithTag("Player");
         weaponMan = GameObject.FindGameObjectWithTag("WeaponManager").GetComponent<weaponManager>();
         SMGPlayer = GameObject.FindGameObjectWithTag("playerSGM");
         shotgunPlayer = GameObject.FindGameObjectWithTag("Shotty");
@@ -63,37 +33,32 @@ public class CollectiblesHandler : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    isTrigger = true;
+    //}
+
+    //public void OnTriggerExit(Collider other)
+    //{
+    //    isTrigger = false;
+    //}
+
+   
     // Update is called once per frame
     void Update()
     {
-        if (rag != null)
+        if(Vector3.Distance(transform.position, player.transform.position) < 6f && Input.GetKeyDown(KeyCode.E))
         {
-            rag.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, maxAngularSpeed, 0);
-            if (Vector3.Distance(rag.transform.position, transform.position) < 6f && Input.GetKeyDown(KeyCode.E))
+            if (this.gameObject.tag == "Alcohol")
             {
-                int rags = GetComponent<Crafting>().getRags();
-                GetComponent<Crafting>().setRags(rags + 1);
-                rag.GetComponent<Animator>().SetTrigger("collect");
-                audio.PlayOneShot(ragSound);
-                Destroy(rag.gameObject, 2f);
+                int alcoholNum = player.GetComponent<Crafting>().getAlcohol();
+                player.GetComponent<Crafting>().setAlcohol(alcoholNum + 1);
+                this.GetComponent<Animator>().SetTrigger("collect");
+                audio.Play();
+                Destroy(this.gameObject, 2f);
             }
-        }
-        if (alcohol != null)
-        {
-            alcohol.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, maxAngularSpeed, 0);
-            if (Vector3.Distance(alcohol.transform.position, transform.position) < 6f && Input.GetKeyDown(KeyCode.E))
-            {
-                int alcoholNum = GetComponent<Crafting>().getAlcohol();
-                GetComponent<Crafting>().setAlcohol(alcoholNum + 1);
-                alcohol.GetComponent<Animator>().SetTrigger("collect");
-                audio.PlayOneShot(alcoholSound);
-                Destroy(alcohol.gameObject, 2f);
-            }
-        }
-        if (ammo != null)
-        {
-            ammo.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, maxAngularSpeed, 0);
-            if (Vector3.Distance(ammo.transform.position, transform.position) < 6f && Input.GetKeyDown(KeyCode.E))
+
+            if (this.gameObject.tag == "Ammo")
             {
                 int currentWeapon = weaponMan.GetEquippedWeapon();
 
@@ -115,137 +80,112 @@ public class CollectiblesHandler : MonoBehaviour
                 {
                     assaultPlayer.GetComponent<assaultBehaviour>().takeAmmo(10);
                 }
-                ammo.GetComponent<Animator>().SetTrigger("collect");
-                audio.PlayOneShot(ammoSound);
-                Destroy(ammo.gameObject, 2f);
+                this.GetComponent<Animator>().SetTrigger("collect");
+                audio.Play();
+                Destroy(this.gameObject, 2f);
             }
-        }
-        if (healthPack != null)
-        {
-            healthPack.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, maxAngularSpeed, 0);
-            if (Vector3.Distance(healthPack.transform.position, transform.position) < 10f && Input.GetKeyDown(KeyCode.E))
-            {
-                int healthPacks = GetComponent<Crafting>().getHealthPack();
-                GetComponent<Crafting>().setHealthPack(healthPacks + 1);
-                healthPack.GetComponent<Animator>().SetTrigger("collect");
-                audio.PlayOneShot(healthPackSound);
-                Destroy(healthPack.gameObject, 2f);
-            }
-        }
-        if (sugar != null)
-        {
-            sugar.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, maxAngularSpeed, 0);
-            if (Vector3.Distance(sugar.transform.position, transform.position) < 6f && Input.GetKeyDown(KeyCode.E))
-            {
-                int sugarNum = GetComponent<Crafting>().getSugar();
-                GetComponent<Crafting>().setSugar(sugarNum + 1);
-                sugar.GetComponent<Animator>().SetTrigger("collect");
-                audio.PlayOneShot(sugarSound);
-                Destroy(sugar.gameObject, 2f);
-            }
-        }
 
-        if (canister != null)
-        {
-            canister.GetComponent<Rigidbody>().angularVelocity = new Vector3(maxAngularSpeed, 0, 0);
-            if (Vector3.Distance(canister.transform.position, transform.position) < 6f && Input.GetKeyDown(KeyCode.E))
+            if (this.gameObject.tag == "Rag")
             {
-                int canisterNum = GetComponent<Crafting>().getCanister();
-                GetComponent<Crafting>().setCanister(canisterNum + 1);
-                canister.GetComponent<Animator>().SetTrigger("collect");
-                audio.PlayOneShot(canisterSound);
-                Destroy(canister.gameObject, 2f);
+                int rags = player.GetComponent<Crafting>().getRags();
+                player.GetComponent<Crafting>().setRags(rags + 1);
+                this.GetComponent<Animator>().SetTrigger("collect");
+                audio.Play();
+                Destroy(this.gameObject, 2f);
             }
-        }
 
-        if (gunPowder != null)
-        {
-            gunPowder.GetComponent<Rigidbody>().angularVelocity = new Vector3(maxAngularSpeed, 0, 0);
-            if (Vector3.Distance(gunPowder.transform.position, transform.position) < 6f && Input.GetKeyDown(KeyCode.E))
+            if (this.gameObject.tag == "Sugar")
             {
-                int gunPowderNum = GetComponent<Crafting>().getGunPowder();
-                GetComponent<Crafting>().setGunPowder(gunPowderNum + 1);
-                gunPowder.GetComponent<Animator>().SetTrigger("collect");
-                audio.PlayOneShot(gunPowderSound);
-                Destroy(gunPowder.gameObject, 2f);
+                int sugarNum = player.GetComponent<Crafting>().getSugar();
+                player.GetComponent<Crafting>().setSugar(sugarNum + 1);
+                this.GetComponent<Animator>().SetTrigger("collect");
+                audio.Play();
+                Destroy(this.gameObject, 2f);
             }
-        }
-        if (assault != null)
-        {
-            assault.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, maxAngularSpeed);
-            if (Vector3.Distance(assault.transform.position, transform.position) < 6f && Input.GetKeyDown(KeyCode.E))
+
+            if (this.gameObject.tag == "Canister")
+            {
+                int canisterNum = player.GetComponent<Crafting>().getCanister();
+                player.GetComponent<Crafting>().setCanister(canisterNum + 1);
+                this.GetComponent<Animator>().SetTrigger("collect");
+                audio.Play();
+                Destroy(this.gameObject, 2f);
+            }
+
+            if (this.gameObject.tag == "GunPowder")
+            {
+                int gunPowderNum = player.GetComponent<Crafting>().getGunPowder();
+                player.GetComponent<Crafting>().setGunPowder(gunPowderNum + 1);
+                this.GetComponent<Animator>().SetTrigger("collect");
+                audio.Play();
+                Destroy(this.gameObject, 2f);
+            }
+
+            if (this.gameObject.tag == "HealthPack")
+            {
+                int healthPacks = player.GetComponent<Crafting>().getHealthPack();
+                player.GetComponent<Crafting>().setHealthPack(healthPacks + 1);
+                this.GetComponent<Animator>().SetTrigger("collect");
+                audio.Play();
+                Destroy(this.gameObject, 2f);
+            }
+
+            if (this.gameObject.tag == "Assault")
             {
                 weaponMan.collect(4);
-                assault.GetComponent<Animator>().SetTrigger("collect");
-                audio.PlayOneShot(gunsSound);
-                Destroy(assault.gameObject, 2f);
+                this.GetComponent<Animator>().SetTrigger("collect");
+                audio.Play();
+                Destroy(this.gameObject, 2f);
             }
-        }
-        if (huntingRifle != null)
-        {
-            huntingRifle.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, maxAngularSpeed);
-            if (Vector3.Distance(huntingRifle.transform.position, transform.position) < 6f && Input.GetKeyDown(KeyCode.E))
+
+            if (this.gameObject.tag == "HuntingRifle")
             {
                 weaponMan.collect(3);
-                huntingRifle.GetComponent<Animator>().SetTrigger("collect");
-                audio.PlayOneShot(gunsSound);
-                Destroy(huntingRifle.gameObject, 2f);
+                this.GetComponent<Animator>().SetTrigger("collect");
+                audio.Play();
+                Destroy(this.gameObject, 2f);
             }
-        }
-        if (shotgun != null)
-        {
-            shotgun.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, maxAngularSpeed);
-            if (Vector3.Distance(shotgun.transform.position, transform.position) < 6f && Input.GetKeyDown(KeyCode.E))
+
+            if (this.gameObject.tag == "Shotgun")
             {
                 weaponMan.collect(2);
-                shotgun.GetComponent<Animator>().SetTrigger("collect");
-                audio.PlayOneShot(gunsSound);
-                Destroy(shotgun.gameObject, 2f);
+                this.GetComponent<Animator>().SetTrigger("collect");
+                audio.Play();
+                Destroy(this.gameObject, 2f);
             }
-        }
-        if (SMG != null)
-        {
-            SMG.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, maxAngularSpeed, 0);
-            if (Vector3.Distance(SMG.transform.position, transform.position) < 6f && Input.GetKeyDown(KeyCode.E))
+
+            if (this.gameObject.tag == "SMG")
             {
                 weaponMan.collect(1);
-                SMG.GetComponent<Animator>().SetTrigger("collect");
-                audio.PlayOneShot(gunsSound);
-                Destroy(SMG.gameObject, 2f);
+                this.GetComponent<Animator>().SetTrigger("collect");
+                audio.Play();
+                Destroy(this.gameObject, 2f);
             }
-        }
-        if (pipeBomb != null)
-        {
-            pipeBomb.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, maxAngularSpeed, 0);
-            if (Vector3.Distance(pipeBomb.transform.position, transform.position) < 6f && Input.GetKeyDown(KeyCode.E))
+
+            if (this.gameObject.tag == "PipeBomb")
             {
-                GetComponent<grenades>().addPipe(1);
-                pipeBomb.GetComponent<Animator>().SetTrigger("collect");
-                audio.PlayOneShot(grenadesSound);
-                Destroy(pipeBomb.gameObject, 2f);
+                player.GetComponent<grenades>().addPipe(1);
+                this.GetComponent<Animator>().SetTrigger("collect");
+                audio.Play();
+                Destroy(this.gameObject, 2f);
             }
-        }
-        if (molotov != null)
-        {
-            molotov.GetComponent<Rigidbody>().angularVelocity = new Vector3(maxAngularSpeed, 0, 0);
-            if (Vector3.Distance(molotov.transform.position, transform.position) < 6f && Input.GetKeyDown(KeyCode.E))
+
+            if (this.gameObject.tag == "Molotov")
             {
-                GetComponent<grenades>().addMol(1);
-                molotov.GetComponent<Animator>().SetTrigger("collect");
-                audio.PlayOneShot(grenadesSound);
-                Destroy(molotov.gameObject, 2f);
+                player.GetComponent<grenades>().addMol(1);
+                this.GetComponent<Animator>().SetTrigger("collect");
+                audio.Play();
+                Destroy(this.gameObject, 2f);
             }
-        }
-        if (stunGrenade != null)
-        {
-            stunGrenade.GetComponent<Rigidbody>().angularVelocity = new Vector3(maxAngularSpeed, 0, 0);
-            if (Vector3.Distance(stunGrenade.transform.position, transform.position) < 6f && Input.GetKeyDown(KeyCode.E))
+
+            if (this.gameObject.tag == "Stun")
             {
-                GetComponent<grenades>().addStun(1);
-                stunGrenade.GetComponent<Animator>().SetTrigger("collect");
-                audio.PlayOneShot(grenadesSound);
-                Destroy(stunGrenade.gameObject, 2f);
+                player.GetComponent<grenades>().addStun(1);
+                this.GetComponent<Animator>().SetTrigger("collect");
+                audio.Play();
+                Destroy(this.gameObject, 2f);
             }
+
         }
 
     }

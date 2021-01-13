@@ -1,5 +1,113 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!82 &6812073318522413503
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7170494279375981163}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c5e34d0d6eed849ce854ae54ea777152, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &528588256012055323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7170494279375981163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362b4fd01cee44bd3b0589345f517667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9057946069457420905
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,6 +165,18 @@ PrefabInstance:
     - target: {fileID: 2177208375960851342, guid: 1f726fecfe6784d07b6a57184b6cf4d6, type: 3}
       propertyPath: m_Name
       value: SMGCollectible
+      objectReference: {fileID: 0}
+    - target: {fileID: 2177208375960851441, guid: 1f726fecfe6784d07b6a57184b6cf4d6, type: 3}
+      propertyPath: m_Constraints
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 2177208375960851442, guid: 1f726fecfe6784d07b6a57184b6cf4d6, type: 3}
+      propertyPath: m_RelativeTorque.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2177208375960851442, guid: 1f726fecfe6784d07b6a57184b6cf4d6, type: 3}
+      propertyPath: m_RelativeTorque.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2177208375960851443, guid: 1f726fecfe6784d07b6a57184b6cf4d6, type: 3}
       propertyPath: m_RootOrder
@@ -152,6 +272,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6b44f188a39fb4d9bbb208325ceb36d2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f726fecfe6784d07b6a57184b6cf4d6, type: 3}
+--- !u!1 &7170494279375981163 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2177208375960851342, guid: 1f726fecfe6784d07b6a57184b6cf4d6, type: 3}
+  m_PrefabInstance: {fileID: 9057946071074593253}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7170494279375981078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2177208375960851443, guid: 1f726fecfe6784d07b6a57184b6cf4d6, type: 3}

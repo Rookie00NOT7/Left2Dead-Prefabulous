@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4013003537944436399}
   - component: {fileID: 4013003537944436394}
   m_Layer: 0
-  m_Name: AlcoholCollectible
+  m_Name: source
   m_TagString: Alcohol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,7 @@ Animator:
   m_GameObject: {fileID: 4013003537944436401}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0efa4f26e772d4d3b90dce11f14de1e8, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

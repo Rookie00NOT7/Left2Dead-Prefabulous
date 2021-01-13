@@ -47,6 +47,8 @@ TagManager:
   - LevelManager
   - dead
   - Floor
+  - PauseGameOver
+  - AllyInitialPos
   layers:
   - Default
   - TransparentFX
