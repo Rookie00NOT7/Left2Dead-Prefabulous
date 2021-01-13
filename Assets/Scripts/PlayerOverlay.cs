@@ -31,9 +31,16 @@ public class PlayerOverlay : MonoBehaviour
     public GameObject healthAndRagePanel;
     public GameObject nadesPanel;
     public GameObject weaponsPanel;
+    public GameObject objectivePanel;
+    public GameObject allyPanel;
+
+    private Text objectiveText;
+    private Text allyAmmoCount;
 
     private void Start() {
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>(); 
+        objectiveText = objectivePanel.transform.GetChild(0).GetComponent<Text>();
+        allyAmmoCount = allyPanel.transform.GetChild(0).GetComponent<Text>(); 
     }
 
    private void Update() {
@@ -76,6 +83,16 @@ public class PlayerOverlay : MonoBehaviour
             weaponImage.texture = assaultRifleTexture;
             weaponAmmo.text = gameManager.GetAssaultRifleAmmo().ToString() + "/" + gameManager.GetAssaultRifleReserve().ToString();
             break;
+       }
+
+       objectiveText.text = "Current Objective: " + levelManager.ObjectiveText();
+
+
+
+       if (AllyManager.Instance.checkCompanion()) {
+           allyAmmoCount.text = "Ally Ammo: " + EllieBehavior.RoundCount();
+       } else {
+           allyAmmoCount.text = "Ally Ammo: " + louisBehaviour.RoundCount();
        }
    } 
 }

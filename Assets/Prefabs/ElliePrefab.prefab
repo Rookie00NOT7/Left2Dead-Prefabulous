@@ -75,7 +75,10 @@ GameObject:
   - component: {fileID: 6514060950794993306}
   - component: {fileID: 5659680630269903263}
   - component: {fileID: 5659680630269903261}
+  - component: {fileID: 6466763114088988411}
   - component: {fileID: 5659680630269903260}
+  - component: {fileID: 4951933123032265975}
+  - component: {fileID: 3163836085123953316}
   m_Layer: 0
   m_Name: ElliePrefab
   m_TagString: Ellie
@@ -227,6 +230,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunShotClip: {fileID: 8300000, guid: 354cfce86b2751d4a98fc6722b1dc5ee, type: 3}
+  voiceOver: {fileID: 8300000, guid: de64d3c219725cc45945017870836c33, type: 3}
+--- !u!114 &6466763114088988411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562223811465674330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e57d66af2af8f84e8ad4855b0a849c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voiceOver: {fileID: 8300000, guid: de64d3c219725cc45945017870836c33, type: 3}
 --- !u!195 &5659680630269903260
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -249,6 +266,36 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &4951933123032265975
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562223811465674330}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.7620814
+  m_Height: 2.2891057
+  m_Direction: 1
+  m_Center: {x: -7.6533916e-16, y: 1.2406917, z: 0.24880199}
+--- !u!54 &3163836085123953316
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562223811465674330}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &653901802805723469
 GameObject:
   m_ObjectHideFlags: 0

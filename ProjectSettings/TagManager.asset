@@ -53,6 +53,8 @@ TagManager:
   - SoundtrackManager
   - AudioMixerController
   - AllyManager
+  - Level1Enter
+  - FinishGame
   layers:
   - Default
   - TransparentFX

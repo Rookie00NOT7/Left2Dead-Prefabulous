@@ -110,7 +110,6 @@ GameObject:
   - component: {fileID: 304500436585036774}
   - component: {fileID: 304500437526366346}
   - component: {fileID: 2829034810199726125}
-  - component: {fileID: 2642962769354181611}
   - component: {fileID: 2412372929141910357}
   m_Layer: 0
   m_Name: Player
@@ -434,6 +433,8 @@ MonoBehaviour:
   dashDistance: 10
   dashStoppingSpeed: 0.1
   hitClip: {fileID: 8300000, guid: 341d732ec304e394ebf50fc963f1f27e, type: 3}
+  enemiesAudio: {fileID: 8300000, guid: 6daa14c343581404294f2a887f4a70f5, type: 3}
+  fireAudio: {fileID: 8300000, guid: 4830fd19705f19048a54560f1887cb05, type: 3}
   rageModeClip: {fileID: 8300000, guid: d856545aede545b4b9f99d39c2799535, type: 3}
   dieClip: {fileID: 8300000, guid: 81f4f4217bd9de44c83943b88a20a629, type: 3}
 --- !u!114 &304500437526366346
@@ -486,7 +487,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies: []
-  i: 0
   levelDest1: {fileID: 0}
   levelDest2: {fileID: 0}
   levelDest3: {fileID: 0}
@@ -495,3 +495,5 @@ MonoBehaviour:
   levelDam2: {fileID: 0}
   levelDam3: {fileID: 0}
   levelDam4: {fileID: 0}
+  HealthPack: {fileID: 4546588410530640536, guid: 4a725a5e1b23946f58a2bdabec1be74c, type: 3}
+  AmmoPack: {fileID: 5628298096864458840, guid: 6904c854a23a54e0288f3c53e653ae32, type: 3}
