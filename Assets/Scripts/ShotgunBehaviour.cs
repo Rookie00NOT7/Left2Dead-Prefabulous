@@ -104,13 +104,16 @@ public class ShotgunBehaviour : MonoBehaviour
           }
 
       } else if (Input.GetKeyDown(KeyCode.R) && currentShellCount < standardShellCount && currentReserveAmmo > 0) {
-          if (currentReserveAmmo > standardShellCount) {
-              currentReserveAmmo -= standardShellCount;
-              currentShellCount = standardShellCount;
+          int ammoNeeded = standardShellCount - currentShellCount;
+
+          if (ammoNeeded > currentReserveAmmo) {
+            currentShellCount += currentReserveAmmo;
+            currentReserveAmmo = 0;
           } else {
-              currentShellCount = currentReserveAmmo;
-              currentReserveAmmo = 0;
+            currentShellCount = standardShellCount;
+            currentReserveAmmo -= (ammoNeeded);
           }
+
           StartCoroutine(ReloadEffect());
       }
   }

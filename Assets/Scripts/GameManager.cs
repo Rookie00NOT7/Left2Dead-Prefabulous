@@ -4,101 +4,86 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
-
-    [HideInInspector]
-    public bool ellieSelected = true;
+   [HideInInspector]
+   public bool ellieSelected = true;
 
     private PlayerAddedBehavior player;
     private huntingRifleBehavior huntingRifle;
     private SMGbehavior submachinegun;
     private ShotgunBehaviour shotgun;
     private PistolBehavior pistol;
+    private assaultBehaviour assaultRifle;
     private grenades grenades;
     private weaponManager weaponManager;
 
-    //   private void Awake() {
-    //      if (Instance == null) {
-    //          Instance = this;
-    //          DontDestroyOnLoad(this.gameObject);
-    //      } else {
-    //          Destroy(this);
-    //      }
-    //   }
+   private void Start() {
+       player = GameObject.FindWithTag("Player").GetComponent<PlayerAddedBehavior>();
+       grenades = GameObject.FindWithTag("Player").GetComponent<grenades>();
+       huntingRifle = GameObject.FindWithTag("playerHuntingRifle").GetComponent<huntingRifleBehavior>();
+       submachinegun = GameObject.FindWithTag("playerSGM").GetComponent<SMGbehavior>();
+       shotgun = GameObject.FindWithTag("Shotty").GetComponent<ShotgunBehaviour>();
+       pistol = GameObject.FindWithTag("playerGun").GetComponent<PistolBehavior>();
+       assaultRifle = GameObject.FindWithTag("assaultRifle").GetComponent<assaultBehaviour>();
+       weaponManager = GameObject.FindWithTag("WeaponManager").GetComponent<weaponManager>();
+   }
 
-    private void Start()
-    {
-        player = GameObject.FindWithTag("Player").GetComponent<PlayerAddedBehavior>();
-        grenades = GameObject.FindWithTag("Player").GetComponent<grenades>();
-        huntingRifle = GameObject.FindWithTag("playerHuntingRifle").GetComponent<huntingRifleBehavior>();
-        submachinegun = GameObject.FindWithTag("playerSGM").GetComponent<SMGbehavior>();
-        shotgun = GameObject.FindWithTag("Shotty").GetComponent<ShotgunBehaviour>();
-        pistol = GameObject.FindWithTag("playerGun").GetComponent<PistolBehavior>();
-        weaponManager = GameObject.FindWithTag("WeaponManager").GetComponent<weaponManager>();
-    }
+   public int GetHealth() {
+       return player.getHealth();
+   }
 
-    public int GetHealth()
-    {
-        return player.getHealth();
-    }
+   public int GetRageMeter() {
+       return player.getRageMeter();
+   }
 
-    public int GetRageMeter()
-    {
-        return player.getRageMeter();
-    }
+   public int GetPipeCount() {
+       return grenades.getPipeInv();
+   }
 
-    public int GetPipeCount()
-    {
-        return grenades.getPipeInv();
-    }
+   public int GetMolotovCount() {
+       return grenades.getMolInv();
+   }
 
-    public int GetMolotovCount()
-    {
-        return grenades.getMolInv();
-    }
+   public int GetStunCount() {
+       return grenades.getStunInv();
+   }
 
-    public int GetStunCount()
-    {
-        return grenades.getStunInv();
-    }
+   public int GetHuntingAmmo() {
+       return huntingRifle.getClipCap();
+   }
 
-    public int GetHuntingAmmo()
-    {
-        return huntingRifle.getClipCap();
-    }
+   public int GetHuntingReserve() {
+       return huntingRifle.getTotalBullets();
+   }
 
-    public int GetHuntingReserve()
-    {
-        return huntingRifle.getTotalBullets();
-    }
+   public int GetSMGAmmo() {
+       return submachinegun.getClipCap();
+   }
 
-    public int GetSMGAmmo()
-    {
-        return submachinegun.getClipCap();
-    }
+   public int GetSMGReserve() {
+       return submachinegun.getAmmo();
+   }
 
-    public int GetSMGReserve()
-    {
-        return submachinegun.getAmmo();
-    }
+   public int GetShotgunAmmo() {
+       return shotgun.GetCurrentShellCount();
+   }
 
-    public int GetShotgunAmmo()
-    {
-        return shotgun.GetCurrentShellCount();
-    }
+   public int GetShotgunReserve() {
+       return shotgun.GetCurrentReserveAmmo();
+   }
 
-    public int GetShotgunReserve()
-    {
-        return shotgun.GetCurrentReserveAmmo();
-    }
+   public int GetPistolAmmo() {
+       return pistol.getClipCap();
+   }
 
-    public int GetPistolAmmo()
-    {
-        return pistol.getClipCap();
-    }
+   public int GetAssaultRifleAmmo() {
+       return assaultRifle.getClipCap();
+   }
 
-    public int GetEquippedWeapon()
-    {
+   public int GetAssaultRifleReserve() {
+       return assaultRifle.getTotalBullets();
+   }
+
+    public int GetEquippedWeapon() {
         return weaponManager.GetEquippedWeapon();
     }
 
