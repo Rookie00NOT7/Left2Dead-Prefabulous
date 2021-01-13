@@ -26,6 +26,7 @@ public class countdown : MonoBehaviour
             float minutes = Mathf.FloorToInt(timeRemaining / 60);
             float seconds = Mathf.FloorToInt(timeRemaining % 60);
             Debug.Log(minutes + ":" + seconds);
+            // reaching min = 0 and sec = 0 ----> game over
         }
     }
 }
