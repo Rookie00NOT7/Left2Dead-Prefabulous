@@ -16,6 +16,12 @@ public class EllieBehavior : MonoBehaviour
     public AudioClip gunShotClip;
     private int rounds = 15;
 
+    public void addAmmo()
+    {
+        rounds += 15;
+        rounds = Mathf.Clamp(rounds, 0, 45);
+    }
+
     void killCount()
     {
         bool ammo = player.GetComponent<PlayerAddedBehavior>().killCount();

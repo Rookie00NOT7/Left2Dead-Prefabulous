@@ -13,6 +13,14 @@ public class weaponManager : MonoBehaviour
     private GameObject assaultRifle;
     private WaitForSeconds hideWeapons = new WaitForSeconds(0.025f);
 
+    public void fillAll()
+    {
+        SGM.GetComponent<SMGbehavior>().takeAmmo(1000);
+        shotgun.GetComponent<ShotgunBehaviour>().takeAmmo(1000);
+        huntingRifle.GetComponent<huntingRifleBehavior>().takeAmmo(1000);
+        assaultRifle.GetComponent<assaultBehaviour>().takeAmmo(1000);
+    }
+
     public void collect(int weapon)
     {
         weapons[weapon] = true;
