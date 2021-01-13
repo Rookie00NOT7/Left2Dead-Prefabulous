@@ -22,6 +22,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_cursorIsLocked = true;
         private float timeSinceLast = 0f;
 
+        public void setCursor()
+        {
+            m_cursorIsLocked = !m_cursorIsLocked;
+        }
+
         public void Init(Transform character, Transform camera)
         {
             m_CharacterTargetRot = character.localRotation;

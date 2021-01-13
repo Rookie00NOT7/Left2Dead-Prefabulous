@@ -473,27 +473,6 @@ MonoBehaviour:
   Stun_Grenade_Button: {fileID: 0}
   Health_Pack_Button: {fileID: 0}
   Pipe_Bomb_Button: {fileID: 0}
---- !u!114 &2642962769354181611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 304500437526366339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 362b4fd01cee44bd3b0589345f517667, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunsSound: {fileID: 8300000, guid: c5e34d0d6eed849ce854ae54ea777152, type: 3}
-  grenadesSound: {fileID: 8300000, guid: 7a7e55a44786f41709722c36e90cf772, type: 3}
-  ragSound: {fileID: 8300000, guid: 0715b3f22c7b4cd43b4c47d081294078, type: 3}
-  gunPowderSound: {fileID: 8300000, guid: 670401c3812d545498af72926f78f3ac, type: 3}
-  ammoSound: {fileID: 8300000, guid: f622dfe6009e0d546876b11f0f5b45fd, type: 3}
-  sugarSound: {fileID: 8300000, guid: 76eafbc67d9ba0644863cfc98f6f22ab, type: 3}
-  canisterSound: {fileID: 8300000, guid: 783922b354f9d45448bf57db7c2ca163, type: 3}
-  healthPackSound: {fileID: 8300000, guid: 5628eb64ab6728342ac187b4805abb2b, type: 3}
-  alcoholSound: {fileID: 8300000, guid: b6444181351394a4e8ab9107ddcd215d, type: 3}
 --- !u!114 &2412372929141910357
 MonoBehaviour:
   m_ObjectHideFlags: 0

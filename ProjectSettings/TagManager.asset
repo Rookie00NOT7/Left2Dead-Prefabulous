@@ -47,7 +47,12 @@ TagManager:
   - LevelManager
   - dead
   - Floor
+  - PauseGameOver
+  - AllyInitialPos
   - timer
+  - SoundtrackManager
+  - AudioMixerController
+  - AllyManager
   layers:
   - Default
   - TransparentFX
