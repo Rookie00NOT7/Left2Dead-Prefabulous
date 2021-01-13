@@ -8,11 +8,16 @@ public class levelManager : MonoBehaviour
 {
     private GameObject player;
     private GameObject ally;
+    private GameObject Ellie;
+    private GameObject Louis;
     private int level = 0;
     private bool[] weapons;
     private WaitForSeconds tele = new WaitForSeconds(0.05f);
     private weaponManager weaponManager;
     private bool[] w;
+    private bool is_ellie;
+    private Vector3 allyPosition;
+
 
     public static levelManager Instance;
 
@@ -37,6 +42,7 @@ public class levelManager : MonoBehaviour
     public void nextLevel(int nextLevel)
     {
         level = nextLevel;
+        level = Mathf.Clamp(level, 0, 3);
     }
 
     public void setWeapons(bool[] w)
@@ -56,17 +62,37 @@ public class levelManager : MonoBehaviour
     {
         yield return tele;
         weaponManager = GameObject.FindWithTag("WeaponManager").GetComponent<weaponManager>();
+        is_ellie = GameObject.FindWithTag("AllyManager").GetComponent<AllyManager>().GetIsEllie();
+        allyPosition = GameObject.FindWithTag("AllyInitialPos").transform.position;
+        Ellie = GameObject.FindWithTag("AllyManager").GetComponent<AllyManager>().Ellie;
+        Louis = GameObject.FindWithTag("AllyManager").GetComponent<AllyManager>().Louis;
+
+        if (is_ellie)
+        {
+            Instantiate(Ellie, allyPosition, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(Louis, allyPosition, Quaternion.identity);
+        }
         weaponManager.setWeapons(w);
+
         if (level != 0)
         {
             player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<CharacterController>().enabled = false;
-            ally = GameObject.FindGameObjectWithTag("Ellie");
-            ally.GetComponent<NavMeshAgent>().enabled = false;
-            if (ally == null)
+           
+            if (is_ellie)
+            {
+                ally = GameObject.FindGameObjectWithTag("Ellie");
+            }
+            else
             {
                 ally = GameObject.FindGameObjectWithTag("Louis");
             }
+
+            ally.GetComponent<NavMeshAgent>().enabled = false;
+
             switch (level)
             {
                 case 1:
@@ -78,7 +104,7 @@ public class levelManager : MonoBehaviour
                 case 2:
                     player.transform.position = GameObject.FindGameObjectWithTag("teleport2").transform.position;
                     player.GetComponent<CharacterController>().enabled = true;
-                    ally.transform.position = GameObject.FindGameObjectWithTag("teleportAlly3").transform.position;
+                    ally.transform.position = GameObject.FindGameObjectWithTag("teleportAlly2").transform.position;
                     ally.GetComponent<NavMeshAgent>().enabled = true;
                     break;
                 case 3:
