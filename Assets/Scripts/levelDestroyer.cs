@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class levelDestroyer : MonoBehaviour
 {
-    public GameObject levelDest;
+    public GameObject[] levelDest;
     public GameObject closed1;
     public GameObject closed2;
     public GameObject opened1;
@@ -19,7 +19,10 @@ public class levelDestroyer : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            levelDest.SetActive(true);
+            for(int i = 0; i < levelDest.Length; i++)
+            {
+                levelDest[i].SetActive(true);
+            }
             closed1.SetActive(true);
             closed2.SetActive(true);
             opened1.SetActive(false);

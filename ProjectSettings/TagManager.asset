@@ -49,6 +49,7 @@ TagManager:
   - Floor
   - PauseGameOver
   - AllyInitialPos
+  - timer
   layers:
   - Default
   - TransparentFX

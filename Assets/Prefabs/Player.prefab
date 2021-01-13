@@ -110,6 +110,8 @@ GameObject:
   - component: {fileID: 304500436585036774}
   - component: {fileID: 304500437526366346}
   - component: {fileID: 2829034810199726125}
+  - component: {fileID: 2642962769354181611}
+  - component: {fileID: 2412372929141910357}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -471,3 +473,25 @@ MonoBehaviour:
   Stun_Grenade_Button: {fileID: 0}
   Health_Pack_Button: {fileID: 0}
   Pipe_Bomb_Button: {fileID: 0}
+--- !u!114 &2412372929141910357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304500437526366339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f5b51da1619674a85f96d5fb2ca5cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies: []
+  i: 0
+  levelDest1: {fileID: 0}
+  levelDest2: {fileID: 0}
+  levelDest3: {fileID: 0}
+  levelDest4: {fileID: 0}
+  levelDam1: {fileID: 0}
+  levelDam2: {fileID: 0}
+  levelDam3: {fileID: 0}
+  levelDam4: {fileID: 0}

@@ -15,6 +15,12 @@ public class louisBehaviour : MonoBehaviour
     public AudioClip gunShotClip;
     private int rounds = 50;
 
+    public void addAmmo()
+    {
+        rounds += 50;
+        rounds = Mathf.Clamp(rounds, 0, 200);
+    }
+
     void killCount()
     {
         bool ammo = player.GetComponent<PlayerAddedBehavior>().killCount();
