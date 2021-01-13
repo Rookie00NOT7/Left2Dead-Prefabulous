@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class ScreensButtons : MonoBehaviour
 {
     public RawImage PauseMenu;
-    //public RawImage MainMenu;
     public RawImage GameOver;
     private GameObject levelManager;
     private GameObject player;
@@ -75,6 +74,7 @@ public class ScreensButtons : MonoBehaviour
 
     public void RestartLevel()
     {
+        audioMixer.GetComponent<AudioMixerController>().SetMaster(0);
         Time.timeScale = 1f;
         PauseMenu.gameObject.SetActive(false);
         levelManager.GetComponent<levelManager>().instantiateGame();
@@ -98,8 +98,8 @@ public class ScreensButtons : MonoBehaviour
         Time.timeScale = 0f;
         PauseMenu.gameObject.SetActive(false);
         activateDeactiveWeapon(false);
-        //Destroy(levelManager);
-        //MainMenu.gameObject.SetActive(True);
+        Destroy(levelManager);
+        SceneManager.LoadScene("Start_Menu");
     }
 
     public void activateDeactiveWeapon(bool flag)
