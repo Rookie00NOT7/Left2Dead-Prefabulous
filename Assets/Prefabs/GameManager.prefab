@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6470063511309496440}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,8 +44,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ellieSelected: 1
-  player: {fileID: 0}
-  huntingRifle: {fileID: 0}
-  submachinegun: {fileID: 0}
-  shotgun: {fileID: 0}
-  pistol: {fileID: 0}
