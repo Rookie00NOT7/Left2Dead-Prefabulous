@@ -17,6 +17,7 @@ public class ScreensButtons : MonoBehaviour
     private GameObject shotgun;
     private GameObject huntingRifle;
     private GameObject assaultRifle;
+    private GameObject audioMixer;
     private bool pause;
 
     void Start()
@@ -29,6 +30,7 @@ public class ScreensButtons : MonoBehaviour
         shotgun = GameObject.FindGameObjectWithTag("Shotty");
         huntingRifle = GameObject.FindGameObjectWithTag("playerHuntingRifle");
         assaultRifle = GameObject.FindGameObjectWithTag("assaultRifle");
+        audioMixer = GameObject.FindGameObjectWithTag("AudioMixerController");
     }
     // Update is called once per frame
     void Update()
@@ -46,6 +48,7 @@ public class ScreensButtons : MonoBehaviour
 
     public void Game_Over()
     {
+        audioMixer.GetComponent<AudioMixerController>().SetMaster(-80.0f);
         player.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().getMouseLook().setCursor();
         Time.timeScale = 0f;
         GameOver.gameObject.SetActive(true);
@@ -56,6 +59,7 @@ public class ScreensButtons : MonoBehaviour
     {
         if(pause)
         {
+            audioMixer.GetComponent<AudioMixerController>().SetMaster(-80.0f);
             Time.timeScale = 0f;
             PauseMenu.gameObject.SetActive(true);
             activateDeactiveWeapon(false);
@@ -65,6 +69,7 @@ public class ScreensButtons : MonoBehaviour
             Time.timeScale = 1f;
             PauseMenu.gameObject.SetActive(false);
             activateDeactiveWeapon(true);
+            audioMixer.GetComponent<AudioMixerController>().SetMaster(0);
         }
     }
 
@@ -79,6 +84,7 @@ public class ScreensButtons : MonoBehaviour
 
     public void Resume()
     {
+        audioMixer.GetComponent<AudioMixerController>().SetMaster(0.0f);
         player.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().getMouseLook().setCursor();
         Time.timeScale = 1f;
         PauseMenu.gameObject.SetActive(false);
@@ -88,10 +94,11 @@ public class ScreensButtons : MonoBehaviour
 
     public void QuitToMainMenu()
     {
+        audioMixer.GetComponent<AudioMixerController>().SetMaster(-80.0f);
         Time.timeScale = 0f;
         PauseMenu.gameObject.SetActive(false);
         activateDeactiveWeapon(false);
-        Destroy(levelManager);
+        //Destroy(levelManager);
         //MainMenu.gameObject.SetActive(True);
     }
 
