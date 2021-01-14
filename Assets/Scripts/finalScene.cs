@@ -15,7 +15,7 @@ public class finalScene : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape)){
-            SceneManager.LoadScene("Start_Menu");
+            Application.Quit();
         }
     }
 }
