@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundtrackManager : MonoBehaviour
 {
    public AudioClip calmTrack;
    public AudioClip upbeatTrack;
    public static SoundtrackManager Instance;
+   private int currentTrack = 0;
 
    private AudioSource audioSource;
 
@@ -19,7 +21,28 @@ public class SoundtrackManager : MonoBehaviour
            return;
        }
    }
-   private void Start() {
+
+    private void Update()
+    {
+        if(SceneManager.GetActiveScene().buildIndex != 2)
+        {
+            if(currentTrack == 0 || currentTrack == 2) //no active tracks 
+            {
+                PlayCalmTrack();
+                currentTrack = 1;
+            }
+        }
+        else
+        {
+            if(currentTrack == 0 || currentTrack == 1)
+            {
+                PlayUpbeatTrack();
+                currentTrack = 2;
+            }
+        }
+    }
+
+    private void Start() {
        audioSource = gameObject.GetComponent<AudioSource>();
    }
 

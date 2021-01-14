@@ -56,10 +56,7 @@ public class Crafting : MonoBehaviour
 
     public void setHealthPack(int healthPack)
     {
-        if (GetComponent<PlayerAddedBehavior>().getHealth() == 300)
-            this.HealthPack = healthPack;
-        else
-            GetComponent<PlayerAddedBehavior>().heal(50);
+        this.HealthPack = healthPack;
     }
 
     public int getSugar()

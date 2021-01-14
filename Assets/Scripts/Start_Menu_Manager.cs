@@ -26,7 +26,7 @@ public class Start_Menu_Manager : MonoBehaviour
         }
     }
     public void startGame(){
-        SceneManager.LoadScene("Scene_A");
+        SceneManager.LoadScene("ChooseCompanion");
     }
     public void Options(){
         Options_Panel.SetActive(true);
