@@ -50,7 +50,7 @@ public class ScreensButtons : MonoBehaviour
         //pause and unpause using keyboard keys
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
-            if(crafting_on == false)
+            if (crafting_on == false)
             {
                 pause = !pause;
                 Pause();
@@ -63,7 +63,6 @@ public class ScreensButtons : MonoBehaviour
     public void Game_Over()
     {
         audioMixer.GetComponent<AudioMixerController>().SetMaster(-80.0f);
-        player.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().getMouseLook().setCursor();
         Time.timeScale = 0f;
         GameOver.gameObject.SetActive(true);
         activateDeactiveWeapon(false);
@@ -113,6 +112,7 @@ public class ScreensButtons : MonoBehaviour
         Time.timeScale = 0f;
         PauseMenu.gameObject.SetActive(false);
         activateDeactiveWeapon(false);
+        levelManager.GetComponent<levelManager>().nextLevel(0);
         Destroy(levelManager);
         Destroy(allyManager);
         SceneManager.LoadScene("Start_Menu");

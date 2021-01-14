@@ -16,13 +16,13 @@ public class intro : MonoBehaviour
     void Update()
     {
         if(Input.anyKey){
-            SceneManager.LoadScene("story");
+            SceneManager.LoadScene("Start_Menu");
         }
     }
 
     private IEnumerator loader(){
         yield return tele;
-        SceneManager.LoadScene("story");
+        SceneManager.LoadScene("Start_Menu");
 
     }
 }

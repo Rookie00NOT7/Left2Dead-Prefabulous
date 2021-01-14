@@ -58,6 +58,7 @@ public class levelManager : MonoBehaviour
 
     public void nextLevel(int nextLevel)
     {
+        Debug.Log("LEVEEEL: " + level);
         level = nextLevel;
         level = Mathf.Clamp(level, 0, 3);
     }
