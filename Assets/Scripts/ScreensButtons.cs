@@ -17,6 +17,7 @@ public class ScreensButtons : MonoBehaviour
     private GameObject huntingRifle;
     private GameObject assaultRifle;
     private GameObject audioMixer;
+    private GameObject allyManager;
     private bool pause;
 
     void Start()
@@ -94,12 +95,15 @@ public class ScreensButtons : MonoBehaviour
 
     public void QuitToMainMenu()
     {
-        audioMixer.GetComponent<AudioMixerController>().SetMaster(-80.0f);
+        allyManager = GameObject.FindGameObjectWithTag("AllyManager");
         Time.timeScale = 0f;
         PauseMenu.gameObject.SetActive(false);
         activateDeactiveWeapon(false);
         Destroy(levelManager);
+        Destroy(allyManager);
         SceneManager.LoadScene("Start_Menu");
+        Time.timeScale = 1f;
+        audioMixer.GetComponent<AudioMixerController>().SetMaster(0f);
     }
 
     public void activateDeactiveWeapon(bool flag)
