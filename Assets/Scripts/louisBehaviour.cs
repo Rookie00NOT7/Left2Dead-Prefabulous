@@ -13,12 +13,17 @@ public class louisBehaviour : MonoBehaviour
     private float time = 1.0f;
     private AudioSource audio;
     public AudioClip gunShotClip;
-    private int rounds = 50;
+    public AudioClip voiceOver;
+    private static int rounds = 50;
 
     public void addAmmo()
     {
         rounds += 50;
         rounds = Mathf.Clamp(rounds, 0, 200);
+    }
+
+    public static int RoundCount() {
+        return rounds;
     }
 
     void killCount()
@@ -167,5 +172,11 @@ public class louisBehaviour : MonoBehaviour
                 Debug.Log(rounds);
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+       if (other.transform.tag == "Level1Enter") {
+           audio.PlayOneShot(voiceOver);
+       } 
     }
 }

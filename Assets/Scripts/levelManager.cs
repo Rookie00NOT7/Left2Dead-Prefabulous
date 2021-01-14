@@ -10,7 +10,7 @@ public class levelManager : MonoBehaviour
     private GameObject ally;
     private GameObject Ellie;
     private GameObject Louis;
-    private int level = 0;
+    private static int level = 0;
     private bool[] weapons;
     private WaitForSeconds tele = new WaitForSeconds(0.05f);
     private weaponManager weaponManager;
@@ -20,6 +20,23 @@ public class levelManager : MonoBehaviour
 
 
     public static levelManager Instance;
+
+    public static string ObjectiveText() {
+        switch(level) {
+            case 0:
+                return "Go through the house";
+                break;
+            case 1:
+                return "Go through the mansion's garden";
+                break;
+            case 2:
+                return "Go through the street";
+                break;
+            default:
+                return "Clear out the chapel and procced through the gate before the timer runs out!";
+                break;
+        }
+    }
 
     public int getLevel()
     {

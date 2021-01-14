@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class countdown : MonoBehaviour
 {
-    private float timeRemaining = 3f*60f;
+    private float timeRemaining;
     private bool counting = false;
+
+    private Animator hitPanel;
+    private AudioSource audio;
+    public AudioClip dieClip;
+
+    private void Start() {
+        hitPanel = GameObject.FindGameObjectWithTag("hitPanel").GetComponent<Animator>();
+        audio = GameObject.FindWithTag("Player").GetComponent<AudioSource>();
+        timeRemaining = 3f * 60f;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,6 +37,11 @@ public class countdown : MonoBehaviour
             float seconds = Mathf.FloorToInt(timeRemaining % 60);
             Debug.Log(minutes + ":" + seconds);
             // reaching min = 0 and sec = 0 ----> game over
+            if (minutes == 0f && seconds == 0f)
+            {
+                GameObject.FindWithTag("Player").GetComponent<PlayerAddedBehavior>().takeDamage(1000);
+                counting = false;
+            }
         }
     }
 }

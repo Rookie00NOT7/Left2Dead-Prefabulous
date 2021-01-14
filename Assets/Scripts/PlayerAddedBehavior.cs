@@ -22,6 +22,8 @@ public class PlayerAddedBehavior : MonoBehaviour
     private Animator hitPanel;
     private AudioSource audio;
     public AudioClip hitClip;
+    public AudioClip enemiesAudio;
+    public AudioClip fireAudio;
     private bool playOrNot = true;
     private float rageTime = 0;
     private int rageMeter = 0;
@@ -176,6 +178,10 @@ public class PlayerAddedBehavior : MonoBehaviour
 
         }
 
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            audio.PlayOneShot(fireAudio);
+        }
+
         if (currentDashTime < maxDashTime)
         {
             if (forwardDash)
@@ -245,6 +251,12 @@ public class PlayerAddedBehavior : MonoBehaviour
         {
             rageOn = false;
             rageOnTime = 0.0f;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.transform.tag == "Level1Enter") {
+            audio.PlayOneShot(enemiesAudio);
         }
     }
 }

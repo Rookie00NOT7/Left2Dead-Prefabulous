@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -65,6 +66,15 @@ public class weaponManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
+            int weaponCount = 0;
+            for (int i = 0; i < weapons.Length; ++i) {
+                weaponCount += (weapons[i] ? 1 : 0);
+            }
+
+            if (weaponCount > 1) {
+                GameObject.FindWithTag("WeaponManager").GetComponent<AudioSource>().Play();
+            }
+
             current = (current + 1) % 5;
             while (!weapons[current])
             {

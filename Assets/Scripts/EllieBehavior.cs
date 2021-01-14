@@ -14,12 +14,17 @@ public class EllieBehavior : MonoBehaviour
     private float time = 0.0f;
     private AudioSource audio;
     public AudioClip gunShotClip;
-    private int rounds = 15;
+    public AudioClip voiceOver;
+    private static int rounds = 15;
 
     public void addAmmo()
     {
         rounds += 15;
         rounds = Mathf.Clamp(rounds, 0, 45);
+    }
+
+    public static int RoundCount() {
+        return rounds;
     }
 
     void killCount()

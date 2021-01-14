@@ -18,6 +18,10 @@ public class cheats : MonoBehaviour
     public GameObject levelDam3;
     public GameObject levelDam4;
 
+    [Header("Packs")]
+    public GameObject HealthPack;
+    public GameObject AmmoPack;
+
     void Start()
     {
         wm = GameObject.FindGameObjectWithTag("WeaponManager").GetComponent<weaponManager>();
@@ -117,6 +121,15 @@ public class cheats : MonoBehaviour
                 ally.GetComponent<EllieBehavior>().addAmmo();
             }
             
+        }
+        if (Input.GetKeyDown(KeyCode.N)) {
+            Instantiate(HealthPack, this.gameObject.transform.position + new Vector3(this.gameObject.transform.forward.x, this.gameObject.transform.forward.y, 5 * this.gameObject.transform.forward.z), Quaternion.identity);
+        }
+        if (Input.GetKeyDown(KeyCode.V)) {
+            Instantiate(AmmoPack, this.gameObject.transform.position + new Vector3(this.gameObject.transform.forward.x, this.gameObject.transform.forward.y, 5 * this.gameObject.transform.forward.z), Quaternion.identity);
+        }
+        if (Input.GetKeyDown(KeyCode.H)) {
+            GameObject.FindWithTag("timer").GetComponent<countdown>().stopCounting();
         }
     }
 }

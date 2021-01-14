@@ -23,6 +23,10 @@ public class AllyManager : MonoBehaviour
       }
   }
 
+  public bool checkCompanion() {
+      return isEllie;
+  }
+
   public void ChooseEllie() {
       isEllie = true;
   }

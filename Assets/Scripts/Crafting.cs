@@ -127,6 +127,11 @@ public class Crafting : MonoBehaviour
              else
              EnablePanel();
          }
+
+        if (Input.GetKeyDown(KeyCode.B)) {
+            HealthPack -= 1;
+            GameObject.FindWithTag("Player").GetComponent<PlayerAddedBehavior>().heal(50);
+        }
     //this.GetComponent<grenades>().getMolInv();
     
 
