@@ -23,7 +23,7 @@ public class ChargerControlScript : MonoBehaviour
     private Vector3 distraction ;
     private float pinDownDuration = 0f;
     
-    void Start()
+    void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         temp = GameObject.FindGameObjectWithTag("Player");

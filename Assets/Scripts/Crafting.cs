@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Crafting : MonoBehaviour
 {
     private int Alcohol ;
-    private int Rags ;
+    private int Rags;
     private int Sugar;
     private int GunPowder;
     private int Canister;

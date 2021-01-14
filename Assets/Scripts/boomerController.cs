@@ -72,7 +72,7 @@ public class boomerController : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         temp = GameObject.FindGameObjectWithTag("Player");

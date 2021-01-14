@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class grenades : MonoBehaviour
 {
-    private int PipeInventory = 2;
-    private int MolInventory = 3;
-    private int StunInventory = 20;
+    private int PipeInventory = 0;
+    private int MolInventory=0 ;
+    private int StunInventory=0 ;
     public GameObject pipe;
     public GameObject molotov;
     public GameObject stun;
