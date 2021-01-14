@@ -67,6 +67,7 @@ public class grenades : MonoBehaviour
             {
                 Instantiate(molotov, new Vector3(this.transform.position.x, this.transform.position.y + 1f, this.transform.position.z), Quaternion.identity);
                 MolInventory--;
+                Debug.Log(MolInventory);
             }
            if (selected == 2 && StunInventory > 0)
            {

@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class Crafting : MonoBehaviour
 {
-    private int Alcohol ;
-    private int Rags ;
-    private int Sugar;
-    private int GunPowder;
-    private int Canister;
+    private int Alcohol=5 ;
+    private int Rags =5;
+    private int Sugar=5;
+    private int GunPowder=5;
+    private int Canister=5;
    // private int Bile;
     private int MolotovCocktail;
     private int StunGrenade;
@@ -26,6 +26,8 @@ public class Crafting : MonoBehaviour
     public Button Stun_Grenade_Button;
     public Button Health_Pack_Button;
     public Button Pipe_Bomb_Button;
+    private GameObject playeroverlay;
+    private GameObject audioMixer;
 
 ////////////////////////////////////////Setters & Getters///////////////////////////////////////////////////////
 
@@ -56,10 +58,7 @@ public class Crafting : MonoBehaviour
 
     public void setHealthPack(int healthPack)
     {
-        if (GetComponent<PlayerAddedBehavior>().getHealth() == 300)
-            this.HealthPack = healthPack;
-        else
-            GetComponent<PlayerAddedBehavior>().heal(50);
+        this.HealthPack = healthPack;
     }
 
     public int getSugar()
@@ -107,6 +106,8 @@ public class Crafting : MonoBehaviour
     void Start()
     {
         Crafting_Panel.SetActive(false);
+        playeroverlay = GameObject.FindGameObjectWithTag("PlayerOverlay");
+        audioMixer = GameObject.FindGameObjectWithTag("AudioMixerController");
     }
 
     // Update is called once per frame
@@ -132,8 +133,10 @@ public class Crafting : MonoBehaviour
          }
 
         if (Input.GetKeyDown(KeyCode.B)) {
+            if(HealthPack>0){
             HealthPack -= 1;
             GameObject.FindWithTag("Player").GetComponent<PlayerAddedBehavior>().heal(50);
+            }
         }
     //this.GetComponent<grenades>().getMolInv();
     
@@ -143,24 +146,28 @@ public class Crafting : MonoBehaviour
         
     }
 ////////////////////////////////////////Crafting Methods///////////////////////////////////////////////////////
-    private void makeMolotovCocktail(){
-       if( this.GetComponent<grenades>().getMolInv()<3){
+    public void makeMolotovCocktail(){
+        Debug.Log("1st");
+        Debug.Log(this.GetComponent<grenades>().getMolInv());
+       if( this.gameObject.GetComponent<grenades>().getMolInv()<3){
+           Debug.Log("2nd");
         if(getAlcohol()>=2 && getRags()>=2){
             setAlcohol(getAlcohol()-2);
             setRags(getRags()-2);
-            this.GetComponent<grenades>().addMol(this.GetComponent<grenades>().getMolInv()+1);
+            this.GetComponent<grenades>().addMol(1);
+            Debug.Log("ttt");
                                             }
         }
     }
-    private void makeStunGrenade(){
+    public void makeStunGrenade(){
         if(this.GetComponent<grenades>().getStunInv()<2){
         if(getSugar()>=1 && getGunPowder()>=2){
             setSugar(getSugar()-1);
             setGunPowder(getGunPowder()-2);
-            this.GetComponent<grenades>().addStun(this.GetComponent<grenades>().getStunInv()+1);
+            this.GetComponent<grenades>().addStun(+1);
         }}
     }
-    private void makeHealthPack(){
+    public void makeHealthPack(){
         if(getAlcohol()>=2 && getRags()>=2){
             setAlcohol(getAlcohol()-2);
             setRags(getRags()-2);
@@ -169,7 +176,7 @@ public class Crafting : MonoBehaviour
 
     }
 
-    private void makePipeBomb(){
+    public void makePipeBomb(){
         if(this.GetComponent<grenades>().getPipeInv()<3){
     if(getAlcohol()>=1 && getGunPowder() >=1 &&getCanister()>=1 ){
         setAlcohol(getAlcohol()-1);
@@ -193,8 +200,11 @@ public class Crafting : MonoBehaviour
 
 public void EnablePanel(){
         if (Crafting_Panel!=null){
+            audioMixer.GetComponent<AudioMixerController>().SetMaster(-80.0f);
                  Crafting_Panel.SetActive(true);
                  Time.timeScale =0;
+                 playeroverlay.SetActive(false);
+                  GameObject.FindGameObjectWithTag("PauseGameOver").GetComponent<ScreensButtons>().activateDeactiveWeapon(false);
                  
              }
              
@@ -203,6 +213,9 @@ public void EnablePanel(){
     public void Disable(){
         Crafting_Panel.SetActive(false);
         Time.timeScale=1;
+        playeroverlay.SetActive(true);
+        audioMixer.GetComponent<AudioMixerController>().SetMaster(0);
+        GameObject.FindGameObjectWithTag("PauseGameOver").GetComponent<ScreensButtons>().activateDeactiveWeapon(true);
     }
 
     //void OnTriggerEnter(Collider other){
