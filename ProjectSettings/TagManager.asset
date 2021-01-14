@@ -55,6 +55,7 @@ TagManager:
   - AllyManager
   - Level1Enter
   - FinishGame
+  - Level4
   layers:
   - Default
   - TransparentFX

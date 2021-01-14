@@ -1233,6 +1233,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundtrackManager
       objectReference: {fileID: 0}
+    - target: {fileID: 9133991855779650771, guid: 6503fdafe7177ee44b38f4a6e695ae51, type: 3}
+      propertyPath: upbeatTrack2
+      value: 
+      objectReference: {fileID: 8300000, guid: b744f4fa44706c04a801c3d4b5091b10, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6503fdafe7177ee44b38f4a6e695ae51, type: 3}
 --- !u!1 &548701119
@@ -1745,7 +1749,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.85
+  m_fontSize: 18.95
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3747,7 +3751,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.85
+  m_fontSize: 18.95
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3900,7 +3904,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.65
+  m_fontSize: 27.5
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1

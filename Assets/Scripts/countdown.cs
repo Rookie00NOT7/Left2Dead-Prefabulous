@@ -27,6 +27,7 @@ public class countdown : MonoBehaviour
         if (other.tag == "Player")
         {
             counting = true;
+            GameObject.FindWithTag("SoundtrackManager").GetComponent<SoundtrackManager>().PlayUpBeatTrack2(); 
         }
     }
     public void stopCounting()
