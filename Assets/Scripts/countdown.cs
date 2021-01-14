@@ -17,6 +17,11 @@ public class countdown : MonoBehaviour
         timeRemaining = 3f * 60f;
     }
 
+    public float getTimeRemaning()
+    {
+        return timeRemaining;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

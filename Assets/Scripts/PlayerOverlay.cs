@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerOverlay : MonoBehaviour
 {
@@ -33,14 +34,17 @@ public class PlayerOverlay : MonoBehaviour
     public GameObject weaponsPanel;
     public GameObject objectivePanel;
     public GameObject allyPanel;
+    public GameObject timerPanel;
 
     private Text objectiveText;
     private Text allyAmmoCount;
+    private Text timeText;
 
     private void Start() {
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>(); 
         objectiveText = objectivePanel.transform.GetChild(0).GetComponent<Text>();
-        allyAmmoCount = allyPanel.transform.GetChild(0).GetComponent<Text>(); 
+        allyAmmoCount = allyPanel.transform.GetChild(0).GetComponent<Text>();
+        timeText = timerPanel.transform.GetChild(0).GetComponent<Text>();
     }
 
    private void Update() {
@@ -94,5 +98,12 @@ public class PlayerOverlay : MonoBehaviour
        } else {
            allyAmmoCount.text = "Ally Ammo: " + louisBehaviour.RoundCount();
        }
+
+       if(GameObject.FindWithTag("LevelManager").GetComponent<levelManager>().getLevel() == 3)
+       {
+            timerPanel.SetActive(true);
+            timeText.text = ((int) GameObject.FindWithTag("timer").GetComponent<countdown>().getTimeRemaning()).ToString();
+       }
    } 
+
 }
