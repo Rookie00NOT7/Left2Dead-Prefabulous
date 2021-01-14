@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class Crafting : MonoBehaviour
 {
-    private int Alcohol=5 ;
-    private int Rags =5;
-    private int Sugar=5;
-    private int GunPowder=5;
-    private int Canister=5;
+    private int Alcohol ;
+    private int Rags;
+    private int Sugar;
+    private int GunPowder;
+    private int Canister;
    // private int Bile;
     private int MolotovCocktail;
     private int StunGrenade;

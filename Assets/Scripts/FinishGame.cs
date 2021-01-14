@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class FinishGame : MonoBehaviour
 {
+    private WaitForSeconds tele = new WaitForSeconds(2f);
    private void OnTriggerEnter(Collider other) {
        if (other.transform.tag == "Player") {
-           // Scene manager transition to next scene
+          StartCoroutine(loader());
        }
    } 
+
+   private IEnumerator loader(){
+        yield return tele;
+        SceneManager.LoadScene("Credits");
+
+    }
 }
