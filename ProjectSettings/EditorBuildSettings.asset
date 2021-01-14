@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Flooded_Grounds/Scenes/Scene_A.unity
     guid: e49f94eb30a201b4389721beee8e811e
+  - enabled: 1
+    path: Assets/Scenes/Story.unity
+    guid: 76097e465ee7fde4fbaa8ceb9c4e976d
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: fd820851c7223d7449bb8a33ce7a9d0c
+  - enabled: 1
+    path: Assets/Scenes/Intro_Video.unity
+    guid: 0cc01c3c016c5f7428d254447a05675e
   m_configObjects: {}

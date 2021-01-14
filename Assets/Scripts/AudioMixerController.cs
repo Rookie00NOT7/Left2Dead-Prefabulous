@@ -8,15 +8,15 @@ public class AudioMixerController : MonoBehaviour
     public AudioMixer mixer;
     public static AudioMixerController Instance;
 
-    private void Awake() {
-        if (Instance == null) {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        } else {
-            Destroy(this.gameObject);
-            return;
-        }
-    }
+    // private void Awake() {
+    //     if (Instance == null) {
+    //         Instance = this;
+    //         DontDestroyOnLoad(this.gameObject);
+    //     } else {
+    //         Destroy(this.gameObject);
+    //         return;
+    //     }
+    // }
 
     public float GetMaster() {
         float value;
