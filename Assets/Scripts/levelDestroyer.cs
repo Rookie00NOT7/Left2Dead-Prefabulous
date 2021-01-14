@@ -10,6 +10,7 @@ public class levelDestroyer : MonoBehaviour
     public GameObject opened1;
     public GameObject opened2;
     private levelManager levMan;
+    public bool player_entered = false;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class levelDestroyer : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            player_entered = true;
             for(int i = 0; i < levelDest.Length; i++)
             {
                 levelDest[i].SetActive(true);

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   calmTrack: {fileID: 8300000, guid: 466e50ed8f596664a82373a66f0f74e0, type: 3}
   upbeatTrack: {fileID: 8300000, guid: a930ddc808cb809418cc7b2e52e8a85c, type: 3}
+  upbeatTrack2: {fileID: 8300000, guid: b744f4fa44706c04a801c3d4b5091b10, type: 3}
 --- !u!82 &9133991855779650769
 AudioSource:
   m_ObjectHideFlags: 0

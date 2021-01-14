@@ -19,6 +19,7 @@ public class ScreensButtons : MonoBehaviour
     private GameObject audioMixer;
     private GameObject allyManager;
     private bool pause;
+    private bool crafting_on = false;
 
     void Start()
     {
@@ -32,16 +33,29 @@ public class ScreensButtons : MonoBehaviour
         assaultRifle = GameObject.FindGameObjectWithTag("assaultRifle");
         audioMixer = GameObject.FindGameObjectWithTag("AudioMixerController");
     }
+
+    public void set_crafting()
+    {
+        crafting_on = false;
+    }
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            crafting_on = true;
+        }
+
         //mute all other sounds
         //pause and unpause using keyboard keys
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
-            pause = !pause;
-            Pause();
-            
+            if(crafting_on == false)
+            {
+                pause = !pause;
+                Pause();
+            }
+               
         }
        
     }

@@ -7,8 +7,10 @@ public class SoundtrackManager : MonoBehaviour
 {
    public AudioClip calmTrack;
    public AudioClip upbeatTrack;
+   public AudioClip upbeatTrack2;
    public static SoundtrackManager Instance;
-   private int currentTrack = 0;
+   public int currentTrack = 0;
+   private int currentLevel = 0;
 
    private AudioSource audioSource;
 
@@ -24,9 +26,9 @@ public class SoundtrackManager : MonoBehaviour
 
     private void Update()
     {
-        if(SceneManager.GetActiveScene().buildIndex != 2)
+        if(SceneManager.GetActiveScene().name != "Scene_A") //scene_A index
         {
-            if(currentTrack == 0 || currentTrack == 2) //no active tracks 
+            if(currentTrack == 0 || currentTrack == 2 || currentTrack == 3) //no active tracks 
             {
                 PlayCalmTrack();
                 currentTrack = 1;
@@ -34,11 +36,26 @@ public class SoundtrackManager : MonoBehaviour
         }
         else
         {
-            if(currentTrack == 0 || currentTrack == 1)
+            currentLevel = GameObject.FindWithTag("LevelManager").GetComponent<levelManager>().getLevel();
+            if (currentLevel == 0 || currentLevel == 1)
             {
-                PlayUpbeatTrack();
-                currentTrack = 2;
+                if (currentTrack == 0 || currentTrack == 1 || currentTrack == 3)
+                {
+                    PlayUpbeatTrack();
+                    currentTrack = 2;
+                } 
             }
+            
+            if(currentLevel == 2 || currentLevel == 3)
+            {
+                if (currentTrack == 0 || currentTrack == 1 || currentTrack == 2)
+                {
+                    PlayUpBeatTrack2();
+                    currentTrack = 3;
+                }
+            }
+ 
+            
         }
     }
 
@@ -55,6 +72,12 @@ public class SoundtrackManager : MonoBehaviour
        audioSource.clip = upbeatTrack;
        audioSource.Play();
    }
+   
+   public void PlayUpBeatTrack2()
+   {
+        audioSource.clip = upbeatTrack2;
+        audioSource.Play();
+    }
 
    public void PauseTrack() {
        audioSource.Pause();
