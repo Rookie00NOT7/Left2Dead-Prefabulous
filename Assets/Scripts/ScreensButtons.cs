@@ -34,16 +34,17 @@ public class ScreensButtons : MonoBehaviour
         audioMixer = GameObject.FindGameObjectWithTag("AudioMixerController");
     }
 
-    public void set_crafting()
-    {
-        crafting_on = false;
-    }
+    //public void set_crafting()
+    //{
+    //    crafting_on = false;
+    //}
+
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.T))
         {
-            crafting_on = true;
+            crafting_on = !crafting_on;
         }
 
         //mute all other sounds

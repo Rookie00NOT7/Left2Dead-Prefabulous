@@ -239,7 +239,7 @@ public class Crafting : MonoBehaviour
         playeroverlay.SetActive(true);
         audioMixer.GetComponent<AudioMixerController>().SetMaster(0);
         GameObject.FindGameObjectWithTag("PauseGameOver").GetComponent<ScreensButtons>().activateDeactiveWeapon(true);
-        GameObject.FindGameObjectWithTag("PauseGameOver").GetComponent<ScreensButtons>().set_crafting();
+        //GameObject.FindGameObjectWithTag("PauseGameOver").GetComponent<ScreensButtons>().set_crafting();
     }
 
     //void OnTriggerEnter(Collider other){
