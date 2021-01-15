@@ -34,6 +34,7 @@ public class PlayerAddedBehavior : MonoBehaviour
     public AudioClip rageModeClip;
     public AudioClip dieClip;
     private float healthTime = 0f;
+    private bool allyManager;
 
     public void setRage()
     {
@@ -122,11 +123,12 @@ public class PlayerAddedBehavior : MonoBehaviour
     void Start()
     {
         hitPanel = GameObject.FindGameObjectWithTag("hitPanel").GetComponent<Animator>();
-        if (GameObject.FindGameObjectWithTag("Ellie") != null) //ally manager get is ELLIE
+        allyManager = GameObject.FindGameObjectWithTag("AllyManager").GetComponent<AllyManager>().GetIsEllie();
+        if (allyManager) //ally manager get is ELLIE
         {
             rageMult = 2;
         }
-        if (GameObject.FindGameObjectWithTag("Louis") != null)
+        else
         {
             healing = true;
         }
