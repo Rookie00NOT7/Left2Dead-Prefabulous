@@ -63,6 +63,7 @@ public class ScreensButtons : MonoBehaviour
 
     public void Game_Over()
     {
+        player.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().getMouseLook().setCursor();
         audioMixer.GetComponent<AudioMixerController>().SetMaster(-80.0f);
         Time.timeScale = 0f;
         GameOver.gameObject.SetActive(true);
